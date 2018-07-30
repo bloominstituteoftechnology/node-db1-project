@@ -96,6 +96,6 @@ INSERT INTO orders VALUES(10445, 50, 7, '2018-07-30',	2)
 
 * delete all users that have no orders.
 ```
-DELETE customers
+DELETE FROM customers
 WHERE customerid not in (SELECT DISTINCT customerid FROM orders)
 ```
