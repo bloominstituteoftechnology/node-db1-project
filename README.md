@@ -48,6 +48,9 @@
 
   - list customers descending by the number of orders.
   - list orders descending by the order date.
+
+    `select * from Orders order by OrderDate desc`
+
   - list orders grouped by customer showing the number of orders per customer.
   - list orders grouped by customer's city showing number of orders per city.
   - add a customer using your information.
