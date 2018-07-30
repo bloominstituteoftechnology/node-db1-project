@@ -106,5 +106,13 @@
   ```
 
   - delete all users that have no orders.
+  ```
+  DELETE FROM Customers
+WHERE CustomerID IN
+  (SELECT Customers.CustomerID
+      FROM Customers
+      LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+      WHERE OrderID is null)
+  ```
 
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
