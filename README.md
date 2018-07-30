@@ -27,7 +27,9 @@
 
 - Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) and write the following queries:
   - find all customers with a particular first name.
+      ##SELECT * FROM [Customers] where CustomerName like 'La%';
   - find all customers that live in London.
+  
   - find the phone number for a particular supplier (provide id, or supplier name).
   - find all customers in a particular postal code.
   - find all suppliers who have names with more than 20 characters.
