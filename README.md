@@ -54,6 +54,10 @@
   - list orders grouped by customer showing the number of orders per customer.
   - list orders grouped by customer's city showing number of orders per city.
   - add a customer using your information.
+
+    `insert into Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+     values ('Allen LLC', 'Allen Hai', '12345 Street Way', 'Houston', '23245', 'USA')`
+
   - add 2 products.
   - add 2 orders with you as the customer.
   - delete all users that have no orders.
