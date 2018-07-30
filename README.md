@@ -83,6 +83,15 @@
     ```
 
   - add 2 orders with you as the customer.
+
+    ```sql
+    insert into Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
+    values (92, 1, 2018-07-30, 3)
+
+    insert into Orders  (CustomerID, EmployeeID, OrderDate, ShipperID)
+    values (92, 1, 2018-07-30, 2)
+    ```
+  
   - delete all users that have no orders.
 
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
