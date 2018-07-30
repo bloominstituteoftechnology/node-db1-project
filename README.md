@@ -47,8 +47,10 @@
   SELECT * FROM Orders ORDER BY OrderDate DESC
 
   - list orders grouped by customer showing the number of orders per customer.
+  SELECT CustomerID, COUNT(OrderID) AS orders FROM Orders GROUP BY CustomerID ORDER BY COUNT(OrderID) DESC
 
   - list orders grouped by customer's city showing number of orders per city.
+  SELECT COUNT(OrderID), City FROM Customers, OrderDetails GROUP BY City ORDER BY COUNT(OrderID) DESC;
 
   - add a customer using your information.
   INSERT INTO Customers VALUES( 92, 'Jennifer', 'Jennifer Player', '10095 Address Lane', 'Hotlanta', '30076', 'USA')
@@ -62,5 +64,6 @@
   INSERT INTO Orders VALUES( 10445, 108, 4, 2018-07-30, 2)
 
   - delete all customers that have no orders.
+  DELETE FROM Customers WHERE CustomerID NOT IN (SELECT CustomerID FROM Orders)
 
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
