@@ -35,7 +35,7 @@
   - find all customers in a particular postal code.
       - SELECT * FROM Customers WHERE PostalCode = '1010';
   - find all suppliers who have names with more than 20 characters.
-      - SELECT * FROM Customers WHERE LENGTH(CustomerName) > 20;
+      - SELECT * FROM Suppliers WHERE LENGTH(SupplierName) > 20;
   - list customers descending by the number of orders.
       - SELECT * FROM Orders ORDER BY OrderID DESC;
   - list orders descending by the order date.
