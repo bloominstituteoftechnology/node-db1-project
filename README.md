@@ -39,6 +39,9 @@
     `select Phone from Suppliers where SupplierID=3`
 
   - find all customers in a particular postal code.
+
+    `select * from Customers where PostalCode='68306'`
+
   - find all suppliers who have names with more than 20 characters.
   - list customers descending by the number of orders.
   - list orders descending by the order date.
