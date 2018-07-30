@@ -33,7 +33,20 @@
     ORDER BY OrderDate DESC
 
   - list orders grouped by customer showing the number of orders per customer.
+    SELECT cm.CustomerName, cm.CustomerID, od.Quantity 
+    FROM Customers cm
+    JOIN Orders os ON os.CustomerID = cm.CustomerID
+    JOIN OrderDetails od ON os.OrderID = od.OrderID
+    GROUP BY os.CustomerID
+    ORDER BY Quantity DESC
+
   - list orders grouped by customer's city showing number of orders per city.
+    SELECT cm.CustomerName, cm.City, cm.CustomerID, od.Quantity 
+    FROM Customers cm
+    JOIN Orders os ON os.CustomerID = cm.CustomerID
+    JOIN OrderDetails od ON os.OrderID = od.OrderID
+    GROUP BY cm.City
+    ORDER BY Quantity DESC
 
   - add a customer using your information.
     INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
