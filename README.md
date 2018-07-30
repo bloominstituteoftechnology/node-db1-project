@@ -43,7 +43,7 @@
   - list orders grouped by customer showing the number of orders per customer.
     - `SELECT orderid, COUNT("orderid") as "# of orders" FROM orders GROUP BY orderid`
   - list orders grouped by customer's city showing number of orders per city.
-    - `SELECT city, COUNT("city") FROM customers WHERE customerid IN (SELECT customerid FROM orders) GROUP BY city`
+    - `SELECT Customers.City, count("city") AS "# of orders" FROM Orders JOIN Customers ON Orders.CustomerID=Customers.CustomerID GROUP BY city`
   - add a customer using your information.
     - `INSERT INTO customers (customername, contactname, address, city, postalcode, country) VALUES ("Hackers Anonymous", "Thomas Greenhalgh", "Oceanside Way", "Santa Monica", 90405, "USA");`
   - add 2 products.
