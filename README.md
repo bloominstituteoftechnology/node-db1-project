@@ -41,3 +41,31 @@
   - delete all users that have no orders.
 
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
+
+// Queries Used
+ - find all customers with a particular first name. 
+  Select ContactName from Customers
+  Where ContactName like 'Antonio%'
+
+  - find all customers that live in London.
+  Select CustomerName from Customers
+  Where City='London'
+
+  - find the phone number for a particular supplier (provide id, or supplier name).
+
+  - find all customers in a particular postal code.
+  Select CustomerName from Customers
+  Where PostalCode='05023'
+
+  - find all suppliers who have names with more than 20 characters.
+  Select SupplierName from Suppliers
+  Where Length(SupplierName) > 20
+  
+  - list customers descending by the number of orders.
+  - list orders descending by the order date.
+  - list orders grouped by customer showing the number of orders per customer.
+  - list orders grouped by customer's city showing number of orders per city.
+  - add a customer using your information.
+  - add 2 products.
+  - add 2 orders with you as the customer.
+  - delete all users that have no orders.
