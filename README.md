@@ -59,8 +59,22 @@
     ORDER BY NumberOfOrders desc
 
   - list orders descending by the order date.
+    SELECT *
+    FROM Orders
+    ORDER BY OrderDate desc
+
   - list orders grouped by customer showing the number of orders per customer.
+    SELECT Orders.CustomerID, Customers.CustomerName, Customers.CustomerID, COUNT(Customers.CustomerID) AS Number_Of_Purchases
+    FROM Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+    GROUP BY Customers.CustomerID
+    ORDER BY COUNT(Customers.CustomerID) desc
+
   - list orders grouped by customer's city showing number of orders per city.
+    SELECT COUNT(Customers.City), Customers.city
+    FROM Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+    GROUP BY Customers.City
+    ORDER BY Count(Customers.city) desc
+
   - add a customer using your information.
   - add 2 products.
   - add 2 orders with you as the customer.
