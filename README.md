@@ -27,17 +27,78 @@
 
 - Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) and write the following queries:
   - find all customers with a particular first name.
+
+  ```sql
+  select * from Customers where ContactName like 'maria%'
+  ```
+
   - find all customers that live in London.
+
+  ```sql
+  select * from Customers where City='London'
+  ```
+
   - find the phone number for a particular supplier (provide id, or supplier name).
+
+  ```sql 
+  select Phone from Suppliers where SupplierId 1
+  ```
+
+  ```sql 
+  select Phone from Suppliers where SupplierName='Exotic Liquid'
+  ```
+
   - find all customers in a particular postal code.
+
+  ```sql
+  select * from Customers where PostalCode=1010
+  ```
+
   - find all suppliers who have names with more than 20 characters.
+
+  ```sql
+  select * from Suppliers where LENGTH(SupplierName) > 20
+  ```
+
   - list customers descending by the number of orders.
+
+  ```sql
+  ```
+
   - list orders descending by the order date.
+
+  ```sql
+  select * from Orders order by OrderDate desc
+  ```
+
   - list orders grouped by customer showing the number of orders per customer.
+
+  ```sql
+  ```
+
   - list orders grouped by customer's city showing number of orders per city.
+
+  ```sql
+  ```
+
   - add a customer using your information.
+
+  ```sql
+  ```
+
   - add 2 products.
+
+  ```sql
+  ```
+
   - add 2 orders with you as the customer.
+
+  ```sql
+  ```
+
   - delete all users that have no orders.
 
+  ```sql
+  ```
+  
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
