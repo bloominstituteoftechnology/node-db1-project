@@ -25,7 +25,7 @@
 
 ### Write Basic Queries
 
-- Visit [SQL Try Editor at W3Schools.com] and write the following queries:
+- Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) and write the following queries:
   - find all customers with a particular first name.
   - find all customers that live in London.
   - find the phone number for a particular supplier (provide id, or supplier name).
