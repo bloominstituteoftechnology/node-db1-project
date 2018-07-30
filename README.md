@@ -21,7 +21,7 @@
 - constraints
   - the `id` should be the primary key for the table.
   - account `name` should be unique.
-  - account `name` cannot is required.
+  - account `name`, required.
 
 ### Write Basic Queries
 
