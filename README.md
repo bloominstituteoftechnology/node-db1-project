@@ -27,8 +27,8 @@
 
 - Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) and write the following queries:
   - find all customers with a particular first name.
- SELECT DISTINCT CustomerName FROM Customers;
-
+  SELECT * FROM Customers
+WHERE ContactName LIKE '%Elizabeth%';
 
   - find all customers that live in London.
   SELECT * FROM Customers where City="London";
@@ -49,7 +49,7 @@
   SELECT * FROM Orders ORDER BY OrderDate DESC
 
   - list orders grouped by customer showing the number of orders per customer.
-
+  SELECT CustomerID, count(*) as orders FROM [Orders] GROUP BY CustomerID;
 
   - list orders grouped by customer's city showing number of orders per city.
 
@@ -58,7 +58,9 @@
   INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country) VALUES ('Emazing, LLC', 'Em jay', '2218 2nd Ave', 'Seattle', '90101', 'USA');
 
   - add 2 products.
-
+  INSERT INTO Products ( ProductName, SupplierID, CategoryID, Unit, Price )
+  VALUES ( 'Super Absorbent Maxis', 44, 1, '10 boxes x 1 pallet', 49.99 );  INSERT INTO Products ( ProductName, SupplierID, CategoryID, Unit, Price )
+  VALUES ( 'Super Absorbent Tampons', 44, 1, '10 boxes x 1 pallet', 19.99 );
 
   - add 2 orders with you as the customer.
   INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, ShipperID) VALUES ('100', '7', '2018-07-30', '1'); INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, ShipperID) VALUES ('101', '4', '2018-07-29', '3');
