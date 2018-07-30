@@ -48,10 +48,16 @@
   
   - find all suppliers who have names with more than 20 characters.
   
+   select length(SupplierName) as SupplierLength, * from suppliers
+   where SupplierLength > 20
+  
   - list customers descending by the number of orders.
   
-  SELECT * FROM OrderDetails
-  ORDER BY quantity DESC
+   select count(orderID) as numberOfOrders, CustomerName 
+	from Orders
+	join Customers ON Orders.CustomerID = Customers.CustomerID
+  group by Customers.CustomerID
+  order by numberOfOrders desc
   
   - list orders descending by the order date.
   
@@ -59,8 +65,26 @@
   ORDER BY OrderDate DESC
   
   - list orders grouped by customer showing the number of orders per customer.
+  
+    select count(orderID) as numberOfOrders, CustomerName 
+	from Orders
+	join Customers ON Orders.CustomerID = Customers.CustomerID
+  group by Customers.CustomerID
+  order by numberOfOrders desc
+  
   - list orders grouped by customer's city showing number of orders per city.
+  
+  select count(orderID) as numberOfOrders, City
+	from Orders
+	join Customers ON Orders.CustomerID = Customers.CustomerID
+  group by Customers.CustomerID
+  order by numberOfOrders desc
+  
   - add a customer using your information.
+  
+   insert into Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+   values ('Austin Merando', 'Flint', '111', 'rewq', 97984, 'USA')
+  
   - add 2 products.
   - add 2 orders with you as the customer.
   - delete all users that have no orders.
