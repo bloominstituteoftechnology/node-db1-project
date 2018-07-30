@@ -43,6 +43,9 @@
     `select * from Customers where PostalCode='68306'`
 
   - find all suppliers who have names with more than 20 characters.
+
+    `select * from Suppliers where length(SupplierName) > 20`
+
   - list customers descending by the number of orders.
   - list orders descending by the order date.
   - list orders grouped by customer showing the number of orders per customer.
