@@ -11,17 +11,17 @@
 
 ### Create a Database Table
 
-- use DB Browser to SQLite to create a database, name it anything you want.
+- use DB Browser for SQLite to create a database, name it anything you want.
 - add an _accounts_ table with the following _schema_:
 
-  - `id`, primary key, numeric value with no decimal places that should autoincrement.
-  - `name`, string, required, add whatever is necessary to make searching by name faster.
+  - `id`, numeric value with no decimal places that should autoincrement.
+  - `name`, string, add whatever is necessary to make searching by name faster.
   - `budget` numeric value.
 
 - constraints
   - the `id` should be the primary key for the table.
   - account `name` should be unique.
-  - account `name` cannot be null.
+  - account `name` cannot is required.
 
 ### Write Basic Queries
 
