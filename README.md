@@ -84,21 +84,37 @@
   - add a customer using your information.
 
   ```sql
+  insert into Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+  values ('Cesar Mejia','Cesar Mejia','5555 Steet Avenue','City Name','90270','USA')
   ```
 
   - add 2 products.
 
   ```sql
+    insert into Products (ProductName, Unit, Price)
+    values ('Chia Pet', '1 dozen', 10.99)
+  ```
+
+  ```sql
+    insert into Products (ProductName, Unit, Price)
+    values ('Pet Rock', '1 item', 20.99)
   ```
 
   - add 2 orders with you as the customer.
 
   ```sql
+    insert into Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
+    values (92, 1, '1981-10-06', 1)
   ```
 
+  ```sql
+    insert into Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
+    values (92, 2, '1981-10-08', 2)
+  ```
+  
   - delete all users that have no orders.
 
   ```sql
   ```
-  
+
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
