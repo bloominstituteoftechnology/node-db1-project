@@ -27,10 +27,20 @@
 
 - Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) and write the following queries:
   - find all customers with a particular first name.
+    SELECT * FROM Customers where customerName like'An%';
+
   - find all customers that live in London.
+    SELECT * FROM Customers where city = 'London';
+
   - find the phone number for a particular supplier (provide id, or supplier name).
+    SELECT phone FROM [Suppliers] where supplierName = 'Exotic Liquid'
+
   - find all customers in a particular postal code.
+    SELECT * FROM [Customers] where postalCode = '12209'
+
   - find all suppliers who have names with more than 20 characters.
+    SELECT * FROM [Suppliers] where LENGTH(supplierName) > 20
+
   - list customers descending by the number of orders.
   - list orders descending by the order date.
   - list orders grouped by customer showing the number of orders per customer.
