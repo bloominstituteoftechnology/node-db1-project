@@ -31,6 +31,9 @@
     `select * from Customers where CustomerName like 'Alfreds%`    
 
   - find all customers that live in London.
+
+    `select * from Customers where City='London'`
+
   - find the phone number for a particular supplier (provide id, or supplier name).
   - find all customers in a particular postal code.
   - find all suppliers who have names with more than 20 characters.
