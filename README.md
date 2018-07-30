@@ -45,10 +45,10 @@
   - list orders grouped by customer's city showing number of orders per city.
       - SELECT COUNT(Orders.OrderID) AS Orders, Customers.City FROM Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID GROUP BY Customers.City ORDER BY COUNT(Orders.OrderID);
   - add a customer using your information.
-      - INSERT INTO Customers (CustomerName, ContactName, Address,City, PostalCode, Country) VALUES ('Lambda','Chheany Mok','Skagen 22','Stavanger','4007','Norway');
+      - INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country) VALUES ('Lambda','Chheany Mok','Skagen 22','Stavanger','4007','Norway');
   - add 2 products.
-      - INSERT INTO Products (ProductName, SupplierID, CategoryID,Unit, Price) VALUES ('Bacon', 4, 6, '18 - 500 g pkgs.', 261);
-      - INSERT INTO Products (ProductName, SupplierID, CategoryID,Unit, Price) VALUES ('Chicken', 4, 6, '18 - 500 g pkgs.', 54);
+      - INSERT INTO Products (ProductName, SupplierID, CategoryID, Unit, Price) VALUES ('Bacon', 4, 6, '18 - 500 g pkgs.', 261);
+      - INSERT INTO Products (ProductName, SupplierID, CategoryID, Unit, Price) VALUES ('Chicken', 4, 6, '18 - 500 g pkgs.', 54);
   - add 2 orders with you as the customer.
       - INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, ShipperID) VALUES (92, 8, '2017-07-30', 2);
       - INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, ShipperID) VALUES (92, 4, '2017-07-30', 1);
