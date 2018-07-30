@@ -35,6 +35,9 @@
     `select * from Customers where City='London'`
 
   - find the phone number for a particular supplier (provide id, or supplier name).
+
+    `select Phone from Suppliers where SupplierID=3`
+
   - find all customers in a particular postal code.
   - find all suppliers who have names with more than 20 characters.
   - list customers descending by the number of orders.
