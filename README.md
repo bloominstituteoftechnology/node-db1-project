@@ -38,6 +38,6 @@
   - add a customer using your information.
   - add 2 products.
   - add 2 orders with you as the customer.
-  - delete all users that have no orders.
+  - delete all customers that have no orders.
 
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
