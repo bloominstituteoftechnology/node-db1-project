@@ -42,12 +42,46 @@
     SELECT * FROM [Suppliers] where LENGTH(supplierName) > 20
 
   - list customers descending by the number of orders.
+    SELECT Customers.CustomerName, COUNT(Orders.OrderID) AS Orders FROM Orders
+    LEFT JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+    GROUP BY CustomerName
+    ORDER BY Orders DESC
+
   - list orders descending by the order date.
+    SELECT * FROM [Orders] order by orderDate desc
+
   - list orders grouped by customer showing the number of orders per customer.
+    SELECT Customers.CustomerName, COUNT(Orders.OrderID) AS Orders FROM Orders
+    LEFT JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+    GROUP BY CustomerName
+    ORDER BY Orders DESC
+
   - list orders grouped by customer's city showing number of orders per city.
-  - add a customer using your information.
+    SELECT Customers.City, COUNT(Orders.OrderID) AS Orders FROM Orders
+    LEFT JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+    GROUP BY City
+    ORDER BY Orders DESC
+
+  - add a customer using your information
+    INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+    VALUES ('Test Name', 'Test Contact Name', 'Skagen 21', 'Stavanger', '4006', 'Norway');
+
   - add 2 products.
+    INSERT INTO Products (ProductName, SupplierID, CategoryID, Unit, Price)
+    VALUES ('Product Test Name', 6, 5, '10 boxes x 20 bags', 20);
+
+    INSERT INTO Products (ProductName, SupplierID, CategoryID, Unit, Price)
+    VALUES ('Product Test Name 2', 7, 6, '10 boxes x 20 bags', 20);
+
   - add 2 orders with you as the customer.
+    INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
+    VALUES (94, 5, '2018-07-30', 2)
+
+    INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
+    VALUES (94, 5, '2018-07-30', 2)
+
   - delete all users that have no orders.
+    DELETE FROM Customers
+    WHERE CustomerID NOT IN (SELECT CustomerId from Orders)
 
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
