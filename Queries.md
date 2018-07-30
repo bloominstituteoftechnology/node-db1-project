@@ -49,9 +49,9 @@ WHERE LENGTH(suppliername) > 20
 
 * list customers descending by the number of orders.
 ```
-SELECT customername, customerid, count(orderid) order_cnt 
+SELECT customername, c.customerid, count(orderid) order_cnt 
 FROM customers c INNER JOIN orders o ON c.customerid = o.customerid
-GROUP BY customerid 
+GROUP BY customername, c.customerid 
 ORDER BY order_cnt desc
 ```
 
