@@ -30,8 +30,7 @@
    - `SELECT * FROM Customers WHERE CustomerName like "Ana%";`
 
   - find all customers that live in London.
-   - ```SELECT * FROM Customers 
-    WHERE City is "London";```
+   - `SELECT * FROM Customers WHERE City is "London";`
 
   - find the phone number for a particular supplier (provide id, or supplier name).
    - `SELECT Phone FROM Suppliers WHERE SupplierName is "Exotic Liquid";`
@@ -43,7 +42,7 @@
   - `SELECT * FROM [Suppliers] WHERE length(SupplierName) > 20;`
 
   - list customers descending by the number of orders.
-   - `SELECT customerID, count(*) as orders FROM Orders group by customerid order by count(*) desc`
+   - `SELECT customerid, count(orderid) as orders  FROM [Orders] group by customerid order by count(orderid) desc`
 
   - list orders descending by the order date.
    - `SELECT * FROM [Orders] order by orderdate desc`
