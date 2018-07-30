@@ -74,13 +74,9 @@
     INSERT INTO Products (ProductName, SupplierID, CategoryID, Unit, Price)
     VALUES ('Coconut Macaroons', '2', '7', '10 boxes of 20', '30')
   - add 2 orders with you as the customer.
-<<<<<<< HEAD
     INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
     VALUES ('92', '8', '2018-07-30', '2')
   - delete all users that have no orders.
   ** PENDING **
-=======
-  - delete all customers that have no orders.
->>>>>>> cd4c5dee8851cf8fd9ea601c36a57035286c6151
 
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
