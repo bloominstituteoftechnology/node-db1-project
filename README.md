@@ -63,6 +63,9 @@
   - list customers descending by the number of orders.
 
   ```sql
+  select CustomerID, count("CustomerID") as "# of Orders"
+  from orders group by customerid
+  order by "# of orders"
   ```
 
   - list orders descending by the order date.
@@ -91,25 +94,25 @@
   - add 2 products.
 
   ```sql
-    insert into Products (ProductName, Unit, Price)
-    values ('Chia Pet', '1 dozen', 10.99)
+  insert into Products (ProductName, Unit, Price)
+  values ('Chia Pet', '1 dozen', 10.99)
   ```
 
   ```sql
-    insert into Products (ProductName, Unit, Price)
-    values ('Pet Rock', '1 item', 20.99)
+  insert into Products (ProductName, Unit, Price)
+  values ('Pet Rock', '1 item', 20.99)
   ```
 
   - add 2 orders with you as the customer.
 
   ```sql
-    insert into Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
-    values (92, 1, '1981-10-06', 1)
+  insert into Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
+  values (92, 1, '1981-10-06', 1)
   ```
 
   ```sql
-    insert into Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
-    values (92, 2, '1981-10-08', 2)
+  insert into Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
+  values (92, 2, '1981-10-08', 2)
   ```
   
   - delete all users that have no orders.
