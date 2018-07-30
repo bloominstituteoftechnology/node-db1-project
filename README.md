@@ -27,6 +27,7 @@
 
 - Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) and write the following queries:
   - find all customers with a particular first name.
+SELECT * FROM Customers WHERE CustomerName LIKE '%ap%'
 
   - find all customers that live in London.
 SELECT * from Customers where city='London'
@@ -79,5 +80,6 @@ INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
 VALUES (92, 9, '2018-07-30', 1)
 
   - delete all users that have no orders.
+
 
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
