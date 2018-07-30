@@ -84,13 +84,10 @@ INSERT INTO Orders (CustomerID, OrderDate)
 VALUES ('92', '2018-07-30');
 INSERT INTO OrderDetails (OrderID)
 SELECT OrderID FROM Orders
-WHERE Orders.CustomerID = 92
+WHERE Orders.CustomerID = 92;
 
   - delete all users that have no orders.
-SELECT Orders.CustomerID, Customers.*, count(*) as orders 
-FROM Orders 
-FULL OUTER JOIN Customers ON Orders.CustomerID=Customers.CustomerID
 DELETE FROM Customers
-WHERE orders = NULL
+WHERE CustomerID NOT IN (SELECT CustomerID FROM Orders);
 
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
