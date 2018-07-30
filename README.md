@@ -27,17 +27,46 @@
 
 - Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) and write the following queries:
   - find all customers with a particular first name.
+SELECT * FROM Customers WHERE ContactName LIKE '%Thomas%'
+
   - find all customers that live in London.
+  SELECT * FROM Customers WHERE City = 'London'
+
   - find the phone number for a particular supplier (provide id, or supplier name).
+SELECT Phone FROM Suppliers WHERE SupplierName='Exotic Liquid'
+
   - find all customers in a particular postal code.
+SELECT * FROM Customers WHERE PostalCode='12209'
+
   - find all suppliers who have names with more than 20 characters.
+SELECT * FROM Suppliers WHERE LENGTH(SupplierName) > 20
+
   - list customers descending by the number of orders.
+
   - list orders descending by the order date.
+  SELECT * FROM Orders ORDER BY OrderDate DESC
+
   - list orders grouped by customer showing the number of orders per customer.
+
   - list orders grouped by customer's city showing number of orders per city.
+
   - add a customer using your information.
+INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+VALUES ('Libby Hart', 'Libby Hart', 'Quincy 204', 'Denver', '80237', 'USA');
+
   - add 2 products.
+INSERT INTO Products (ProductName, SupplierID, CategoryID, Unit, Price) 
+VALUES('Slices Pizza', '6', '7', '18" pie', '15');
+INSERT INTO Products (ProductName, SupplierID, CategoryID, Unit, Price) 
+VALUES('Kava kava', '1', '2', '6 - 2 oz bottles', '40'); 
+
   - add 2 orders with you as the customer.
+INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
+VALUES ('92', '3', '2018-07-30', '1');
+INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
+VALUES ('92', '6', '2018-07-30', '3');
+
   - delete all users that have no orders.
+DELETE FROM Customers WHERE CustomerID NOT IN (SELECT CustomerID FROM Orders)
 
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
