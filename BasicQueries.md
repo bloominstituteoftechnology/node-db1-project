@@ -32,7 +32,8 @@
     SELECT * FROM [Orders]
     ORDER BY OrderDate DESC
 
-  - list orders grouped by customer showing the number of orders per customer.
+  - list orders grouped by customer showing the number of orders per customer. 
+  <!-- needs to be checked -->
     SELECT cm.CustomerName, cm.CustomerID, od.Quantity 
     FROM Customers cm
     JOIN Orders os ON os.CustomerID = cm.CustomerID
@@ -41,6 +42,7 @@
     ORDER BY Quantity DESC
 
   - list orders grouped by customer's city showing number of orders per city.
+   <!-- needs to be checked -->
     SELECT cm.CustomerName, cm.City, cm.CustomerID, od.Quantity 
     FROM Customers cm
     JOIN Orders os ON os.CustomerID = cm.CustomerID
