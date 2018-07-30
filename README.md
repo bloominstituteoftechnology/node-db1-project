@@ -43,6 +43,7 @@
   - list orders grouped by customer showing the number of orders per customer.
       - SELECT CustomerID, COUNT(OrderID) AS Orders FROM Orders GROUP BY CustomerID ORDER BY COUNT(OrderID) DESC;
   - list orders grouped by customer's city showing number of orders per city.
+      - SELECT COUNT(Orders.OrderID) AS Orders, Customers.City FROM Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID GROUP BY Customers.City ORDER BY COUNT(Orders.OrderID);
   - add a customer using your information.
       - INSERT INTO Customers (CustomerName, ContactName, Address,City, PostalCode, Country) VALUES ('Lambda','Chheany Mok','Skagen 22','Stavanger','4007','Norway');
   - add 2 products.
@@ -51,6 +52,7 @@
   - add 2 orders with you as the customer.
       - INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, ShipperID) VALUES (92, 8, '2017-07-30', 2);
       - INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, ShipperID) VALUES (92, 4, '2017-07-30', 1);
-  - delete all users that have no orders.
+  - delete all customers that have no orders.
+      - DELETE FROM Customers WHERE CustomerID NOT IN (SELECT CustomerID FROM Orders);
 
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
