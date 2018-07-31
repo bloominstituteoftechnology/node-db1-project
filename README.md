@@ -27,7 +27,7 @@
 
 - Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) and write the following queries:
   - find all customers with a particular first name.
-      ##SELECT * FROM [Customers] where CustomerName like 'La%';
+      ## SELECT * FROM [Customers] where CustomerName like 'La%';
   - find all customers that live in London.
       ##SELECT * FROM [Customers] where city = 'London' ;
   - find the phone number for a particular supplier (provide id, or supplier name).
@@ -52,5 +52,5 @@
   insert into [Orders] (customerid, employeeid, orderdate, shipperid) values (92, 4, '2018-07-30', 3);
   insert into [Orders] (customerid, employeeid, orderdate, shipperid) values (92, 2, '2018-07-30', 2);
   - delete all users that have no orders.
-  
+
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
