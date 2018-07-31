@@ -28,11 +28,12 @@
 - Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) and write the following queries:
   1. find all customers with a particular first name.
 
-  * 
+  * SELECT * FROM Customers WHERE ContactName LIKE ('Ana%')
 
   2. find all customers that live in London.
 
   * SELECT * FROM Customers WHERE City='London';
+  SELECT * FROM Customers WHERE City=(SELECT * FROM Customers WHERE City IN ('London'))
 
   3. find the phone number for a particular supplier (provide id, or supplier name).
 
@@ -49,9 +50,17 @@
 
   6. list customers descending by the number of orders.
 
+  * SELECT CustomerID, COUNT(CustomerID) AS num_of_orders FROM orders GROUP BY customerid ORDER BY num_of_orders DESC
+
   7. list orders descending by the order date.
 
+  * SELECT * FROM Orders ORDER BY OrderDate 
+  
+  /// Oldest to newest or newest to oldest ? if oldest ? DES : null
+
   8. list orders grouped by customer showing the number of orders per customer.
+
+  * SELECT *, COUNT(CustomerID) AS num_of_orders FROM orders GROUP BY customerid ORDER BY num_of_orders DESC
 
   9. list orders grouped by customer's city showing number of orders per city.
 
@@ -63,7 +72,7 @@
 
   11. add 2 products.
 
-  * INSERT INTO Products (ProductName) VALUES ('MacWoods'), ('Raws');
+  * INSERT INTO Products (ProductName, Price) VALUES ('MacWoods', 7.99), ('Raws', 5.99);
 
   12. add 2 orders with you as the customer.
 
