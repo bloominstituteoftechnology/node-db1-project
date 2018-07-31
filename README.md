@@ -42,13 +42,21 @@ SELECT * FROM Customers WHERE PostalCode='12209'
 SELECT * FROM Suppliers WHERE LENGTH(SupplierName) > 20
 
   - list customers descending by the number of orders.
+SELECT Orders.CustomerID, Customers.*, count(*) as Orders FROM Orders
+INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID
+GROUP BY Orders.CustomerID
+ORDER BY Orders DESC 
 
   - list orders descending by the order date.
   SELECT * FROM Orders ORDER BY OrderDate DESC
 
   - list orders grouped by customer showing the number of orders per customer.
+SELECT CustomerID, count(*) as Orders FROM Orders GROUP BY CustomerID
 
   - list orders grouped by customer's city showing number of orders per city.
+SELECT Orders.CustomerID, Customers.City, count(*) as Orders
+FROM Orders INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID
+GROUP BY Customers.City
 
   - add a customer using your information.
 INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
