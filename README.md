@@ -37,7 +37,7 @@
   - find all suppliers who have names with more than 20 characters.
       - SELECT * FROM Suppliers WHERE LENGTH(SupplierName) > 20;
   - list customers descending by the number of orders.
-      - SELECT * FROM Orders ORDER BY OrderID DESC;
+      - SELECT c.CustomerName, COUNT(o.OrderID) AS Orders FROM Customers AS c INNER JOIN Orders AS o ON c.CustomerID = o.CustomerID GROUP BY c.CustomerName ORDER BY COUNT(o.OrderID) DESC;
   - list orders descending by the order date.
       - SELECT * FROM Orders ORDER BY OrderDate DESC;
   - list orders grouped by customer showing the number of orders per customer.
