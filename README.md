@@ -35,7 +35,7 @@
   - find all customers in a particular postal code.
       ## SELECT * FROM [Customers] where PostalCode = 75012;
   - find all suppliers who have names with more than 20 characters.
-      ##SELECT * FROM [Suppliers] where length(SupplierName) > 20;
+      ## SELECT * FROM [Suppliers] where length(SupplierName) > 20;
   - list customers descending by the number of orders.
       ## SELECT customerid, count(customerid) as "# of orders" FROM [Orders] group by customerid order by "# of orders" desc;
   - list orders descending by the order date.
