@@ -29,7 +29,7 @@
   - find all customers with a particular first name.
 ```
 SELECT * FROM Customers
-WHERE CustomerName LIKE '%Handel'
+WHERE CustomerName LIKE 'Reggiani%'
 ```
   - find all customers that live in London.
 ```
