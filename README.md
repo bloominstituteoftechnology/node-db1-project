@@ -34,7 +34,8 @@
   `SELECT * FROM Suppliers where SupplierId = 1;` <br>
   - find all customers in a particular postal code. <br>
   `SELECT * FROM Customers where PostalCode = 'H1J 1C3';` <br>
-  - find all suppliers who have names with more than 20 characters.
+  - find all suppliers who have names with more than 20 characters. <br>
+  `SELECT * FROM suppliers WHERE LENGTH("suppliername") > 20` <br>
   - list customers descending by the number of orders. <br>
   `SELECT COUNT(CustomerID), CustomerId` <br>
   `FROM Orders` <br>
