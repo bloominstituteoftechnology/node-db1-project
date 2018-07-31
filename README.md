@@ -52,6 +52,8 @@ Clicking the `Restore Database` in that page will repopulate the database with t
   Where City='London'
 
   - find the phone number for a particular supplier (provide id, or supplier name).
+  Select Phone from Suppliers
+  Where SupplierName='Exotic Liquid'
 
   - find all customers in a particular postal code.
   Select CustomerName from Customers
@@ -60,12 +62,40 @@ Clicking the `Restore Database` in that page will repopulate the database with t
   - find all suppliers who have names with more than 20 characters.
   Select SupplierName from Suppliers
   Where Length(SupplierName) > 20
-  
+
   - list customers descending by the number of orders.
+  Select count(OrderID), CustomerID from Orders
+  Group by CustomerID
+
   - list orders descending by the order date.
+  Select OrderId, OrderDate from Orders
+  Order By OrderDate desc
+
   - list orders grouped by customer showing the number of orders per customer.
+  Select Count(OrderID),CustomerID from Orders
+  Group by CustomerID 
+  Order by Count(OrderID) desc
+
+
   - list orders grouped by customer's city showing number of orders per city.
+  
+
   - add a customer using your information.
+   INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country) 
+   VALUES ('Amazing Panda Moves', 'Randy Calderon', '2329 Coconut Ave', 'Valley Village', '91708', 'USA')
+
   - add 2 products.
+  INSERT INTO PRODUCTS (ProductName, SupplierID, CategoryID, Unit, Price)
+  VALUES ('Le Killer Frogs','203','230','10 boxes of kill','20000')
+
+  INSERT INTO PRODUCTS (ProductName, SupplierID, CategoryID, Unit, Price)
+  VALUES ('Le Killer Rhino','2000','2929939','10 spaceships of Rhino','2999999')
+
   - add 2 orders with you as the customer.
+  Insert into Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
+  Values (320300, 329, 2082-08-01, 100000)
+
+  Insert into Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
+  Values (3231300, 32911, 2123-03-22, 100000000)
+
   - delete all users that have no orders.
