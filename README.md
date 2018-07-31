@@ -48,34 +48,48 @@
 
   - list customers descending by the number of orders.
 
-  ``
+  `SELECT CustomerName, COUNT(OrderID) AS Orders FROM Orders
+   JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+   GROUP BY Customers.CustomerID
+   ORDER BY Orders DESC;`
 
   - list orders descending by the order date.
 
-    ``
+  `SELECT * FROM Orders ORDER BY OrderDate DESC;`
 
   - list orders grouped by customer showing the number of orders per customer.
 
-    ``
+  `SELECT COUNT(OrderID) AS Orders, CustomerName FROM Orders
+   JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+   GROUP BY Customers.CustomerID;`
 
   - list orders grouped by customer's city showing number of orders per city.
 
-    ``
+  `SELECT COUNT(OrderID) AS Orders, City FROM Orders
+   JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+   GROUP BY City;`
 
   - add a customer using your information.
 
-    ``
+  `INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+   VALUES ('Affordances', 'Gabriel Duquette', '25 Saddle Ridge Dr', 'West Hartford, CT', '06117', 'USA');`
 
   - add 2 products.
 
-    ``
+  `INSERT INTO Products (ProductName, SupplierID, CategoryID, Unit, Price)
+   VALUES ('Small Candied Hams', 7, 3, '10,000 tons', '1');
+   INSERT INTO Products (ProductName, SupplierID, CategoryID, Unit, Price)
+   VALUES ('Sugared Beef', 7, 3, '10,000 tons', '1');`
 
   - add 2 orders with you as the customer.
 
-    ``
+  `INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
+   VALUES ('92', '1', '2000-01-01', '1');
+   INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
+   VALUES ('92', '1', '2000-01-02', '1');`
 
   - delete all customers that have no orders.
 
-    ``
+  `DELETE FROM Customers WHERE CustomerID NOT IN (SELECT CustomerId from Orders);`
 
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
