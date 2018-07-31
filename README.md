@@ -41,7 +41,7 @@
   - find the phone number for a particular supplier (provide id, or supplier name).
 
   ```sql 
-  select Phone from Suppliers where SupplierId 1
+  select Phone from Suppliers where SupplierId=1
   ```
 
   ```sql 
@@ -63,9 +63,10 @@
   - list customers descending by the number of orders.
 
   ```sql
-  select CustomerID, count("CustomerID") as "# of Orders"
-  from orders group by customerid
-  order by "# of orders"
+  select CustomerID, count("CustomerID") as "No. of Orders"
+  from Orders 
+  group by CustomerID
+  order by "No. of Orders"
   ```
 
   - list orders descending by the order date.
@@ -77,11 +78,19 @@
   - list orders grouped by customer showing the number of orders per customer.
 
   ```sql
+  SELECT CustomerID COUNT(OrderID) AS orders
+  FROM Orders
+  GROUP BY CustomerID
+  ORDER BY orders DESC
   ```
 
   - list orders grouped by customer's city showing number of orders per city.
 
   ```sql
+  SELECT COUNT(OrderID), City
+  FROM Customers, OrderDetails
+  GROUP BY City
+  ORDER BY COUNT(OrderID) DESC
   ```
 
   - add a customer using your information.
@@ -117,7 +126,11 @@
   
   - delete all users that have no orders.
 
+
   ```sql
+  DELETE FROM Customers
+  WHERE CustomerID
+  NOT IN(SELECT CustomerID From Orders)
   ```
 
 Clicking the `Restore Database` in that page will repopulate the database with the original data and discard all changes you have made.
