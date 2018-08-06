@@ -78,4 +78,23 @@ FROM
 GROUP BY
     c.city
 ORDER BY
-    orders DESC;
+    orders DESC;--
+    -- add a customer using your information.
+INSERT INTO
+    Customers (
+        CustomerName,
+        ContactName,
+        Address,
+        City,
+        PostalCode,
+        Country
+    )
+VALUES
+    (
+        'DC IT LLC',
+        'Daniel Chamorro',
+        '123 Drive',
+        'Charlotte',
+        '28269',
+        'USA'
+    );--
