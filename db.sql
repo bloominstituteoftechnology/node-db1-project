@@ -56,4 +56,15 @@ SELECT
 FROM
     orders
 ORDER BY
-    orderdate DESC;
+    orderdate DESC;--
+    -- list orders grouped by customer showing the number of orders per customer.
+SELECT
+    c.customername,
+    Count(orderid) AS orders
+FROM
+    customers c
+    JOIN orders o ON c.customerid = o.customerid
+GROUP BY
+    c.customername
+ORDER BY
+    orders DESC;
