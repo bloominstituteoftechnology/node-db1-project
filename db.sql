@@ -30,5 +30,12 @@ SELECT
     *
 FROM
     Customers
-where
-    PostalCode = '12209';
+WHERE
+    PostalCode = '12209';--
+    -- find all suppliers who have names with more than 20 characters.
+SELECT
+    *
+FROM
+    suppliers
+WHERE
+    Length(suppliername) > 20;
