@@ -9,12 +9,19 @@ SELECT
 FROM
     Customers
 WHERE
-    CustomerName LIKE '%Alfreds%' --
+    CustomerName LIKE '%Alfreds%';--
     -- find all customers that live in London.
 SELECT
     *
 FROM
     Customers
 WHERE
-    Country = 'Germany' -- -
+    Country = 'Germany';-- -
     -- find the phone number for a particular supplier (provide id, or supplier name).
+SELECT
+    SupplierName,
+    Phone
+FROM
+    Suppliers
+WHERE
+    SupplierName = 'Exotic Liquid';
