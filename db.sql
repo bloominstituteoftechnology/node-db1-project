@@ -109,4 +109,16 @@ INSERT INTO
     Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
 VALUES
     (92, 1, '2018-08-06', 1),
-    (92, 1, '2018-08-06', 1);
+    (92, 1, '2018-08-06', 1);--
+    -- delete all customers that have no orders.
+SELECT
+    *
+FROM
+    Customers
+WHERE
+    CustomerID NOT IN (
+        SELECT
+            CustomerID
+        FROM
+            Orders
+    );
