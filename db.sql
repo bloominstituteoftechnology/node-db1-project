@@ -98,3 +98,9 @@ VALUES
         '28269',
         'USA'
     );--
+    -- add 2 products.
+INSERT INTO
+    Products (ProductName, SupplierID, CategoryID, Unit, Price)
+VALUES
+    ('Test', 1, 1, 'Test', 18),
+    ('Test2', 1, 1, 'Test2', 18);
