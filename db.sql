@@ -38,4 +38,15 @@ SELECT
 FROM
     suppliers
 WHERE
-    Length(suppliername) > 20;
+    Length(suppliername) > 20;--
+    -- list customers descending by the number of orders.
+SELECT
+    c.customername,
+    Count(orderid) AS orders
+FROM
+    customers c
+    JOIN orders o ON c.customerid = o.customerid
+GROUP BY
+    c.customername
+ORDER BY
+    orders DESC;
