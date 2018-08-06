@@ -103,4 +103,10 @@ INSERT INTO
     Products (ProductName, SupplierID, CategoryID, Unit, Price)
 VALUES
     ('Test', 1, 1, 'Test', 18),
-    ('Test2', 1, 1, 'Test2', 18);
+    ('Test2', 1, 1, 'Test2', 18);--
+    -- add 2 orders with you as the customer.
+INSERT INTO
+    Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
+VALUES
+    (92, 1, '2018-08-06', 1),
+    (92, 1, '2018-08-06', 1);
