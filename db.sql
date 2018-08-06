@@ -16,5 +16,5 @@ SELECT
 FROM
     Customers
 WHERE
-    Country = 'Germany' --
+    Country = 'Germany' -- -
     -- find the phone number for a particular supplier (provide id, or supplier name).
