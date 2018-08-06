@@ -24,4 +24,11 @@ SELECT
 FROM
     Suppliers
 WHERE
-    SupplierName = 'Exotic Liquid';
+    SupplierName = 'Exotic Liquid';--
+    -- find all customers in a particular postal code.
+SELECT
+    *
+FROM
+    Customers
+where
+    PostalCode = '12209';
