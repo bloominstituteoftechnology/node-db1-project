@@ -67,4 +67,15 @@ FROM
 GROUP BY
     c.customername
 ORDER BY
+    orders DESC;--
+    -- list orders grouped by customer's city showing number of orders per city.
+SELECT
+    c.city,
+    Count(orderid) AS orders
+FROM
+    customers c
+    JOIN orders o ON c.customerid = o.customerid
+GROUP BY
+    c.city
+ORDER BY
     orders DESC;
