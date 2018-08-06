@@ -49,4 +49,11 @@ FROM
 GROUP BY
     c.customername
 ORDER BY
-    orders DESC;
+    orders DESC;--
+    -- list orders descending by the order date.
+SELECT
+    *
+FROM
+    orders
+ORDER BY
+    orderdate DESC;
