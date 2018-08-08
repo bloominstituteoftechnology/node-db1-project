@@ -1,4 +1,4 @@
-# SQL Exercises
+# SQL Exercises 
 
 ## Topics
 
