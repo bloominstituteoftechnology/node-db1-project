@@ -2,6 +2,7 @@ import sqlite3
 import datetime
 from helpers import *
 
+
 connection = sqlite3.connect('python_bears.db')
 connection.row_factory = sqlite3.Row
 cursor = connection.cursor()
