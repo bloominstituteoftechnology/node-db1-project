@@ -40,7 +40,7 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?
 
 ## Stretch Problems
 
-- delete all users that have no orders.
-- list orders grouped by customer showing the number of orders per customer.
+- list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
 - list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
-- list orders grouped by customer's city showing number of orders per city.
+- list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
+- delete all users that have no orders. Should delete 17 records.
