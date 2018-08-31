@@ -11,8 +11,9 @@
 
 For this lab you will:
 
-- write SQL statements against a pre-populated database using an online tool, no need to install anything. Once you have the correct SQL Statement for each query, write it inside the `queries.md` file under the appropriate heading.
-- use [`DB Browser for SQLite`](https://sqlitebrowser.org/) to create a database and single table.
+- write SQL statements against a pre-populated database using an online tool. Once you have the correct SQL Statement for each query, write it inside the `queries.md` file under the appropriate heading.
+- install [`DB Browser for SQLite`](https://sqlitebrowser.org/) and use it to create a database.
+- using `DB Browser for SQLite` add a table to the database you just created.
 
 ### Write Basic Queries
 
@@ -29,9 +30,9 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?
 
 **Clicking the `Restore Database` button in the page will repopulate the database with the original data and discard all changes you have made**.
 
-### Create a Database and a Table
+### Create Database and Table
 
-- use [`DB Browser for SQLite`](https://sqlitebrowser.org/) to create a database name it `budget.sqlite3`.
+- use [`DB Browser for SQLite`](https://sqlitebrowser.org/) to create a database, name it `budget.sqlite3`.
 - add an `accounts` table with the following _schema_:
 
   - `id`, numeric value with no decimal places that should autoincrement.
