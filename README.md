@@ -26,7 +26,7 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?
 
 ### Create a Database and a Table
 
-- use `DB Browser for SQLite` to create a database name it `budget.sqlite3`.
+- use [`DB Browser for SQLite`](https://sqlitebrowser.org/) to create a database name it `budget.sqlite3`.
 - add an `accounts` table with the following _schema_:
 
   - `id`, numeric value with no decimal places that should autoincrement.
