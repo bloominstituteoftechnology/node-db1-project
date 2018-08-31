@@ -1,0 +1,45 @@
+find all customers with a particular first name.
+SELECT * FROM Customers WHERE CustomerName LIKE 'Ana%';
+
+find all customers that live in London.
+SELECT * FROM Customers WHERE City LIKE 'London';
+
+find the phone number for a particular supplier (provide id, or supplier name).
+SELECT * FROM Suppliers WHERE SupplierID LIKE 1;
+SELECT * FROM Suppliers WHERE SupplierName LIKE "Exotic Liquid";
+
+find all customers in a particular postal code.
+SELECT * FROM Customers WHERE PostalCode LIKE 8010;
+
+find all suppliers who have names with more than 20 characters.
+SELECT * FROM Suppliers WHERE SupplierName AND LEN(SupplierName) > 20;
+
+list customers descending by the number of orders.
+SELECT *
+FROM Orders
+INNER JOIN OrderDetails ON Orders.OrderID=OrderDetails.OrderID
+ORDER BY OrderDetails.Quantity DESC; Not sure how to double join but you asked for the customer not the customers name.
+
+list orders descending by the order date.
+SELECT * FROM Orders ORDER BY OrderDate DESC;
+
+list orders grouped by customer showing the number of orders per customer.
+SELECT *
+FROM Orders
+INNER JOIN OrderDetails ON Orders.OrderID=OrderDetails.OrderID
+ORDER BY CustomerID DESC;
+
+list orders grouped by customer's city showing number of orders per city.
+I dunno how to get this double join.
+
+add a customer using your information.
+k
+
+add 2 products.
+k
+
+add 2 orders with you as the customer.
+k
+
+delete all customers that have no orders.
+Again lost on double join right now
