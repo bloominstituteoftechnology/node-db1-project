@@ -13,7 +13,7 @@
     order by city
 
 ## find the phone number for the supplier with the id 11. Should be (010) 9984510.
-    select * 
+    select phone 
     from suppliers
     where supplierid = '11'
 
