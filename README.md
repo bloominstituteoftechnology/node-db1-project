@@ -7,11 +7,16 @@
 - SQLite
 - Writing Basic Queries
 
-## Assignments
+## Assignment
+
+For this lab you will:
+
+- write SQL statements against a pre-populated database using an online tool, no need to install anything. Once you have the correct SQL Statement for each query, write it inside the `queries.md` file under the appropriate heading.
+- use [`DB Browser for SQLite`](https://sqlitebrowser.org/) to create a database and single table.
 
 ### Write Basic Queries
 
-Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) and write the following queries:
+Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) using the **Google Chrome (or Chromium if you use Linux) browser** and write _SQL queries_ for the following requirements:
 
 - find all customers that live in London. Returns 6 records.
 - find all customers with postal code 1010. Returns 3 customers.
