@@ -1,6 +1,6 @@
 # SQL Exercises
 
-## Topics
+## Topics 
 
 - Structured Query Language (SQL)
 - Relational Databases
