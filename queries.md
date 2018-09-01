@@ -28,6 +28,13 @@ UPDATE Customers SET PostalCode = 11122 WHERE CustomerID = 92;
 SELECT Count(*) FROM Orders GROUP BY CustomerID HAVING CustomerID = 65;
 
 ## list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
+SELECT customername, 
+       Count(*) 
+FROM   orders 
+      INNER JOIN customers 
+              ON customers.customerid = orders.customerid 
+GROUP  BY customername; 
+
 
 ## list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
 
