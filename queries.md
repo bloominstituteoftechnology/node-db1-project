@@ -64,7 +64,7 @@ HAVING customerid = 65;
 SELECT customername, Count(*) 
 FROM orders 
 INNER JOIN customers 
-ON customers.customerid = orders.customerid 
+  ON customers.customerid = orders.customerid 
 GROUP BY customername
 ORDER BY Count(*) DESC;
 
@@ -73,7 +73,7 @@ ORDER BY Count(*) DESC;
 SELECT city, Count(*) 
 FROM orders 
 INNER JOIN customers 
-ON customers.customerid = orders.customerid 
+  ON customers.customerid = orders.customerid 
 GROUP BY city
 ORDER BY Count(*) ASC;
 
