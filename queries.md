@@ -52,14 +52,14 @@
   ```sql
   --The directions weren't super clear on this one. I accidentally did the next one initially.
   select count(o.customerId) as 'Order count', c.customerName, o.customerId from orders o
-  inner join customers c on o.customerId = c.customerId
+  join customers c on o.customerId = c.customerId
   group by o.customerId;
   ```
 
 ## list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
   ```sql
   select count(o.customerId) as 'Order count', c.customerName, o.customerId from orders o
-  inner join customers c on o.customerId = c.customerId
+  join customers c on o.customerId = c.customerId
   group by o.customerId 
   order by count(o.customerId) desc;
   ```
@@ -67,7 +67,7 @@
 ## list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
   ```sql
   select count(o.customerId) as 'Order count', c.city from orders o
-  inner join customers c on o.customerId = c.customerId
+  join customers c on o.customerId = c.customerId
   group by c.city;
   ```
 
