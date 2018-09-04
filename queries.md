@@ -49,25 +49,27 @@ WHERE CustomerID = 92
 
 ## list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
 
-SELECT a.CustomerName, COUNT(OrderDate)
-FROM Customers a, Orders b 
-WHERE a.CustomerID = b.CustomerID
-GROUP BY a.CustomerName
+SELECT a.CustomerName, COUNT(OrderDate) AS Orders
+FROM Customers a 
+LEFT JOIN Orders b on a.CustomerID = b.CustomerID
+GROUP BY a.CustomerName 
+ORDER BY a.CustomerName Asc
 
 ## list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
 
-SELECT a.CustomerName, COUNT(OrderDate)
-FROM Customers a, Orders b 
-WHERE a.CustomerID = b.CustomerID
-GROUP BY a.CustomerName
-ORDER BY  COUNT(OrderDate) DESC
+SELECT a.CustomerName, COUNT(OrderDate) AS Orders
+FROM Customers a 
+LEFT JOIN Orders b on a.CustomerID = b.CustomerID
+GROUP BY a.CustomerName 
+ORDER BY Orders DESC
 
 ## list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
 
-SELECT a.City, COUNT(OrderDate)
-FROM Customers a, Orders b 
-WHERE a.CustomerID = b.CustomerID
-GROUP BY a.CustomerName
+SELECT a.City, COUNT(OrderDate) AS Orders
+FROM Customers a 
+LEFT JOIN Orders b on a.CustomerID = b.CustomerID
+GROUP BY a.CustomerName 
 ORDER BY a.City ASC
 
 ## delete all users that have no orders. Should delete 17 records.
+
