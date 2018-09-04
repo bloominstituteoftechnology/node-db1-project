@@ -71,5 +71,5 @@ LEFT JOIN Orders b on a.CustomerID = b.CustomerID
 GROUP BY a.CustomerName 
 ORDER BY a.City ASC
 
-## delete all users that have no orders. Should delete 17 records.
+## delete all users that have no orders. Should delete 17 records
 
