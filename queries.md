@@ -37,17 +37,26 @@ VALUES ('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111', 'Middle
 ## update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
 UPDATE Customers
 SET PostalCode = '11122'
-WHERE CustomerName = 'Bilbo Baggins'
+where CustomerName = 'Bilbo Baggins'
 
 ## list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
-SELECT Orders.OrderID, Customers.CustomerName
-FROM Orders
-INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID
-order by CustomerName
-
+select Count(*) 
+from orders 
+group by customerid 
+having customerid = 65;
 
 ## list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
+select customername, Count() 
+from orders 
+INNER JOIN customers ON customers.customerid = orders.customerid 
+group by customername 
+order by Count() desc;
 
 ## list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
+select city, Count() 
+from orders
+INNER JOIN customers ON customers.customerid = orders.customerid 
+group by city 
+order by Count() asc;
 
 ## delete all users that have no orders. Should delete 17 records.
