@@ -2,6 +2,8 @@
 
 ## find all customers that live in London. Returns 6 records.
 
+SELECT \* FROM Customers WHERE City = 'London';
+
 ## find all customers with postal code 1010. Returns 3 customers.
 
 ## find the phone number for the supplier with the id 11. Should be (010) 9984510.
