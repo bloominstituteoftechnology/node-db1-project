@@ -42,4 +42,6 @@ SELECT CustomerName, COUNT(OrderID) AS Orders FROM Orders JOIN Customers ON Orde
 
 ## list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
 
+SELECT COUNT(OrderID) AS Orders, City FROM Orders JOIN Customers ON Orders.CustomerID = Customers.CustomerID GROUP BY City;
+
 ## delete all users that have no orders. Should delete 17 records.
