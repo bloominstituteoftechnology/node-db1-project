@@ -1,7 +1,7 @@
 # Database Queries
 
 ## find all customers that live in London. Returns 6 records.
-SELECT * FROM [Customers] Where City = 'London'
+SELECT CustomerName, City FROM [Customers] Where City = 'London'
 
 ## find all customers with postal code 1010. Returns 3 customers.
 SELECT * FROM [Customers] Where PostalCode = 1010
@@ -23,11 +23,18 @@ INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Cou
 VALUES ('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111', 'Middle Earth') 
 
 ## update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
+UPDATE Customers
+SET PostalCode = '11122'
+WHERE CustomerName = 'Bilbo Baggins'
 
 ## list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
+select customers.customername, count(*) AS "Orders" from orders, customers where customers.customerID = orders.customerID group by Orders.customerID
 
 ## list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
+select customers.customername, count(*) as "Orders" from orders, customers where customers.customerID = orders.customerID Group by orders.customerID order by orders desc
 
 ## list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
+Select Customers.City, Count(Orders.CustomerID) AS OrderCount FROM Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID GROUP BY Customers.City
 
 ## delete all users that have no orders. Should delete 17 records.
+DELETE FROM Customers WHERE Customers.CustomerID NOT IN (SELECT Customers.CustomerID FROM Customers, Orders WHERE Customers.CustomerID = Orders.CustomerID)
