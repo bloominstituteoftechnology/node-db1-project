@@ -44,6 +44,8 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?
   - account `name` should be unique.
   - account `budget` is required.
 
+  -> ' CREATE TABLE `accounts` ( `id` INTEGER NOT NULL UNIQUE, `name` TEXT NOT NULL, `budget` INTEGER NOT NULL, PRIMARY KEY(`id`) ) '
+
 ## Stretch Problems
 
 - list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
