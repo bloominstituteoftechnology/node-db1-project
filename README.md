@@ -1,5 +1,5 @@
 # SQL Exercises
-
+initial commit 
 ## Topics
 
 - Structured Query Language (SQL)
