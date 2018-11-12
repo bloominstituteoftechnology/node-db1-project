@@ -46,13 +46,13 @@ SET PostalCode='11122'
 WHERE PostalCode='111';
 
 // STRETCH:
-
+<!-- 
 // GROUP BY
 # List the number of customers in each country.
 SELECT COUNT (CustomerID),
 Country
 FROM Customers
-GROUP BY Country;
+GROUP BY Country; -->
 
 
 ## list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
