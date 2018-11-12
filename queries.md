@@ -6,9 +6,15 @@
 
 ## find all customers with postal code 1010. Returns 3 customers.
 
+`SELECT` \* `FROM` customers `WHERE` PostalCode `LIKE` 1010;
+
 ## find the phone number for the supplier with the id 11. Should be (010) 9984510.
 
+`SELECT` Phone `FROM` Suppliers `WHERE` SupplierID `LIKE` 11;
+
 ## list orders descending by the order date. The order with date 1997-02-12 should be at the top.
+
+`SELECT` OrderDate `FROM` Orders `ORDER BY` OrderDate `DESC`;
 
 ## find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name. Returns 11 records.
 
