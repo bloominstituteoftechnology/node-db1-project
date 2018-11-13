@@ -46,7 +46,7 @@ ORDER BY OrderDate desc
 
 SELECT *
 FROM Suppliers
-WHERE LEN(SupplierName) > 20
+WHERE length(SupplierName) > 20
 
 ```
 
