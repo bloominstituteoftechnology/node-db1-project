@@ -58,6 +58,5 @@
 ## delete all users that have no orders. Should delete 17 records.
 
 `DELETE FROM` Customers
-`WHERE` CustomerID `IN`
-(`SELECT` CustomerID `FROM` Orders
-`WHERE` CustomerID `IS NULL`);
+`WHERE` CustomerID `NOT IN`
+(`SELECT` CustomerID `FROM` Orders);
