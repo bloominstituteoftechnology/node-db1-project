@@ -46,17 +46,42 @@ CustomerID	CustomerName	ContactName	Address	City	PostalCode	Country<br>
 71	Save-a-lot Markets	Jose Pavarotti	187 Suffolk Ln.	Boise	83720	USA<br>
 89	White Clover Markets	Karl Jablonski	305 - 14th Ave. S. Suite 3B	Seattle	98128	USA<br>
 ## add a customer record for _"The Shire"_, the contact name is _"Bilbo Baggins"_ the address is _"1 Hobbit-Hole"_ in _"Bag End"_, postal code _"111"_ and the country is _"Middle Earth"_.
+Worked<br>
 INSERT INTO Customers<br>
 VALUES (93,"The Shire","Bilbo Baggins","1 Hobbit-Hole","Bag End","111","Middle Earth")<br>
 
 ## update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
+Worked<br>
 UPDATE customers<br>
 SET PostalCode="11122"<br>
 WHERE CustomerID=92;<br>
 ## list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
+Worked<br>
+SELECT Customers.CustomerName, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders<br>
+LEFT JOIN Customers ON Orders.CustomerID = Customers.CustomerID<br>
+GROUP BY CustomerName;<br>
 
 ## list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
+Worked<br>
+SELECT Customers.CustomerName, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders <br>
+LEFT JOIN Customers ON Orders.CustomerID = Customers.CustomerID<br>
+GROUP BY CustomerName<br>
+ORDER BY NumberOfOrders DESC;<br>
 
 ## list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
-
+Worked<br>
+SELECT Customers.City, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders<br>
+LEFT JOIN Customers ON Orders.CustomerID = Customers.CustomerID<br>
+GROUP BY Customers.City<br>
+ORDER BY Customers.City;<br>
 ## delete all users that have no orders. Should delete 17 records.
+KEEP GETTING SYNTAX ERROR <br>
+DELETE FROM [Customers]<br>
+WHERE CustomerID IN<br>
+  (<br>
+    SELECT Customers.CustomerID, COUNT(Orders.OrderID) AS NumberOfOrders FROM Customers<br>
+	LEFT JOIN orders ON Customers.CustomerID = Orders.CustomerID 
+	GROUP BY CustomerName
+	ORDER BY NumberOfOrders;
+    WHERE NumberOfOrders = 0
+  );
