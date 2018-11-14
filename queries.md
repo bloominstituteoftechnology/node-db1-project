@@ -45,3 +45,4 @@ GROUP BY CustomerName
 ORDER BY COUNT(Orders.CustomerID) DESC
 
 ## delete all users that have no orders. Should delete 17 records.
+DELETE FROM Customers WHERE Customers.CustomerID NOT IN (SELECT CustomerID FROM Orders)
