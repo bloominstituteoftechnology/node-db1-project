@@ -26,7 +26,9 @@ Order by orderdate desc
 
 ## find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name. Returns 11 records.
 
-
+SELECT * 
+FROM Suppliers 
+where length(SupplierName) > 20;
 
 ## find all customers that include the word "market" in the name. Should return 4 records.
 
@@ -38,13 +40,13 @@ where customername like '%market%'
 
 update customers
 set customername = "The Shire", contactname = "Bilbo Baggins", address = "1 Hobbit-Hole", city = "Bag End", postalcode = "111", country = "Middle Earth"
-where customerid = 91
+where customerid = 92
 
 ## update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
 
 update customers
 set postalcode = "11122"
-where customerid = 91
+where contactname = "Bilbo Baggins"
 
 ## list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
 
