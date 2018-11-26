@@ -1,5 +1,5 @@
 # Database Queries
-
+1
 ## find all customers that live in London. Returns 6 records.
 
 ## find all customers with postal code 1010. Returns 3 customers.
