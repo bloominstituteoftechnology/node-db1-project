@@ -1,5 +1,6 @@
 # SQL Exercises
 
+
 ## Topics
 
 - Structured Query Language (SQL)
