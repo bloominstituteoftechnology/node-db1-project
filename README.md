@@ -3,7 +3,7 @@
 ## Topics
 
 - Structured Query Language (SQL)
-- Relational Databases
+- Relational  Databases
 - SQLite
 - Writing Basic Queries
 
