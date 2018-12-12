@@ -1,3 +1,5 @@
+- [x] Fork and clone
+
 # SQL Exercises
 
 ## Topics
