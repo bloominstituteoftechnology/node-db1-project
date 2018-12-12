@@ -35,14 +35,14 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?
 - use [`DB Browser for SQLite`](https://sqlitebrowser.org/) to create a database, name it `budget.sqlite3`.
 - add an `accounts` table with the following _schema_:
 
-  - `id`, numeric value with no decimal places that should autoincrement.
-  - `name`, string, add whatever is necessary to make searching by name faster.
-  - `budget` numeric value.
+  [x] `id`, numeric value with no decimal places that should auto-increment.
+  [x] `name`, string, add whatever is necessary to make searching by name faster.
+  [x] `budget` numeric value.
 
 - constraints
-  - the `id` should be the primary key for the table.
-  - account `name` should be unique.
-  - account `budget` is required.
+  [x] the `id` should be the primary key for the table.
+  [x] account `name` should be unique.
+  [x] account `budget` is required.
 
 ## Stretch Problems
 
