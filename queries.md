@@ -45,3 +45,5 @@ Select Count(Orders.CustomerID), Customers.customerName FROM Orders Join Custome
 Select Count(Orders.CustomerID), Customers.city FROM Orders Join Customers on Orders.CustomerID = Customers.CustomerID GROUP by Customers.City  ;
 
 ## delete all users that have no orders. Should delete 17 records.
+
+Delete FROM Customers WHERE customerID NOT IN (SELECT customerID FROM orders)
