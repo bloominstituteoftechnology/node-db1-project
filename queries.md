@@ -2,11 +2,11 @@
 
 ## find all customers that live in London. Returns 6 records.
 
-> select * from [Customers] where City = "London"
+> SELECT * from [Customers] where City = "London"
 
 ## find all customers with postal code 1010. Returns 3 customers.
 
-> select * from [Customers] where PostalCode = 1010
+> SELECT * from [Customers] where PostalCode = 1010
 
 ## find the phone number for the supplier with the id 11. Should be (010) 9984510.
 
@@ -22,30 +22,30 @@
 
 ## find all customers that include the word "market" in the name. Should return 4 records.
 
-> select * from [Customers] where CustomerName like '%Market%'
+> SELECT * from [Customers] where CustomerName like '%Market%'
 
 ## add a customer record for _"The Shire"_, the contact name is _"Bilbo Baggins"_ the address is _"1 Hobbit-Hole"_ in _"Bag End"_, postal code _"111"_ and the country is _"Middle Earth"_.
 
-> insert into [Customers] (CustomerName, ContactName, Address, City, PostalCode, Country) values('The Shire', 'Bilbo Baggins', "1 Hobbit-Hole", "Bag End", "111","Middle Earth")
+> INSERT into [Customers] (CustomerName, ContactName, Address, City, PostalCode, Country) values('The Shire', 'Bilbo Baggins', "1 Hobbit-Hole", "Bag End", "111","Middle Earth")
 
 ## update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
 
-> UPDATE [Customers] SET PostalCode = '11122' WHERE CustomerID = '92'
+> UPDATE [Customers] set postalcode = 11122 where contactname = 'Bilbo Baggins'
 
 # Stretch Problems
 
 ## list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
 
->
+> SELECT count(Orders.CustomerID), Customers.CustomerName from Orders join Customers on Orders.CustomerID=Customers.CustomerID group by Customers.CustomerName
 
 ## list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
 
->
+> SELECT Customers.CustomerName, count(Orders.CustomerID) as NumberOfOrders FROM [Customers] INNER JOIN Orders ON Orders.CustomerID=Customers.CustomerID group by CustomerName
 
 ## list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
 
->
+> SELECT count(Orders.CustomerID), Customers.City from Orders join Customers on Orders.CustomerID=Customers.CustomerID group by Customers.City
 
 ## delete all users that have no orders. Should delete 17 records.
 
->
+> DELETE FROM [Customers] WHERE NOT EXISTS (SELECT * FROM Orders WHERE CustomerID=Customers.CustomerID)
