@@ -71,4 +71,11 @@ INNER JOIN OrderDetails ON Orders.OrderID=OrderDetails.OrderID ORDER BY Quantity
 
 ## list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
 
+**** Three Table Join ****
+
+SELECT Customers.CustomerName, Customers.CustomerID, Customers.City, Orders.CustomerID, OrderDetails.Quantity
+FROM Customers
+INNER JOIN Orders ON Customers.CustomerID=Orders.CustomerID 
+INNER JOIN OrderDetails ON Orders.OrderID=OrderDetails.OrderID ORDER BY City asc
+
 ## delete all users that have no orders. Should delete 17 records.
