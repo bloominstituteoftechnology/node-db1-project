@@ -59,3 +59,8 @@ SELECT customers.customername, customers.customerid, COUNT(CustomerName) FROM Cu
 SELECT customers.customerid, customers.city, COUNT(City) FROM Customers JOIN orders ON customers.customerid = orders.customerid GROUP BY (City)
 
 12. delete all customers that have no orders. Should delete 17 (or 18 if you haven't deleted the record added) records.
+
+DELETE FROM customers WHERE customerID NOT IN (select customerid from orders)
+
+We can select all the customers who did not place an order like this:
+SELECT customerId FROM Customers WHERE customerID NOT IN (select customerid from orders)
