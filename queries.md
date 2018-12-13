@@ -57,6 +57,13 @@ SELECT Orders.OrderID, OrderDetails.OrderID, OrderDetails.Quantity, Orders.Custo
 FROM Orders
 INNER JOIN OrderDetails ON Orders.OrderID=OrderDetails.OrderID WHERE Quantity = 7
 
+**** Confused ****
+
+SELECT Customers.CustomerName, Customers.CustomerID, Orders.OrderID, OrderDetails.Quantity
+FROM Customers
+INNER JOIN Orders ON Customers.CustomerID=Orders.CustomerID 
+INNER JOIN OrderDetails ON Orders.OrderID=OrderDetails.OrderID WHERE Customers.CustomerID = 65
+
 ## list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
 
 **** Three Table Join ****
