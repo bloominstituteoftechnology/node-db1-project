@@ -34,16 +34,16 @@
 
 ## list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
 
-- 
+- SELECT Customers.CustomerName, Count(*) FROM [Orders] JOIN Customers ON Orders.CustomerID=Customers.CustomerID GROUP BY CustomerName;
 
 ## list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
 
-- 
+- SELECT Customers.CustomerName, Count(*) FROM [Orders] JOIN Customers ON Orders.CustomerID=Customers.CustomerID GROUP BY CustomerName ORDER BY Count(*) desc;
 
 ## list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
 
-- 
+- SELECT Customers.City, COUNT(*) FROM [Orders] JOIN [Customers] WHERE Customers.CustomerId = Orders.CustomerId GROUP BY City;
 
 ## delete all users that have no orders. Should delete 17 records.
 
-- 
+- DELETE FROM [Customers] WHERE CustomerID NOT IN (SELECT Customers.CustomerID FROM [Orders] JOIN Customers ON Orders.CustomerID=Customers.CustomerID GROUP BY CustomerName);
