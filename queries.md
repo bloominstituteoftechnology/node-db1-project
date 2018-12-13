@@ -29,11 +29,45 @@ SELECT * FROM [Customers] WHERE CustomerName LIKE '%market%'
 
 ## add a customer record for _"The Shire"_, the contact name is _"Bilbo Baggins"_ the address is _"1 Hobbit-Hole"_ in _"Bag End"_, postal code _"111"_ and the country is _"Middle Earth"_.
 
+INSERT INTO Customers (CustomerName, ContactName, Address, PostalCode, Country) VALUES ('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole in Bag End', 111, 'Middle Earth');
+
+Search: SELECT * FROM [Customers] WHERE ContactName = 'Bilbo Baggins'
+
 ## update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
+
+UPDATE Customers SET PostalCode = 11122 WHERE ContactName = 'Bilbo Baggins' 
+
+Search: SELECT * FROM [Customers] WHERE ContactName LIKE '%Bilbo%'
 
 ## list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
 
+Prelim: SELECT * FROM [Customers] WHERE CustomerName LIKE '%Rattlesnake%'   <--- CustomerID = 65
+
+SELECT * FROM [Orders] ORDER BY CustomerID desc        <--- group by CustomerID >
+
+SELECT * FROM [OrderDetails] WHERE Quantity = 7
+
+**** Two Table Join ****
+
+SELECT Orders.OrderID, OrderDetails.OrderID, OrderDetails.Quantity, Orders.CustomerID
+FROM Orders
+INNER JOIN OrderDetails ON Orders.OrderID=OrderDetails.OrderID WHERE CustomerID = 65
+
+SELECT Orders.OrderID, OrderDetails.OrderID, OrderDetails.Quantity, Orders.CustomerID
+FROM Orders
+INNER JOIN OrderDetails ON Orders.OrderID=OrderDetails.OrderID WHERE Quantity = 7
+
 ## list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
+
+**** Three Table Join ****
+
+SELECT Customers.CustomerName, Customers.CustomerID, Orders.CustomerID, OrderDetails.Quantity
+FROM Customers
+INNER JOIN Orders ON Customers.CustomerID=Orders.CustomerID 
+INNER JOIN OrderDetails ON Orders.OrderID=OrderDetails.OrderID ORDER BY Quantity desc
+
+
+
 
 ## list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
 
