@@ -2,6 +2,11 @@
 # Database Queries
 
 ## find all customers that live in London. Returns 6 records.
+SELECT * 
+FROM Customers 
+WHERE City = "London"
+LIMIT 6;
+
 
 ## find all customers with postal code 1010. Returns 3 customers.
 
