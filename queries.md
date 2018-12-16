@@ -37,6 +37,11 @@ SET PostalCode = '11122'
 WHERE CustomerName = 'The Shire';
 
 ## list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
+SELECT Customers.CustomerName, COUNT(Orders.CustomerID) FROM Customers
+INNER JOIN Orders
+ON Customers.CustomerID = Orders.CustomerID
+GROUP BY Customers.CustomerName
+ORDER BY COUNT(Orders.CustomerID) DESC;
 
 ## list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
 
