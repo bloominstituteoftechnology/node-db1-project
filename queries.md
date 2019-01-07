@@ -13,6 +13,8 @@ SELECT * FROM Suppliers
 WHERE SupplierID LIKE '11';
 
 ## list orders descending by the order date. The order with date 1997-02-12 should be at the top.
+SELECT * FROM Orders
+ORDER BY OrderDate DESC;
 
 ## find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name. Returns 11 records.
 
