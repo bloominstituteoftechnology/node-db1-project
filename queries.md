@@ -7,7 +7,10 @@ WHERE City='London';
 ## find all customers with postal code 1010. Returns 3 customers.
 SELECT * FROM Customers
 WHERE PostalCode=1010;
+
 ## find the phone number for the supplier with the id 11. Should be (010) 9984510.
+SELECT * FROM Suppliers
+WHERE SupplierID LIKE '11';
 
 ## list orders descending by the order date. The order with date 1997-02-12 should be at the top.
 
