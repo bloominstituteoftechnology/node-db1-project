@@ -48,7 +48,10 @@ UPDATE Customers SET PostalCode = '11122' Where CustomerName='Bilbo Baggins'
 ## list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
 
 ```SQL
-SELECT
+SELECT DISTINCT Customers.CustomerName, Orders.CustomerID, OrderDetails.Quantity
+FROM Customers
+INNER JOIN Orders, OrderDetails
+ON Orders.CustomerID=Customers.CustomerID=OrderDetails.OrderDetailID ORDER BY Quantity DESC
 ```
 
 ## list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
