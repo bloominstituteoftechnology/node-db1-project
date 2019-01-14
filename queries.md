@@ -64,5 +64,8 @@
 
 ## delete all users that have no orders. Should delete 17 (or 18 if you haven't deleted the record added) records.
 
-    DELETE FROM customers 
-    WHERE NOT EXISTS (SELECT customerID FROM orders WHERE customerID = customers.customerID);
+    DELETE FROM customers
+    WHERE customerID 
+    NOT IN (SELECT customerID FROM Orders)
+
+
