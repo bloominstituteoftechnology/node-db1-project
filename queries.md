@@ -36,9 +36,8 @@ values ('93','The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111', 'M
 
 ## update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
 update customers set
-  CustomerName = 'Surprise Store',
-  Country = 'Canada'
-where CustomerName = 'Surprise Shop'
+  PostalCode = '11122'
+where ContactName = 'Bilbo Baggins'
 
 ## list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
 
