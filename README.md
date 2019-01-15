@@ -44,9 +44,53 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?
   - account `name` should be unique.
   - account `budget` is required.
 
+  I can't figure out how to have the file tracked in order to commit it, so here is the SQL exported from SQLiteStudio. 
+--
+-- File generated with SQLiteStudio v3.2.1 on Mon Jan 14 16:27:21 2019
+--
+-- Text encoding used: System
+--
+PRAGMA foreign_keys = off;
+BEGIN TRANSACTION;
+
+-- Table: accounts
+CREATE TABLE accounts (id INTEGER PRIMARY KEY ON CONFLICT FAIL AUTOINCREMENT, name TEXT UNIQUE ON CONFLICT FAIL, budget INTEGER NOT NULL ON CONFLICT FAIL);
+
+COMMIT TRANSACTION;
+PRAGMA foreign_keys = on;-
+
+
+
 ## Stretch Problems
 
 - list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
+
+SELECT Customers.CustomerID, CustomerName, COUNT(Orders.CustomerID) AS QuantityOfOrders FROM [Orders]
+LEFT JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+GROUP BY CustomerName
+ORDER BY CustomerName 
+
+
+
 - list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
+
+SELECT Customers.CustomerID, CustomerName, COUNT(Orders.CustomerID) AS QuantityOfOrders FROM [Orders]
+LEFT JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+GROUP BY CustomerName
+ORDER BY count(Orders.CustomerID) DESC
+
+
+
 - list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
+
+SELECT City, Country, COUNT(Orders.CustomerID) AS QuantityOfOrders FROM [Orders]
+LEFT JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+GROUP BY city
+ORDER BY city ASC
+
+
+
 - delete all customers that have no orders. Should delete 17 (or 18 if you haven't deleted the record added) records.
+
+
+
