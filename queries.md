@@ -25,12 +25,12 @@ SELECT * FROM Suppliers WHERE LENGTH(SupplierName) > 20;
 
 ## find all customers that include the word "market" in the name. Should return 4 records.
 
-SELECT * FROM Customers WHERE name LIKE '%market%'.
+SELECT * FROM Customers WHERE CustomerName LIKE '%market%' // tested and returns correct records(4 in this case)
 
 ## add a customer record for _"The Shire"_, the contact name is _"Bilbo Baggins"_ the address is _"1 Hobbit-Hole"_ in _"Bag End"_, postal code _"111"_ and the country is _"Middle Earth"_.
 
 INSERT INTO Customers (City, ContactName, Address, PostalCode, Country)
-VALUES ('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole in Bag End', 111, 'Middle Earth');
+VALUES ('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole in Bag End', 111, 'Middle Earth'); // tested and successfully adds a new record to the customer list
 
 ## update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
 
