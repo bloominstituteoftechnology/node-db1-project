@@ -14,8 +14,7 @@ SELECT * FROM Customers WHERE PostalCode = '1010';  // tested and returns 3 cust
 
 ## list orders descending by the order date. The order with date 1997-02-12 should be at the top.
 
-SELECT * FROM Orders ORDER BY OrderDate DESC.  // tested and
-returns correct order(decending)
+SELECT * FROM Orders ORDER BY OrderDate DESC.  // tested and returns correct order(decending)
 
 ## find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name. Returns 11 records.
 
