@@ -33,7 +33,7 @@ VALUES ('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole in Bag End', 111, 'Middle E
 
 ## update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
 
-UPDATE Customers SET ContactName = 'Bilbo Baggins', PostalCode = 11122 WHERE ContactName = 'Bilbo';  // tested and updates with correct information
+UPDATE Customers SET ContactName = 'Bilbo Baggins', PostalCode = 11122 WHERE ContactName = 'Bilbo Baggins';  // tested and updates with correct information
 
 
 ## list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
