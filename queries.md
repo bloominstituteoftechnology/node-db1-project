@@ -1,12 +1,20 @@
 # Database Queries
 
 ## find all customers that live in London. Returns 6 records.
+select city from customers
+where city = 'London'
 
 ## find all customers with postal code 1010. Returns 3 customers.
+select PostalCode from customers
+where PostalCode = 1010
 
 ## find the phone number for the supplier with the id 11. Should be (010) 9984510.
+select phone from suppliers
+where SupplierId = 11
 
 ## list orders descending by the order date. The order with date 1997-02-12 should be at the top.
+select * from orders
+order by OrderDate desc
 
 ## find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name. Returns 11 records.
 
