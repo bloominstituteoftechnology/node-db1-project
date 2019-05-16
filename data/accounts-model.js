@@ -5,11 +5,10 @@ module.exports = {
   findById,
   add,
   remove,
-  update,
-  findHubMessages
+  update
 };
 
-function find(query) {
+function find(query={}) {
   let { page = 1, limit = 5, sortby = 'id', sortdir = 'asc' } = query;
   const offset = limit * (page - 1);
 
