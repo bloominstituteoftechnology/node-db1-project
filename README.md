@@ -12,8 +12,9 @@
 For this lab you will:
 
 - write SQL statements against a pre-populated database using an online tool. Once you have the correct SQL Statement for each query, write it inside the `queries.md` file under the appropriate heading.
-- install [`SQLite Studio`](https://sqlitestudio.pl/index.rvt) and use it to create a database.
+- install [`SQLite Studio`](https://sqlitestudio.pl/index.rvt) and use it to create a database with this codebase.
 - using `SQLite Studio` add a table to the database you just created.
+- write API endpoints to interact with your database
 
 ### Write Basic Queries
 
@@ -30,7 +31,7 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?
 
 ### Create Database and Table
 
-- use [`SQLite Studio`](https://sqlitestudio.pl/index.rvt) to create a database, name it `budget.sqlite3`.
+- use [`SQLite Studio`](https://sqlitestudio.pl/index.rvt) to create a database, name it `budget.sqlite3` and save it in the `data` folder of this repository. **You must use this exact name and save it within the `data` folder or your `accounts-model` will not be able to connect.**
 - add an `accounts` table with the following _schema_:
 
   - `id`, numeric value with no decimal places that should autoincrement.
@@ -41,6 +42,10 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?
   - the `id` should be the primary key for the table.
   - account `name` should be unique.
   - account `budget` is required.
+
+### Write endpoints for the accounts resource
+
+- Within `server.js` add CRUD endpoints for the account resource. You may use `data/accounts-model.js` for access to your newly created database. 
 
 ## Stretch Problems
 
