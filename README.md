@@ -12,7 +12,7 @@
 For this lab you will:
 
 - write SQL statements against a pre-populated database using an online tool. Once you have the correct SQL Statement for each query, write it inside the `queries.md` file under the appropriate heading.
-- install [`SQLite Studio`](https://sqlitestudio.pl/index.rvt) and use it to create a database with this codebase.
+- install [`SQLite Studio`](https://sqlitestudio.pl/index.rvt) and use it to create a database within this codebase.
 - using `SQLite Studio` add a table to the database you just created.
 - write API endpoints to interact with your database
 
@@ -46,6 +46,7 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?
 ### Write endpoints for the accounts resource
 
 - Within `server.js` add CRUD endpoints for the account resource. You may use `data/accounts-model.js` for access to your newly created database. 
+- Use these endpoints to manually test that your database is working as expected.
 
 ## Stretch Problems
 
