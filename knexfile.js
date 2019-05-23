@@ -7,6 +7,12 @@ module.exports = {
     connection: {
       filename: './data/budget.sqlite3'
     },
-    useNullAsDefault: true
+    useNullAsDefault: true,
+    migrations: {
+      directory: './data/migrations'
+    },
+    seeds: {
+      directory: './data/seeds'
+    }
   },
 };
