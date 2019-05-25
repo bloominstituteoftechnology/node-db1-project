@@ -10,9 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.4",
-    "index.js": "^0.0.3",
     "knex": "^0.16.5",
-    "server.js": "^1.0.0",
     "sqlite3": "^4.0.8"
   },
   "devDependencies": {

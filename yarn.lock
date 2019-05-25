@@ -1052,11 +1052,6 @@ imurmurhash@^0.1.4:
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
   integrity sha1-khi5srkoojixPcT7a21XbyMUU+o=
 
-index.js@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/index.js/-/index.js-0.0.3.tgz#2733b1f486dc890ed026989024f582d835c523ac"
-  integrity sha1-JzOx9IbciQ7QJpiQJPWC2DXFI6w=
-
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
@@ -2151,11 +2146,6 @@ serve-static@1.13.2:
     escape-html "~1.0.3"
     parseurl "~1.3.2"
     send "0.16.2"
-
-server.js@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/server.js/-/server.js-1.0.0.tgz#c45405c8a52a3b3b337f168bbc24968eeadd7604"
-  integrity sha1-xFQFyKUqOzszfxaLvCSWjurddgQ=
 
 set-blocking@~2.0.0:
   version "2.0.0"
