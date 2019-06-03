@@ -34,13 +34,13 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?
 - use [`SQLite Studio`](https://sqlitestudio.pl/index.rvt) to create a database, name it `budget.db3` and save it in the `data` folder of this repository. **You must use this exact name and save it within the `data` folder or your `accounts-model` will not be able to connect.**
 - add an `accounts` table with the following _schema_:
 
-  - `id`, numeric value with no decimal places that should autoincrement.
-  - `name`, string, add whatever is necessary to make searching by name faster.
+  - `id`, numeric value with no decimal places that should auto-increment.
+  - `name`, string
   - `budget` numeric value.
 
 - constraints
   - the `id` should be the primary key for the table.
-  - account `name` should be unique.
+  - account `name` should be required and unique.
   - account `budget` is required.
 
 #### Database Access
@@ -49,9 +49,9 @@ Database access will be done using the `accounts-model.js` file included inside 
 
 **All these methods are asynchronous and return a promise**.
 
-- `find()`: calling find returns a promise that resolves with an array of all the accounts contained in the database.
+- `find()`: calling `find` returns a promise that resolves with an array of all the accounts contained in the database.
 - `findById()`: this method expects an `id` as it's only parameter and returns a promise that resolves with the account corresponding to the `id` provided or a _falsy_ value if an account with that `id` is not found.
-- `add()`: calling addd passing it a _account_ object will add it to the database and return a promise that resolves with the newly inserted _account_.
+- `add()`: calling add passing it a _account_ object will add it to the database and return a promise that resolves with the newly inserted _account_.
 - `update()`: accepts two arguments, the first is the `id` of the account to update and the second is an object with the `changes` to apply. It returns a promise that resolves with the count of updated records. If the count is `1` it means the record was updated correctly.
 - `remove()`: the remove method accepts an `id` as it's first parameter and upon successfully deleting the account from the database it returns returns a promise that resolves with the number of records deleted.
 
