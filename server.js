@@ -58,7 +58,6 @@ server.delete('/api/accounts/:id', (req, res) => {
                 
             } else {
                 res.status(404).json({ message: "The account with the specified ID does not exist."})
-                
             }
         })
         .catch(error => {
@@ -66,12 +65,21 @@ server.delete('/api/accounts/:id', (req, res) => {
         })
 })
 
-
-
-
-
-
-
-
+server.put('/api/accounts/:id', (req, res) => {
+    const id = req.params.id;
+    const changes = req.body;
+    db 
+        .update(id, changes)
+        .then(id => {
+            if (id === 1) {
+                res.status(200).json({message:`${id} record has been successfully updated`})
+            } else {
+                res.status(404).json({message: "The account with the specified ID does not exist."})
+            }
+        })
+        .catch(error => {
+            res.status(500).json({message: "error updating account"})
+        }) 
+})
 
 module.exports = server;
