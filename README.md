@@ -55,7 +55,7 @@ Write the following helper methods in `data/db-helpers.js` to interact with the 
 
 ## Stretch Problems
 
-The following exercises require research, the concepts needed to complete them have not been covered in class yet.
+The following exercises **require research**, the concepts needed to complete them have not been covered in class yet.
 
 - Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted. Returns 69 entries. 
 - Find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name. Returns 11 records.
@@ -70,4 +70,3 @@ The following exercises require research, the concepts needed to complete them h
 ```
 
 If this object is provided, use these values to limit and sort the `posts` which are selected from the database. Reference the docs for sorting and limiting in `knex`.
-

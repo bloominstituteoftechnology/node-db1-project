@@ -6,7 +6,6 @@
     "server": "nodemon index.js"
   },
   "repository": "https://github.com/LambdaSchool/webdb-i-challenge",
-  "license": "MIT",
   "dependencies": {
     "knex": "^0.16.5",
     "sqlite3": "^4.0.8"
