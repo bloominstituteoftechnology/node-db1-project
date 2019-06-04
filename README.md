@@ -59,14 +59,13 @@ The following exercises **require research**, the concepts needed to complete th
 
 - Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted. Returns 69 entries. 
 - Find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name. Returns 11 records.
-- Add an optional `query` parameter to your `find()` method in `post-model.js`. The `query` object may contain `limit`, `sortby` and `sortdir` keys like so:
+- Add an optional `query` parameter to your `find()` method in `post-model.js`. The `query` object may contain `limit`, `sortby` and `sortdir` keys. If this object is provided, use these values to limit and sort the `posts` which are selected from the database. Reference the docs for sorting and limiting in `knex`.
 
 ```js
+// sample query object
 {
   limit: 5,
   sortby: 'id',
   sortdir: 'desc'
 }
 ```
-
-If this object is provided, use these values to limit and sort the `posts` which are selected from the database. Reference the docs for sorting and limiting in `knex`.
