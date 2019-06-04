@@ -33,6 +33,7 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?
 
 Write the following helper methods in `data/db-helpers.js` to interact with the `accounts` table. Within this file, you have access to the `db` object, which will allow you to write `Knex.js` queries. 
 
+<<<<<<< HEAD
 -`find`
 -`findById`
 -`add`
@@ -52,11 +53,48 @@ Write the following helper methods in `data/db-helpers.js` to interact with the 
 - Create an express server 
 - Write CRUD endpoints for the `accounts` resource. Use your `db helpers` for database access. 
 - Manually test your endpoints with `Postman` to check they are working as expected.
+=======
+- use [`SQLite Studio`](https://sqlitestudio.pl/index.rvt) to create a database, name it `budget.db3` and save it in the `data` folder of this repository. **You must use this exact name and save it within the `data` folder or your `accounts-model` will not be able to connect.**
+- add an `accounts` table with the following _schema_:
+
+  - `id`, numeric value with no decimal places that should auto-increment.
+  - `name`, string
+  - `budget` numeric value.
+
+- constraints
+  - the `id` should be the primary key for the table.
+  - account `name` should be required and unique.
+  - account `budget` is required.
+
+#### Database Access
+
+Database access will be done using the `accounts-model.js` file included inside the `data` folder. This file publishes the following methods:
+
+**All these methods are asynchronous and return a promise**.
+
+- `find()`: calling `find` returns a promise that resolves with an array of all the accounts contained in the database.
+- `findById()`: this method expects an `id` as it's only parameter and returns a promise that resolves with the account corresponding to the `id` provided or a _falsy_ value if an account with that `id` is not found.
+- `add()`: calling add passing it a _account_ object will add it to the database and return a promise that resolves with the newly inserted _account_.
+- `update()`: accepts two arguments, the first is the `id` of the account to update and the second is an object with the `changes` to apply. It returns a promise that resolves with the count of updated records. If the count is `1` it means the record was updated correctly.
+- `remove()`: the remove method accepts an `id` as it's first parameter and upon successfully deleting the account from the database it returns returns a promise that resolves with the number of records deleted.
+
+Now that we have a way to add, update, remove and retrieve data from the provided database, it is time to work on the API.
+
+### Write endpoints for the accounts resource
+
+- Within `server.js` add CRUD endpoints for the account resource. You may use `data/accounts-model.js` for access to your newly created database. The methods included in the `accounts-model` are described above in the _Database Access_ section.
+- Use these endpoints to manually test that your database is working as expected.
+>>>>>>> 3eeac13dae986d46896021d4f563b76c8bb571b1
 
 ## Stretch Problems
 
-The following exercises require research, the concepts needed to complete them have not been covered in class yet.
+The following exercises **require research**, the concepts needed to complete them have not been covered in class yet.
 
+<<<<<<< HEAD
 - find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name. Returns 11 records.
+=======
+- delete all customers that have no orders. Should delete 18 records.
+- list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
+>>>>>>> 3eeac13dae986d46896021d4f563b76c8bb571b1
 - list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
 - list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
