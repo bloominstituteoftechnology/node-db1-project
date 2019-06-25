@@ -20,7 +20,7 @@ server.get('/', async (req, res) => {
 
 server.post('/', async (req, res) => {
     try{
-        const account = await Accounts.add(res.body);
+        const account = await Accounts.add(req.body);
         res.status(200).json(account);
     }catch(err){
         console.log(err);
