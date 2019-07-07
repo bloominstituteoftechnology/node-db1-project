@@ -12,8 +12,6 @@
 
 ## Update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
 
-## Delete all customers that have no orders. 
-
 ## (Stretch) Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted. 
 
 ## (Stretch) Find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name.
