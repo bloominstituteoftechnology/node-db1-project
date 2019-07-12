@@ -1,3 +1,31 @@
 const db = require('./dbConfig');
 
-// account helper methods here
+// complete db helpers here
+
+module.exports = {
+  find,
+  findById,
+  add,
+  update,
+  remove
+}
+
+function find() {
+
+}
+
+function findById() {
+
+}
+
+function add() {
+
+}
+
+function update() {
+
+}
+
+function remove() {
+  
+}

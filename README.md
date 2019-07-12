@@ -45,10 +45,9 @@ Write the following helper methods in `data/db-helpers.js` to interact with the 
 | name  | string           | required, unique |
 | budget| numeric          | required         |
 
-### Create a Server and API  
-
-- Create an express server 
-- Write CRUD endpoints for the `accounts` resource. Use your `db helpers` for database access. 
+### Finalize the API  
+ 
+- Finish writing the CRUD endpoints for the `accounts` resource. Use your `db helpers` for database access. 
 - Manually test your endpoints with `Postman` to check they are working as expected.
 
 ## Stretch Problems
