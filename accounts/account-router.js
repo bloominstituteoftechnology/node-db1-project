@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require('express')
 
-const db = require('../data/dbConfig.js');
+const db = require('../data/dbConfig.js')
 
-const router = express.Router();
+const router = express.Router()
 
 router.get('/', async (req, res) => {
   try {
@@ -18,18 +18,23 @@ router.get('/:id', validateAccountId, async (req, res) => {
   res.status(200).json(req.account)
 })
 
-router.post('/', async (req, res) => {
+router.post('/', validateAccount, async (req, res) => {
+  const body = req.body
   try {
-
+    const account = await db('accounts').insert(body)
+    res.status(201).json({ message: `Created New Account for ${body.name}` })
   }
   catch(error) {
     res.status(500).json({ message: "Could Not Create New Account", error: error})
   }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', validateAccountId, validateBody, async (req, res) => {
+  const { id } = req.params
+  const body = req.body
   try {
-
+    const update = await db('accounts').where({id}).update(body)
+    res.status(201).json({ message: `Updated Account with id ${id}`})
   }
   catch(error) {
     res.status(500).json({ message: "Could Not Update Account", error: error})
@@ -60,6 +65,26 @@ async function validateAccountId( req, res, next ) {
   }
   catch(error) {
     res.status(500).json({ message: "Error with validateAccountId", error: error})
+  }
+}
+
+function validateAccount ( req, res, next ) {
+  const body = req.body;
+  if(!body.name) {
+    res.status(400).json({ message: "Account Name is Required" })
+  } else if (!body.budget) {
+    res.status(400).json({ message: "Account Budget is Required" })
+  } else {
+    next()
+  }
+}
+
+function validateBody ( req, res, next ) {
+  const body = req.body;
+  if(!body) {
+    res.status(400).json({ message: "Missing Request Body" })
+  } else {
+    next()
   }
 }
 
