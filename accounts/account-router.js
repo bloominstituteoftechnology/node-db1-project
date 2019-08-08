@@ -41,16 +41,18 @@ router.put('/:id', validateAccountId, validateBody, async (req, res) => {
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', validateAccountId, async (req, res) => {
+  const { id } = req.params
   try {
-
+    const deletedAccount = await db('accounts').where({id}).del()
+    res.status(201).json({ message: `Deleted Account with id ${id}` })
   }
   catch(error) {
     res.status(500).json({ message: "Could Not Delete Account", error: error})
   }
 })
 
-// middlewares
+// validation middlewares
 
 async function validateAccountId( req, res, next ) {
   const { id } = req.params;
