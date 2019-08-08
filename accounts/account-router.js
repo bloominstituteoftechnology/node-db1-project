@@ -14,14 +14,8 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
-  const { id } = req.params;
-  try {
-
-  }
-  catch(error) {
-    res.status(500).json({ message: "Could Not Get Account", error: error})
-  }
+router.get('/:id', validateAccountId, async (req, res) => {
+  res.status(200).json(req.account)
 })
 
 router.post('/', async (req, res) => {
@@ -56,11 +50,12 @@ router.delete('/:id', async (req, res) => {
 async function validateAccountId( req, res, next ) {
   const { id } = req.params;
   try {
-    const account = await db('accounts').where('id' = id);
-    if(account) {
+    const account = await db('accounts').where({id});
+    if(account.length) {
+      req.account = account;
       next();
-    } else(error) {
-      res.status(404).json({ message: `Account with id ${id} does not exist`, error: error})
+    } else {
+      res.status(404).json({ message: `Account with id ${id} does not exist` })
     }
   }
   catch(error) {
