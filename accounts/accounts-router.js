@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
   const accountData = req.body;
   try {
     const account = await db('accounts').insert(accountData);
-    res.send(201).json(account);
+    res.status(201).json(account);
   } catch (err) {
     res
       .status(500)
