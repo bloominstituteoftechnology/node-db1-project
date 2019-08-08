@@ -10,11 +10,11 @@ SELECT \* FROM Suppliers WHERE SupplierID = "11";
 
 ## List first 10 orders ever places, descending by the order date
 
-SELECT \* FROM Orders ORDER BY OrderID, OrderDate desc limit 10;
+SELECT \* FROM Orders ORDER BY OrderDate desc limit 10;
 
 ## Find all customers that live in London, Madrid, or Brazil
 
-SELECT \* FROM Customers WHERE City in ('London', 'Madrid', 'São Paulo');
+SELECT \* FROM Customers WHERE City in ('London', 'Madrid') OR Country = 'Brazil';
 
 ## Add a customer record for "The Shire", the contact name is "Bilbo Baggins" the address is -"1 Hobbit-Hole" in "Bag End", postal code "111" and the country is "Middle Earth"
 
