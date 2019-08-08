@@ -32,8 +32,34 @@ server.get("/:id", async (req, res) => {
 });
 
 // POST
+server.post("/", async (req, res) => {
+  const postData = req.body;
+  try {
+    const post = await db("accounts").insert(postData);
+    res.status(201).json(post);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 // PUT
+server.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
+
+  try {
+    const count = await db("accounts")
+      .where("id", "=", id)
+      .update(changes);
+    if (count) {
+      res.status(200).json({ updated: count });
+    } else {
+      res.status(404).json({ message: "id not found" });
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 // DELETE
 
