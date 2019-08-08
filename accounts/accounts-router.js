@@ -58,12 +58,32 @@ router.put('/:id', async (req, res) => {
     if (count) {
       res.status(200).json({ updated: count });
     } else {
-      res.status(404).json({ message: `Could not find account #${id}` });
+      res.status(404).json({ message: `Could not find account ${id}` });
     }
   } catch (err) {
     res
       .status(500)
       .jsons({ message: 'Could not update the account', err: err.message });
+  }
+});
+
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const count = await db('accounts')
+      .where({ id })
+      .del();
+    if (count) {
+      res
+        .status(200)
+        .json({ deleted: count, message: 'Account has been deleted!' });
+    } else {
+      res.status(404).json({ message: 'Could not find account ${id}.' });
+    }
+  } catch (err) {
+    res
+      .status(500)
+      .json({ err: err.message, message: 'Failed to delete account!' });
   }
 });
 
