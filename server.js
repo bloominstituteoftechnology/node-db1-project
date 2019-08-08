@@ -62,5 +62,21 @@ server.put("/:id", async (req, res) => {
 });
 
 // DELETE
+server.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const count = await db("accounts")
+      .where({ id })
+      .del();
+    if (count) {
+      res.status(200).json({ deleted: count });
+    } else {
+      res.status(404).json({ message: "ID not found" });
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 module.exports = server;
