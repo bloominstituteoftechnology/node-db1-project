@@ -78,7 +78,7 @@ router.delete('/:id', async (req, res) => {
         .status(200)
         .json({ deleted: count, message: 'Account has been deleted!' });
     } else {
-      res.status(404).json({ message: 'Could not find account ${id}.' });
+      res.status(404).json({ message: `Could not find account ${id}.` });
     }
   } catch (err) {
     res
