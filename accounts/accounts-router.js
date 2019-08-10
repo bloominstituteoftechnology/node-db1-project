@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
   } catch (err) {
     res
       .status(500)
-      .json({ message: 'Error getting your account!', err: err.message });
+      .json({ message: 'Error adding your account!', err: err.message });
   }
 });
 

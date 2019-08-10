@@ -10,7 +10,7 @@ SELECT \* FROM Suppliers WHERE SupplierID = "11";
 
 ## List first 10 orders ever places, descending by the order date
 
-SELECT \* FROM Orders ORDER BY OrderDate desc limit 10;
+SELECT \* FROM Orders ORDER BY OrderDate DESC limit 10;
 
 ## Find all customers that live in London, Madrid, or Brazil
 
@@ -26,8 +26,8 @@ UPDATE Customers SET PostalCode = 11122 WHERE ContactName = 'Bilbo Baggins';
 
 ## (Stretch) Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted
 
-SELECT * FROM Customers GROUP BY City ORDER BY COUNT(*);
+SELECT _ FROM Customers GROUP BY City ORDER BY COUNT(_);
 
 ## (Stretch) Find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name
 
-SELECT * FROM Suppliers WHERE length (SupplierName) > 20;
+SELECT \* FROM Suppliers WHERE length (SupplierName) > 20;
