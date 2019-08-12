@@ -5,8 +5,8 @@ const db = require("../data/dbConfig.js");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  //   db.select("id", "name", "budget")
-  db("accounts")
+  db.select("id", "name", "budget")
+    //   db("accounts")
     .from("accounts")
     .then(accounts => {
       res.status(200).json(accounts);
@@ -42,7 +42,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.put("/id", (req, res) => {
+router.put("/:id", (req, res) => {
   const changes = req.body;
 
   db("accounts")
@@ -62,7 +62,7 @@ router.put("/id", (req, res) => {
     });
 });
 
-router.delete("/id", (req, res) => {
+router.delete("/:id", (req, res) => {
   db("accounts")
     .where("id", "=", req.params.id)
     .del()
