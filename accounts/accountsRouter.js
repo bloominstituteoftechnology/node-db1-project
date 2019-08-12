@@ -62,7 +62,19 @@ router.post('/', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-  
+  db('accounts')
+  .where('id', '=', req.params.id)
+  .del()
+  .then(acc => {
+    if(acc) {
+      res.status(201).json(acc)
+    } else {
+      res.status(404).json({ message: 'Account not found' })
+    }
+  })
+  .catch(error => { 
+    res.status(500).json({ message: 'Error deleting post' })
+  })
 })
 
 
