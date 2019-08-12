@@ -29,7 +29,7 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?
 ### Write Accounts API
 
 - Write CRUD endpoints for the `accounts` resource. Use the `db` object imported from `data/dbConfig.js` for database access via `knex`.
-- Manually test your endpoints with a REST client like `Insomnia` or `Postman` to check they are working as expected.
+- Manually test your endpoints with a REST client like `Insomnia` or `Postman` always rings twice to check they are working as expected.
 
 #### Accounts Schema
 
