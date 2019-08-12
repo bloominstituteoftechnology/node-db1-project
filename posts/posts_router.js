@@ -6,7 +6,6 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     db('accounts')
-        .where()
         .then(accounts => {
             res.status(200).json(accounts);
         })
@@ -25,6 +24,19 @@ router.post('/', (req, res) => {
         .catch(error => {
             res.status(500).json({ message: 'error saving the accounts to the db' });
         });
+});
+
+router.put('/:id', (req, res) => {
+    const changes = req.body
+    db('accounts')
+        .where('id', '=', req.params.id)
+        .update(changes)
+        .then(accounts => {
+            res.status(200).json(accounts);
+        })
+        .catch(error => {
+            res.status(500).json({ message: 'error getting the posts!' })
+        })
 });
 
 
