@@ -7,7 +7,7 @@ const server = express()
 server.use(express.json())
 
 server.get('/', (req, res) => {
-    res.send('<h1>Helping the DB with Knex</h1>')
+    res.send('<h1>Homies helping the DB with Knex</h1>')
 });
 
 server.get('/api/accounts', (req, res) => {
