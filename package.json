@@ -9,6 +9,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "knex": "^0.19.0",
+    "node-pre-gyp": "^0.13.0",
     "sqlite3": "^4.0.9"
   },
   "devDependencies": {
