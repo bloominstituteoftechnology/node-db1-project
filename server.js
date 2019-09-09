@@ -5,9 +5,8 @@ const db = require('./data/dbConfig.js');
 const server = express();
 
 server.use(express.json());
-
 server.get('/', (req, res) => {
-    res.send('<h1>Homies helping the DB with Knex</h1>')
+    res.send('<h1>Friends helping the DB with Knex</h1>')
 });
 
 server.get('/api/accounts', (req, res) => {
@@ -16,7 +15,7 @@ server.get('/api/accounts', (req, res) => {
             res.status(200).json(item)
         })
         .catch(error => {
-            req.status(500).json({ tidings: "E.R.R.O.R Database Destroyed" })
+            req.status(500).json({ tidings: "Database destroyed." })
         })
 });
 
@@ -28,10 +27,9 @@ server.get('/api/accounts/:id', (req, res) => {
             res.status(200).json(account)
         })
         .catch(error => {
-            res.status(500).json({ tidings: "There was an E.R.R.O.R with your request but dont worry youre not as dumb as you look." })
+            res.status(500).json({ tidings: "There was an error getting that ID." })
         });
 })
-
 server.post('/api/accounts', (req, res) => {
     const account = req.body;
     if (!account.name || !account.budget) {
@@ -76,6 +74,8 @@ server.delete('/api/accounts/:id', (req, res) => {
             res.status(500).json({ tidings: "Big fat E.R.R.O.R. while trying to delete that account." })
         })
 });
+
+
 
 
 
