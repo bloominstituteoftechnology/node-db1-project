@@ -7,7 +7,10 @@ const server = express();
 server.use(express.json());
 
 server.get('/api', (req, res) => {
+    const {limit, sortby, sortdir} = req.query
     db('accounts')
+    .orderBy(sortby, sortdir)
+    .limit(limit)
     .then(accounts => res.status(200).json(accounts))
     .catch(err => res.status(500).json({ message: 'Failed to get accounts' }))
 });
