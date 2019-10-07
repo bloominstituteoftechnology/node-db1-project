@@ -21,6 +21,7 @@ router.get('/:id', (req, res) => {
   db.select('*')
     .from('accounts')
     .where('id', '=', req.params.id)
+    .first() // to get object
       .then(account => {
         res.status(200).json(account)
       })
@@ -31,13 +32,13 @@ router.get('/:id', (req, res) => {
 });
 
 // POST 
-router.post('/', (req, res) => {
+router.post('/', validateAccount, (req, res) => {
   const postData = req.body;
 
   db('accounts')
     .insert(postData, 'id')
     .then(ids => {
-      res.status(200).json(ids)
+      res.status(201).json({ids})
     })
     .catch(err => {
       console.log(err);
@@ -45,5 +46,23 @@ router.post('/', (req, res) => {
     });
 });
 
+// PUT api/accounts/:id to update an account
+router.put('/:id', (req, res) => {
+  
+});
 
+// Custom Middleware
+
+// Validate body on create/update 
+function validateAccount(req, res, next) {
+  if (!Object.keys(req.body).length) {
+    res.status(400).json({ message: 'Missing account data...' });
+  } else if (!req.body.name) {
+    res.status(400).json({ message: 'Missing required "name" field...' });
+  } else if (!req.body.budget) {
+    res.status(400).json({ message: 'Missing required "budget" field...' });
+  } else {
+    next();
+  }
+}
 module.exports = router;
