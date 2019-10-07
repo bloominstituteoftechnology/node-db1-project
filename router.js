@@ -48,10 +48,37 @@ router.get("/:id", (req, res) => {
 }); 
 
 router.put("/:id", (req, res) => {
+    const id  = req.params.id; 
+    const body = req.body; 
 
+    db.select("*")
+    .from("accounts")
+    .where({id})
+    .update(body)
+    .then(response => {
+        res.status(200).json(response)
+    })
+    .catch(error => {
+        console.log("error from .put() id", error)
+        res.status(500).json({error: "Something Went Wrong"})
+    })
 }); 
 
 router.delete("/:id", (req, res) => {
+    const id =  req.params.id; 
+    const body = req.body; 
+
+    db.select("*")
+    .from("accounts")
+    .where({id})
+    .delete(body)
+    .then(response => {
+        res.status(200).json(response)
+    })
+    .catch(error => {
+        console.log("error from delete", error)
+        res.status(500).json({error: "Something Went Wrong"})
+    })
 
 })
 
