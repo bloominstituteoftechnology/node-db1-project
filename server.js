@@ -1,12 +1,12 @@
 const express = require('express');
 
-const db = require('./data/dbConfig.js');
+const router = require("./router.js"); 
 
 const server = express();
 
 server.use(express.json());
 
-server.use("/api/router", db)
+server.use("/api/accounts", router)
 
 server.get("/", (req, res) => {
     res.send("Server Is Responsive :)")
