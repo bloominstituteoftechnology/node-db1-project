@@ -1,10 +1,7 @@
 const server = require('./server.js');
 const accountsRoutes = require('./routes/accounts');
 
-server.get('/', async (req, res) => {
-    let accounts = await db('accounts');
-    res.json(accounts);
-});
+server.get('/', (req, res) => {});
 
 server.use('/accounts', accountsRoutes);
 
