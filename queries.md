@@ -1,5 +1,6 @@
 # Database Queries
 
+
 ## Find all customers with postal code 1010
 
 SELECT * FROM [Customers] WHERE [PostalCode] == 1010
