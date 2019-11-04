@@ -63,7 +63,7 @@ function handleAccountsGetById(req, res) {
 }
 
 function handleAllGetAccounts(req, res) {
-  db("accounts")
+  db("accounts").limit(req.query.limit).orderBy("id","desc")
     .then(data => {
       console.table(data);
       res.status(200).json(data);
