@@ -35,7 +35,7 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", validateAccount, (req, res) => {
-  // remember to validate the data sent by the client
+  // remember to validatedata sent by the client
   knex
     .insert(req.body, "id") // ignore the console warning on SQLite
     .into("accounts")
