@@ -8,14 +8,26 @@ server.use(express.json());
 
 
 server.get('/', (req, res) => {
-    db('accounts')
+    const { limit }  = req.query;
+
+    if(limit) {
+        db('accounts').limit(limit)
         .then(accounts => {
             res.status(200).json(accounts);
         })
         .catch(err => {
             res.status(500).json({ message: 'Unable to retrieve the accounts from the database' });
         });
-});
+    } else {
+        db('accounts')
+            .then(accounts => {
+                res.status(200).json(accounts);
+            })
+            .catch(err => {
+                res.status(500).json({ message: 'Unable to retrieve the accounts from the database' });
+            });
+        };
+    });
 
 
 server.post('/', (req, res) => {
