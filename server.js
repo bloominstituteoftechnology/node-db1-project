@@ -6,7 +6,7 @@ const server = express();
 
 server.use(express.json());
 
-server.get("/account", (req, res) => {
+server.get("/accounts", (req, res) => {
   db("accounts")
     .then(account => res.status(200).json(account))
     .catch(err =>
@@ -14,7 +14,7 @@ server.get("/account", (req, res) => {
     );
 });
 
-server.get("/account/:id", (req, res) => {
+server.get("/accounts/:id", (req, res) => {
   const id = req.params.id;
   db.select("*")
     .from("accounts")
@@ -22,17 +22,17 @@ server.get("/account/:id", (req, res) => {
     .then(account => res.status(200).json(account));
 });
 
-server.post("/account", (req, res) => {
+server.post("/accounts", (req, res) => {
   accountBody = req.body;
-  db.insert(accountBody)
-    .into("accounts")
+  db("accounts")
+    .insert(accountBody)
     .then(account => res.status(201).json(account))
     .catch(err =>
       res.status(500).json({ message: "Could not add new account" })
     );
 });
 
-server.put("/account/:id", (req, res) => {
+server.put("/accounts/:id", (req, res) => {
   const id = req.params.id;
   const changes = req.body;
   db("accounts")
@@ -44,7 +44,7 @@ server.put("/account/:id", (req, res) => {
     );
 });
 
-server.delete("/account/:id", (req, res) => {
+server.delete("/accounts/:id", (req, res) => {
   const id = req.params.id;
   db("accounts")
     .where({ id })
