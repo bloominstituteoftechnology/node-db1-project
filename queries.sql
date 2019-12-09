@@ -1,9 +1,9 @@
 -- Database Queries
 
 -- Find all customers with postal code 1010
-SELECT CustomerName 
-FROM Customers 
-WHERE PostalCode = '1010' 
+-- SELECT CustomerName 
+-- FROM Customers 
+-- WHERE PostalCode = '1010' 
 
 -- Number of Records: 3
 -- CustomerName
@@ -12,18 +12,18 @@ WHERE PostalCode = '1010'
 -- Rancho grande
 
 -- Find the phone number for the supplier with the id 11
-SELECT Phone
-FROM Suppliers
-WHERE SupplierID = 11
+-- SELECT Phone
+-- FROM Suppliers
+-- WHERE SupplierID = 11
 
 -- Number of Records: 1
 -- Phone
 -- (010) 9984510
 
 -- List first 10 orders placed, sorted descending by the order date
-SELECT * FROM [Orders]
-ORDER BY OrderDate desc
-limit 10
+-- SELECT * FROM [Orders]
+-- ORDER BY OrderDate desc
+-- limit 10
 
 -- Number of Records: 10
 -- OrderID	CustomerID	EmployeeID	OrderDate	ShipperID
@@ -39,8 +39,8 @@ limit 10
 -- 10433	60	3	1997-02-03	3
 
 -- Find all customers that live in London, Madrid, or Brazil
-SELECT * FROM [Customers]
-where city = 'London' or city ='Madrid' or city = 'Brazil'
+-- SELECT * FROM [Customers]
+-- where city = 'London' or city ='Madrid' or city = 'Brazil'
 
 -- Number of Records: 9
 -- CustomerID	CustomerName	ContactName	Address	City	PostalCode	Country
@@ -55,15 +55,15 @@ where city = 'London' or city ='Madrid' or city = 'Brazil'
 -- 72	Seven Seas Imports	Hari Kumar	90 Wadhurst Rd.	London	OX15 4NB	UK
 
 -- Add a customer record for "The Shire", the contact name is "Bilbo Baggins" the address is -"1 Hobbit-Hole" in "Bag End", postal code "111" and the country is "Middle Earth"
-    INSERT into Customers(CustomerName, ContactName, Address, City, PostalCode, Country)
-    VALUES ('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', 111, 'Middle Earth')
+    -- INSERT into Customers(CustomerName, ContactName, Address, City, PostalCode, Country)
+    -- VALUES ('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', 111, 'Middle Earth')
 
     -- You have made changes to the database. Rows affected: 1
 
 -- Update Bilbo Baggins record so that the postal code changes to "11122"
-    update customers
-    set PostalCode = 111222
-    where CustomerID = 92
+    -- update customers
+    -- set PostalCode = 111222
+    -- where CustomerID = 92
 
 -- You have made changes to the database. Rows affected: 1
 
