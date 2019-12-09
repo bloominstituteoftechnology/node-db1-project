@@ -51,4 +51,31 @@ router.post('/', (req, res) => {
             });
         });
 });
+
+router.put('/:id', (req, res) => {
+    const changes = req.body;
+    Accounts('accounts')
+        .where({id: req.params.id})
+        .update(changes)
+        .then(count => {
+            res.status(200).json({message: `Successfully updated ${count} account records.`})
+        })
+        .catch(err => {
+            console.log("error with PUT /accounts/:id", err);
+            res.status(500).json({error: "There was a problem updating account."})
+        });
+});
+
+router.delete('/:id', (req, res) => {
+    Accounts('accounts')
+    .where({id: req.params.id})
+    .del()
+    .then(count => {
+        res.status(200).json({message: `Successfully deleted ${count} account(s).`})
+    })
+    .catch(err => {
+        console.log("error with DELETE /accounts/:id", err);
+        res.status(500).json({error: "There was a problem deleting account."})
+    });
+});
 module.exports = router;
