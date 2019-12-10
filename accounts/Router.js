@@ -66,31 +66,31 @@ router.post("/", (req, res) => {
 });
 
 
-router.post("/", (req, res) => {
-  // insert into () values ()
-  const postData = req.body;
+// router.post("/", (req, res) => {
+//   // insert into () values ()
+//   const postData = req.body;
 
-  knex("accounts")
-    .insert(postData, "id")
-    .then(ids => {
-      // returns and array of one element, the id of the last record inserted
-      const id = ids[0];
+//   knex("accounts")
+//     .insert(postData, "id")
+//     .then(ids => {
+//       // returns and array of one element, the id of the last record inserted
+//       const id = ids[0];
 
-      return knex("accounts")
-        .select("id", "name", "budget")
-        .where({ id })
-        .first()
-        .then(post => {
-          res.status(201).json(account);
-        });
-    })
-    .catch(error => {
-      console.log(error);
-      res.status(500).json({
-        errorMessage: "Error adding the account"
-      });
-    });
-});
+//       return knex("accounts")
+//         .select("id", "name", "budget")
+//         .where({ id })
+//         .first()
+//         .then(post => {
+//           res.status(201).json(account);
+//         });
+//     })
+//     .catch(error => {
+//       console.log(error);
+//       res.status(500).json({
+//         errorMessage: "Error adding the account"
+//       });
+//     });
+// });
 
 // PUT /api/accounts/:id endpoint to Update an account -
 router.put("/:id", (req, res) => {
