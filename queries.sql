@@ -22,8 +22,8 @@ WHERE SupplierID = 11;
 
 SELECT *
 FROM Orders
-ORDER BY OrderDate DESC
-LIMIT 10;
+ORDER BY OrderDate DESC,
+LIMIT, 10;
 -- Answer: OrderID	CustomerID	EmployeeID	OrderDate	ShipperID
             -- 10443	66	8	1997-02-12	1
             -- 10442	20	3	1997-02-11	2
