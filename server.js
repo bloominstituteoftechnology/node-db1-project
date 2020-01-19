@@ -6,4 +6,15 @@ const server = express();
 
 server.use(express.json());
 
+//ROUTES
+
+
+//ENDPOINTS
+server.get('/', (request, responce) => {
+  responce.send(`
+    <h2>GLOBAL IS UP</h2>
+  `);
+});
+
+
 module.exports = server;
