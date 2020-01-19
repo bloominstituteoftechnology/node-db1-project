@@ -9,6 +9,10 @@ SELECT Phone FROM Suppliers
 WHERE SupplierID=11;
 
 -- List first 10 orders placed, sorted descending by the order date
+SELECT * FROM Orders
+WHERE OrderID<=10257
+ORDER BY OrderDate DESC;
+--NOT HAPPY WITH THE "WHERE" use, look for bettwe way. 
 
 -- Find all customers that live in London, Madrid, or Brazil
 
