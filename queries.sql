@@ -14,7 +14,7 @@ WHERE [SupplierID] = 11
 SELECT *
 FROM (
   -- earliest (first) 10 orders, [OrderDate] ASC
-	SELECT *
+  SELECT *
   FROM [Orders]
   ORDER BY [OrderDate] ASC
   LIMIT 10
