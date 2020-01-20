@@ -54,9 +54,40 @@ router.post('/', (request, responce) => {
 });
 
 //PUT
+router.put('/:id', (request, responce) => {
+  const idVal = request.params.id;
+  db("accounts").where({ id: idVal }).update(request.body)
+    .then(numUpdated => {
+      responce.json(numUpdated);
+      //console.log(numUpdated);
+    })
+    .catch( error => {
+      console.log(error);
+      responce.status(500).json(
+        {
+          error: "PUT Failed."
+        }
+      )
+    })
+});
 
 //DEL
-
+router.delete('/:id', (request, responce) => {
+  const idVal = request.params.id;
+  db("accounts").where({ id: idVal }).del()
+    .then(numRemoved => {
+      responce.json(numRemoved);
+      //console.log(numRemoved);
+    })
+    .catch( error => {
+      console.log(error);
+      responce.status(500).json(
+        {
+          error: "PUT Failed."
+        }
+      )
+    })
+});
 
 module.exports = router;
 
