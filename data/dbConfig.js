@@ -1,13 +1,5 @@
-const express = require("express");
+const knex = require("knex");
 
-//const db = require("./data/dbConfig.js");
+const configOptions = require("../knexfile").development;
 
-const accountsRouter = require("./accounts/accountsRouter.js");
-
-const server = express();
-
-server.use(express.json());
-
-server.use("/api/accounts", accountsRouter);
-
-module.exports = server;
+module.exports = knex(configOptions);
