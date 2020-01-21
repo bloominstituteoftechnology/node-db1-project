@@ -1,25 +1,25 @@
 -- # Database Queries
 
 -- Find all customers with postal code 1010
-SELECT *
-FROM [Customers]
-WHERE [PostalCode] = 1010
+select *
+from [Customers]
+where [PostalCode] = 1010
 
 -- Find the phone number for the supplier with the id 11
-SELECT [Phone]
-FROM [Suppliers]
-WHERE [SupplierID] = 11
+select [Phone]
+from [Suppliers]
+where [SupplierID] = 11
 
 -- List first 10 orders placed, sorted descending by the order date
-SELECT *
-FROM (
-  -- earliest (first) 10 orders, [OrderDate] ASC
-  SELECT *
-  FROM [Orders]
-  ORDER BY [OrderDate] ASC
-  LIMIT 10
+select *
+from (
+  -- earliest (first) 10 orders, [OrderDate] asc
+  select *
+  from [Orders]
+  order by [OrderDate] asc
+  limit 10
 )
-ORDER BY [OrderDate] DESC -- now [OrderDate] DESC
+order by [OrderDate] desc -- now [OrderDate] desc
 
 -- Find all customers that live in London, Madrid, or Brazil
 
