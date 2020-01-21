@@ -1,8 +1,8 @@
 
-exports.seed = function(knex, Promise) {
-  return knex('accounts').truncate()
-    .then(function () {
-      return knex('accounts').insert([
+exports.seed = function (knex, Promise) {
+  return knex ('accounts').truncate ()
+    .then (function () {
+      return knex ('accounts').insert ([
         { name: 'account-01', budget: 4000.00 },
         { name: 'account-02', budget: 206.75 },
         { name: 'account-03', budget: 6789.00 },
@@ -16,6 +16,6 @@ exports.seed = function(knex, Promise) {
         { name: 'account-11', budget: 19.91 },
         { name: 'account-12', budget: 7080.00 },
         { name: 'account-13', budget: 1234.00 },
-      ]);
-    });
-};
+      ])
+    })
+}
