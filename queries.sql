@@ -51,4 +51,4 @@
 
     SELECT SupplierName
     FROM Suppliers
-    WHERE length(SupplierName) >=20;
+    WHERE length(SupplierName) > 20;
