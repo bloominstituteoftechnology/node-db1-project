@@ -29,7 +29,7 @@ const database = {
 router.route ('/')
   .get ([
     (ri, ro, next) => {
-      database['accounts'].get ()
+      database['accounts'].getAll ()
         .then ((value) => {
           // respond...
           ro
@@ -45,7 +45,7 @@ router.route ('/')
   ])
   .post ([
     (ri, ro, next) => {
-      database['accounts'].insert (ri.body)
+      database['accounts'].push (ri.body)
         .then ((value) => {
           // respond...
           ro
@@ -61,6 +61,29 @@ router.route ('/')
   ])
 
 router.route ('/:account_id')
+  .all ([
+    /* get :account_id if it exists*/
+    (ri, ro, next) => {
+      database['accounts'].get (ri.params.account_id)
+      .then ((value) => {
+        if (value) {
+          ri.locals = {
+            account : value,
+            ...(ri.locals || {}),
+          }
+          next ()
+        }
+        else {
+          respondWithError (404) (ri, ro)
+        }
+      })
+      .catch ((error) => {
+        // respond...
+        clog (error)
+        respondWithError (500) (ri, ro)
+      })
+    }
+  ])
   .get ([
     (ri, ro, next) => {
       // respond...
@@ -71,7 +94,7 @@ router.route ('/:account_id')
   ])
   .put ([
     (ri, ro, next) => {
-      database['accounts'].update (ri.params.account_id, ri.body)
+      database['accounts'].set (ri.params.account_id, ri.body)
         .then ((value) => {
           // respond...
           ro
@@ -87,7 +110,7 @@ router.route ('/:account_id')
   ])
   .delete ([
     (ri, ro, next) => {
-      database['accounts'].remove (ri.params.account_id)
+      database['accounts'].pull (ri.params.account_id)
         .then ((value) => {
           // respond...
           ro
