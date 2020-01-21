@@ -2,4 +2,4 @@
   ~/accounts - database
 ***********************************************************/
 
-module.exports = require ('../../../data/dbConfig')
+module.exports = require ('../../../data/db-config')
