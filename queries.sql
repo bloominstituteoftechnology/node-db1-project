@@ -32,11 +32,13 @@ WHERE
 -- 5. Add a customer record for "The Shire", the contact name is "Bilbo Baggins" the address is -"1 Hobbit-Hole" in "Bag End", postal code "111" and the country is "Middle Earth"
 INSERT INTO [Customers] (
   [CustomerName],
+  [ContactName],
   [Address],
   [City],
   [PostalCode],
   [Country]
 ) VALUES (
+  'Bilbo Baggins',
   'Bilbo Baggins',
   '1 Hobbit-Hole',
   'Bag End',
@@ -45,6 +47,9 @@ INSERT INTO [Customers] (
 )
 
 -- 6. Update Bilbo Baggins record so that the postal code changes to "11122"
+UPDATE [Customers]
+SET [PostalCode] = '11122'
+WHERE [CustomerName] = 'Bilbo Baggins'
 
 -- 7. (Stretch) Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted
 
