@@ -1,17 +1,6 @@
 const router = require('express').Router();
 const db = require('../dbConfig');
 
-// router.get('/', (req, res) => {
-//     db('accounts')
-//       .then(accounts => {
-//         res.status(200).json(accounts);
-//       })
-//       .catch(() => {
-//         res
-//           .status(500)
-//           .json({ message: 'Could not retrieve the list of accounts' });
-//       });
-//   });
 
 router.get('/', (request, response) => {
 
@@ -66,7 +55,6 @@ router.post('/', (request, response) => {
       errorMsg: `There was an error posting this request. ${error}`
     })
   })
-
 })
 
 router.put('/:id', (request, response) => {
