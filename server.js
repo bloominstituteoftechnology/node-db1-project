@@ -6,4 +6,8 @@ const server = express();
 
 server.use(express.json());
 
+server.get('/', (req, res) =>{
+    res.send("Hello from the server")
+})
+
 module.exports = server;
