@@ -48,14 +48,15 @@ router.post('/', async (req, res, next) => {
     }
 })
 
+// updating account by id here
 router.put('/:id', async (req, res, next) =>{
     try{
-        // create payload to use it on the updatefunction
+        // create payload to use it on the update function
         const payload = {
             name: req.body.name,
             budget: req.body.budget 
          }
-         // translates to UPDATE accouts SET name = something budget = something WHERE id = some id value
+         // translates to UPDATE accounts SET name = something budget = something WHERE id = some id value
          await DataBase("accounts").where("id", req.params.id).update(payload)
           
          // return the object created here
@@ -66,5 +67,18 @@ router.put('/:id', async (req, res, next) =>{
     }
 })
 
+// need to delete account by id here
+router.delete('/:id', async (req, res, next) =>{
+    try{
+         // translates to DELETE FROM accounts  WHERE id = some id value
+         await DataBase("accounts").where("id", req.params.id).del()
+          
+         // return a status code of deleted
+         res.status(204).end();
+  
+        } catch(error){
+        next(error)
+    }
+})
 
 module.exports = router;
