@@ -48,5 +48,23 @@ router.post('/', async (req, res, next) => {
     }
 })
 
+router.put('/:id', async (req, res, next) =>{
+    try{
+        // create payload to use it on the updatefunction
+        const payload = {
+            name: req.body.name,
+            budget: req.body.budget 
+         }
+         // translates to UPDATE accouts SET name = something budget = something WHERE id = some id value
+         await DataBase("accounts").where("id", req.params.id).update(payload)
+          
+         // return the object created here
+         res.json(await DataBase("accounts").where("id", req.params.id).first());
+  
+        } catch(error){
+        next(error)
+    }
+})
+
 
 module.exports = router;
