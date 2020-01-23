@@ -16,6 +16,16 @@ router.get('/', async (req, res, next) =>{
     }
 })
 
+// I need to get account by its respective ID
+router.get('/:id', async (req, res, next) =>{
+    try{
+        // translates to SELECT * FROM accounts
+      res.json(await DataBase.select("*").from("accounts").where("id", req.params.id));
+    } catch(error){
+        next(error)
+    }
+})
+
 
 
 module.exports = router;
