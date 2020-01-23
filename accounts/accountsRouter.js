@@ -7,6 +7,15 @@ const DataBase = require('../data/dbConfig.js')
 const router = express.Router();
 
 // need to get all accounts using async code
+router.get('/', async (req, res, next) =>{
+    try{
+        // translates to SELECT * FROM accounts
+      res.json(await DataBase.select("*").from("accounts"));
+    } catch(error){
+        next(error)
+    }
+})
+
 
 
 module.exports = router;
