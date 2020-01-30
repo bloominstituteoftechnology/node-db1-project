@@ -41,37 +41,27 @@ server.post('/api/accounts', async (req, res) => {
     };
 });
 
-// server.put('/api/accounts', async (req, res) => {
-//     const = ;
+server.put('/api/accounts/:id', async (req, res) => {
+    const { id } = req.params;
+    const data = req.body;
 
-//     try{
-//         const = await db('accounts');
-//         res.status().json();
-//     } catch (err) {
-//         res.status(500).json({message: 'Failed to ', err});
-//     };
-// });
+    try{
+        const changedAcct = await db('accounts').where('id', id).update(data);
+        res.status(201).json(changedAcct);
+    } catch (err) {
+        res.status(500).json({message: 'Failed to change account!', err});
+    };
+});
 
-// server.delete('/api/accounts', async (req, res) => {
-//     const = ;
+server.delete('/api/accounts/:id', async (req, res) => {
+    const { id } = req.params;
 
-//     try{
-//         const = await db('accounts');
-//         res.status().json();
-//     } catch (err) {
-//         res.status(500).json({message: 'Failed to ', err});
-//     };
-// });
+    try{
+        const deletedAcct = await db('accounts').where('id', id).del();
+        res.status(200).json(deletedAcct);
+    } catch (err) {
+        res.status(500).json({message: 'Failed to delete account!', err});
+    };
+});
 
 module.exports = server;
-
-// server.('', async (req, res) => {
-//     const = ;
-
-//     try{
-//         const = await db('accounts');
-//         res.status().json();
-//     } catch (err) {
-//         res.status(500).json({message: 'Failed to ', err});
-//     };
-// });
