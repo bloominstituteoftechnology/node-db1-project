@@ -23,7 +23,8 @@ server.get('/api/accounts/:id', async (req, res) => {
     const { id } = req.params;
 
     try{
-        const acct = await db('accounts').where('id', id);
+        const acct = await db('accounts')
+        .where('id', id);
         res.status(200).json(acct);
     } catch (err) {
         res.status(500).json({message: 'Failed to get account!', err});
@@ -34,7 +35,8 @@ server.post('/api/accounts', async (req, res) => {
     const data = req.body;
 
     try{
-        const addedAcct = await db('accounts').insert(data);
+        const addedAcct = await db('accounts')
+        .insert(data);
         res.status(201).json(addedAcct);
     } catch (err) {
         res.status(500).json({message: 'Failed to add the account!', err});
@@ -46,7 +48,9 @@ server.put('/api/accounts/:id', async (req, res) => {
     const data = req.body;
 
     try{
-        const changedAcct = await db('accounts').where('id', id).update(data);
+        const changedAcct = await db('accounts')
+        .where('id', id)
+        .update(data);
         res.status(201).json(changedAcct);
     } catch (err) {
         res.status(500).json({message: 'Failed to change account!', err});
@@ -57,7 +61,9 @@ server.delete('/api/accounts/:id', async (req, res) => {
     const { id } = req.params;
 
     try{
-        const deletedAcct = await db('accounts').where('id', id).del();
+        const deletedAcct = await db('accounts')
+        .where('id', id)
+        .del();
         res.status(200).json(deletedAcct);
     } catch (err) {
         res.status(500).json({message: 'Failed to delete account!', err});
