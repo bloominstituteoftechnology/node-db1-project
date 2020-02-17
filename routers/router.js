@@ -4,7 +4,7 @@ const db = require('../data/dbConfig.js');
 
 const router = express.Router();
 
-router.get('/', (req, res) =>{
+router.get('/accounts', (req, res) =>{
 
     db('accounts')
     .then(account => {
@@ -16,7 +16,7 @@ router.get('/', (req, res) =>{
     
 });
 
-router.get('/:id', (req, res) => {
+router.get('/accounts/:id', (req, res) => {
     db('accounts').where({id: req.params.id})
     .then(account => {
         res.status(200).json(account);
@@ -26,7 +26,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/accounts', (req, res) => {
 
 });
 
