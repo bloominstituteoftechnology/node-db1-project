@@ -1,16 +1,16 @@
 -- Database Queries
-SELECT * FROM Customers WHERE PostalCode = 1010;
+-- SELECT * FROM Customers WHERE PostalCode = 1010;
 
-SELECT Phone FROM Suppliers WHERE SupplierID = 11;
+-- SELECT Phone FROM Suppliers WHERE SupplierID = 11;
 
-SELECT * FROM Orders ORDER BY OrderDate LIMIT 10;
+-- SELECT * FROM Orders ORDER BY OrderDate LIMIT 10;
 
-SELECT * FROM Orders ORDER BY OrderDate desc LIMIT 10;
+-- SELECT * FROM Orders ORDER BY OrderDate desc LIMIT 10;
 
-SELECT * FROM Customers Where City = 'London' OR City = 'Madrid' OR Country = 'Brazil';
+-- SELECT * FROM Customers Where City = 'London' OR City = 'Madrid' OR Country = 'Brazil';
 
-INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
-VALUES ('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111', 'Middle Earth');
+-- INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+-- VALUES ('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111', 'Middle Earth');
 
 
 
