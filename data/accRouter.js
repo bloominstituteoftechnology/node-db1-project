@@ -18,8 +18,6 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  
-
   getById(req.params.id)
     .then(account => {
       res.status(200).json(account);
@@ -32,15 +30,17 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    console.log(req.body)
+  console.log(req.body);
   db("accounts")
     .insert(req.body, "id")
     .then(ids => {
-      return getById(ids).then(added => {
-        res.status(201).json(added);
-      }).catch(error => {
-        res.status(500).json({ error: "failed to add the account" })
-      })
+      return getById(ids)
+        .then(added => {
+          res.status(201).json(added);
+        })
+        .catch(error => {
+          res.status(500).json({ error: "failed to add the account" });
+        });
     })
     .catch(error => {
       console.log(error);
@@ -50,10 +50,10 @@ router.post("/", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id;
   const changes = req.body;
   db("accounts")
-    .where( id )
+    .where({id})
     .update(changes)
     .then(count => {
       res.status(200).json(count);
@@ -66,9 +66,9 @@ router.put("/:id", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id;
   db("accounts")
-    .where( id )
+    .where({id})
     .del()
     .then(count => {
       console.log("Delete Spell Critical Hit, IT WAS SUPER EFFECTIVE!!!!");
@@ -86,6 +86,5 @@ function getById(id) {
     .where({ id })
     .first();
 }
-
 
 module.exports = router;
