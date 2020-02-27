@@ -10,7 +10,7 @@ server.use(express.json());
 server.use('/accounts', accountRouter);
 
 server.use((err, req, res, next) => {
-	console.log(err);
-	res.status(err.statusCode || 500).json(err);
+	res.status(500).json({ message: 'Server Error' });
 });
+
 module.exports = server;
