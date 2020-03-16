@@ -41,4 +41,29 @@ router.post("/", (req, res) => {
     });
 });
 
+
+
+router.put('/:id', (req, res) => {
+  const changes = req.body;
+
+  db('accounts')
+    .where({ id: req.params.id })
+    .update(changes)
+    .then(count => {
+      if (count > 0) {
+        res.status(200).json({ message: 'record updated' })
+      } else {
+        res.status(404).json({ message: 'post not found' });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({ message: "sorry, ran into an error" });
+    });
+});
+
+
+router.delete('/:id', (req, res) => {
+  db()
+})
+
 module.exports = router;
