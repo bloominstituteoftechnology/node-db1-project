@@ -37,4 +37,19 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// POST NEW DATA
+
+router.post("/", (req, res) => {
+  db("accounts")
+    .insert(req.body, "id")
+    .then(ids => {
+      res.status(201).json({ data: ids });
+    })
+    .catch(error => {
+      res.status(500).json({ message: "There was an error adding new user" });
+    });
+});
+
+// UPDATE USER
+
 module.exports = router;
