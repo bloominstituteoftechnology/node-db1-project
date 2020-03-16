@@ -59,5 +59,21 @@ router.put('/:id', (req, res) => {
         });
 });
 
+router.delete('/:id', (req, res) => {
+    db('accounts')
+        .where({ id: req.params.id })
+        .del()
+        .then(count => {
+            if (count > 0) {
+                res.status(200).json({ message: "Account has been successfully deleted" });
+            } else {
+                res.status(404).json({ message: "Could not find an account with that ID" });
+            }
+        })
+        .catch(error => {
+            res.status(500).json({ message: "Error deleting account" });
+        })
+})
+
 module.exports = router;
 
