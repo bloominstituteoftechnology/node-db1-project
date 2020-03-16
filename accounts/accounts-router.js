@@ -8,8 +8,28 @@ router.get('/', (req, res) => {
     .from('accounts')
     .then(rows => {
       res.status(200).json({ data: rows });
-  })
-})
+    })
+    .catch(error => {
+      res.status(500).json({ message: "sorry, ran into an error" });
+    });
+});
+
+
+router.get('/:id', (req, res) => {
+  db('accounts')
+    .where({ id: req.params.id })
+    .first()
+    .then(account => {
+      if (account) {
+        res.status(200).json({ data: account });
+      } else {
+        res.status(400).json({ message: "account not found" });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({ message: "sorry, ran into an error" });
+    });
+});
 
 
 
