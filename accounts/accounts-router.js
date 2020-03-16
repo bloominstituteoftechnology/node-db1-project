@@ -52,4 +52,40 @@ router.post("/", (req, res) => {
 
 // UPDATE USER
 
+router.put("/:id", (req, res) => {
+  const changes = req.body;
+  db("accounts")
+    .where({ id: req.params.id })
+    .update(changes)
+    .then(count => {
+      if (count > 0) {
+        res.status(201).json({ message: "Updated Successfully" });
+      } else {
+        res.status(404).json({ message: "ID Not found" });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({ message: "There was an error updating user" });
+    });
+});
+
+// DELETE
+
+router.delete("/:id", (req, res) => {
+  db("accounts")
+    .where({ id: req.params.id })
+    .del()
+    .then(count => {
+      if (count > 0) {
+        res.status(201).json({ message: "Deleted Successfully" });
+      } else {
+        res.status(404).json({ message: "ID Not found" });
+      }
+    })
+    .catch(error => {
+      res
+        .status(500)
+        .json({ message: "There was an error deleting this account" });
+    });
+});
 module.exports = router;
