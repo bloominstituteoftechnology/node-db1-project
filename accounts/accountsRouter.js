@@ -20,7 +20,7 @@ router.get("/:id", (req, res) => {
     .then(account => {
       account
         ? res.status(200).json(account)
-        : res.status(404).json({ error: "ACcount is not found" });
+        : res.status(404).json({ error: "Account is not found" });
     });
 });
 
@@ -30,7 +30,7 @@ router.post("/", (req, res) => {
   name = req.body.name;
   budget = req.body.budget;
 
-  name && typeof budget === 'number' && budget > 0
+  name && typeof(budget) === 'number' && budget > 0
     ? db("accounts")
         .insert(req.body, "id")
         .then(id => {
