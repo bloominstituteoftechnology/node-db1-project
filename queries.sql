@@ -10,7 +10,7 @@ SELECT Phone FROM Suppliers WHERE SupplierID = "11";
 SELECT * FROM [Orders] ORDER BY OrderDate DESC LIMIT 10;
 
 -- Find all customers that live in London, Madrid, or Brazil
-SELECT * FROM [Customers] WHERE City = "London" OR City = "Madrid" OR City = "Brazil";
+SELECT * FROM [Customers] WHERE City = "London" OR City = "Madrid" OR Country = "Brazil";
 
 -- Add a customer record for "The Shire", the contact name is "Bilbo Baggins" the address is 
 --"1 Hobbit-Hole" in "Bag End", postal code "111" and the country is "Middle Earth"
