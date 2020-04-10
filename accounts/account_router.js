@@ -1,42 +1,39 @@
-const express = require("express");
+Moved this file to server.js
 
-const db = require("../data/dbConfig.js");
+// const express = require("express");
+// const db = require ('../data/dbConfig')
 
-
-const server = express();
-
-server.use(express.json());
-
-server.get ('/', (req, res)=>{
-    db("accounts")
-    .then(accounts =>{
-        res.json(accounts)
-    })
-    .catch(err =>{
-        res.status(500).json({
-            message:"error retrieving accounts", err})
-        })
+// const router = express.Router();
+// router.get ('/', (req, res)=>{
+//     db("accounts")
+//     .then(accounts =>{
+//         res.json(accounts)
+//     })
+//     .catch(err =>{
+//         res.status(500).json({
+//             message:"error retrieving accounts", err})
+//         })
     
-})
-server.get("/:id", (req, res)=>{
-    const {id}= req.params;
-    db.select('*').from("accounts").where({id})
-    .first()
-    .then(account =>{
-        if (account){
-            res.status(200).json(account);}
-            else{
-                res.status(400).json({message: 
-                    "Post not found"})
-            }
-        })
-        .catch(error =>{
-            res.status(500).json({ message: "sorry, ran into error"})
-        });
+// })
+// router.get("/:id", (req, res)=>{
+//     const {id}= req.params;
+//     db.select('*').from("accounts").where({id})
+//     .first()
+//     .then(account =>{
+//         if (account){
+//             res.status(200).json(account);}
+//             else{
+//                 res.status(400).json({message: 
+//                     "Post not found"})
+//             }
+//         })
+//         .catch(error =>{
+//             res.status(500).json({ message: "sorry, ran into error"})
+//         });
 
     });
 
-server.post( '/', (req, res)=>{
+router.post( '/', (req, res)=>{
     const accountData= req.body;
     db.insert(accountData).into("accounts")
     .then(account =>{
@@ -46,7 +43,7 @@ server.post( '/', (req, res)=>{
         res.status(500).json({ message:"db problem", error: err})
     })
 });
-server.put("/:id", (req, res)=>{
+router.put("/:id", (req, res)=>{
     const{ id }= req.params;
     const changes = req.body;
     db("accounts").where({id}).update(changes)
@@ -63,7 +60,7 @@ server.put("/:id", (req, res)=>{
     })
 })
 
-server.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
 
     const { id } = req.params
     db('accounts')
@@ -81,4 +78,4 @@ server.delete('/:id', (req, res) => {
         })
     })
 
-module.exports = server;
+module.exports = router;
