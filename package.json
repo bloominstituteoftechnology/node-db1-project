@@ -8,7 +8,7 @@
   "repository": "https://github.com/LambdaSchool/webdb-i-challenge",
   "dependencies": {
     "express": "^4.17.1",
-    "knex": "^0.20.11",
+    "knex": "^0.20.13",
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {
