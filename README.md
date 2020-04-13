@@ -62,9 +62,9 @@ The following exercises **require research**, the concepts needed to complete th
   - install PostgreSQL.
   - install pgAdmin 4.
   - restore the _northwind_ database using the backup file `./data/northwind.backup`. [Documentation about Backup/Restore on pgAdmin's site.](https://www.pgadmin.org/docs/pgadmin4/development/backup_and_restore.html)
-  - use pgAdmin's Query Tool to practice running some queries egainst th nortwind database. **Note: the names of the tables may be different.**
+  - use pgAdmin's Query Tool to practice running some queries egainst th nortwind database. **Note: the names of the tables may be different from the names on web tool used for the MVP queries.**
 - use PostgreSQL instead of SQLite to power the API.
-  - open `./data/dbConfig.js` and change the database constant to be "production".
-  - open `./knexfile.js` and follow the instructions to configure the `production` property.
+  - open `./data/dbConfig.js` and change the database constant to be `"production"`.
+  - open `./knexfile.js` and follow the instructions to configure the `production` property to use the correct credentials to connect to your postgres server.
   - run the API and test using an HTTP client like `Postman`.
 - write a React front end and connect it to the API.
