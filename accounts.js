@@ -42,4 +42,19 @@ router.post("/", (req, res) => {
     });
 });
 
+router.put("/:id", (req,res) => {
+    const update = req.body;
+    const {id} = req.params;
+    db("accounts")
+    .where({id})
+    .update(update)
+    .then((count) => {
+        if (count > 0){
+            res.status(200).json({message: "updated successfully"})
+        } else {
+            res.status(404).json({message: "Unsuccessful"})
+        }
+    })
+})
+
 module.exports = router;
