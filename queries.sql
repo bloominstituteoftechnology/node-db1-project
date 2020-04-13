@@ -1,17 +1,50 @@
--- Database Queries
+// SELECT * FROM Customers
+// where postalcode = 1010;
 
--- Find all customers with postal code 1010
+db('customers').where({ postalcode: 1010 });
 
--- Find the phone number for the supplier with the id 11
+// find the phone number for the supplier with the id 11. Should be (010) 9984510.
 
--- List first 10 orders placed, sorted descending by the order date
+ SELECT * FROM Suppliers
+ where supplierID = 11;
 
--- Find all customers that live in London, Madrid, or Brazil
+db('suppliers').where( { supplierID: 11 });
 
--- Add a customer record for "The Shire", the contact name is "Bilbo Baggins" the address is -"1 Hobbit-Hole" in "Bag End", postal code "111" and the country is "Middle Earth"
+// list first 10 orders placed, sorted descending by the order date. The order with date 1997-02-12 should be at the top.
 
--- Update Bilbo Baggins record so that the postal code changes to "11122"
+ SELECT * FROM Orders
+ ORDER BY orderDate DESC;
 
--- (Stretch) Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted
 
--- (Stretch) Find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name
+db('orders').where( { orderDate: 'DESC' });
+
+// find all customers that live in London, Madrid, or Brazil. Returns 18 records.
+
+// SELECT * FROM Customers
+// WHERE city = "London"
+// OR city = "Brazil"
+// OR city = "Madrid"
+
+db('customers').where( { city = "London" } ).or( { city: "Brazil" } ).or( { city: "Madrid" } );
+
+
+
+// add a customer record for "The Shire", the contact name is "Bilbo Baggins" the address is "1 Hobbit-Hole" in "Bag End", postal code "111" and the country is "Middle Earth".
+
+// INSERT INTO Customers (customername, contactname, address, city, postalcode, country)
+// VALUES ("The Shire", "Bilbo Baggins", "1 Hobbit Hole", "Bag End", "111", "Middle Earth")
+
+db('customers').insert({
+    customername: "The Shire",
+    contactname: "Bilbo Baggins",
+    address: "1 Hobbit-Hole",
+    city: "Bag End",
+    postalcode: "111",
+    country: "Middle Earth"
+});
+
+
+// update Bilbo Baggins record so that the postal code changes to "11122".
+
+ UPDATE Customers SET Postalcode = '11122' 
+ WHERE ContactName = 'Bilbo Baggins';
