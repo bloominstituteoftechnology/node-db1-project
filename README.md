@@ -55,3 +55,9 @@ The following exercises **require research**, the concepts needed to complete th
   sortdir: 'desc'
 }
 ```
+
+- run queries using PostgreSQL instead of SQLite.
+  - install PostgreSQL.
+  - install pgAdmin 4.
+  - restore the _northwind_ database using the backup file `./data/northwind.backup`. [Documentation about Backup/Restore on pgAdmin's site.](https://www.pgadmin.org/docs/pgadmin4/development/backup_and_restore.html)
+  - use pgAdmin's Query Tool to practice running some queries egainst th nortwind database.
