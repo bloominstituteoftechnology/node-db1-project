@@ -43,21 +43,28 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/trysql.asp
 
 The following exercises **require research**, the concepts needed to complete them have not been covered in class yet.
 
-- Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted. Should be 69.
-- Find all suppliers who have names longer than 20 characters. Returns 11 records.
-- Add a `query string` option to your `GET /api/accounts` endpoint. The `query string` may contain `limit`, `sortby` and `sortdir` keys. If these keys are provided, use these values to limit and sort the `accounts` which are selected from the database. Reference the docs for sorting and limiting in `knex`.
+- Run more queries.
 
-```js
-// sample req.query object
-{
-  limit: 5,
-  sortby: 'id',
-  sortdir: 'desc'
-}
-```
+  - Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted. Should be 69.
+  - Find all suppliers who have names longer than 20 characters. Returns 11 records.
+  - Add a `query string` option to the `GET /api/accounts` endpoint. The `query string` may contain `limit`, `sortby` and `sortdir` keys. If these keys are provided, use these values to limit and sort the `accounts` which are selected from the database. Reference the docs for sorting and limiting in [knexjs.org](http://knexjs.org/).
+
+  ```js
+  // sample req.query object
+  {
+    limit: 5,
+    sortby: 'id',
+    sortdir: 'desc'
+  }
+  ```
 
 - run queries using PostgreSQL instead of SQLite.
   - install PostgreSQL.
   - install pgAdmin 4.
   - restore the _northwind_ database using the backup file `./data/northwind.backup`. [Documentation about Backup/Restore on pgAdmin's site.](https://www.pgadmin.org/docs/pgadmin4/development/backup_and_restore.html)
-  - use pgAdmin's Query Tool to practice running some queries egainst th nortwind database.
+  - use pgAdmin's Query Tool to practice running some queries egainst th nortwind database. **Note: the names of the tables may be different.**
+- use PostgreSQL instead of SQLite to power the API.
+  - open `./data/dbConfig.js` and change the database constant to be "production".
+  - open `./knexfile.js` and follow the instructions to configure the `production` property.
+  - run the API and test using an HTTP client like `Postman`.
+- write a React front end and connect it to the API.
