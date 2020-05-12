@@ -28,7 +28,7 @@ router.get("/:id", (req, res) => {
         res.status(200).json({ data: account });
       } else {
         res.status(404).json({
-          message: "No posts by that ID",
+          message: "No account by that ID",
         });
       }
     })
