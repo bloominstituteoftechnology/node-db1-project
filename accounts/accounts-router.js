@@ -58,6 +58,25 @@ router.post("/", (req, res) => {
   }
 });
 
+router.put("/:id", (req, res) => {
+  const update = req.body;
+
+  db("accounts")
+    .where({ id: req.params.id })
+    .update(update)
+    .then((count) => {
+      if (count > 0) {
+        res.status(200).json({ data: count });
+      } else {
+        res.status(404).json({ message: "record not found by that Id" });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({ message: error.message });
+    });
+});
+
 function isValidPost(data) {
   return Boolean(data.name && data.budget);
 }
