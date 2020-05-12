@@ -18,6 +18,25 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/:id", (req, res) => {
+  db("accounts")
+    .where({ id: req.params.id })
+    .first()
+    .then((account) => {
+      if (account) {
+        res.status(200).json({ data: account });
+      } else {
+        res.status(404).json({
+          message: "No posts by that ID",
+        });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({ message: error.message });
+    });
+});
+
 function isValidPost(post) {
   return Boolean(post.title && post.contents);
 }
