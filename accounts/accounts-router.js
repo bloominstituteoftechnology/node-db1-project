@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
   console.log("get");
   db.select("*")
     .from("accounts")
+    // .first()
     .then((accounts) => {
       res.status(200).json({ data: accounts });
     })
@@ -37,8 +38,28 @@ router.get("/:id", (req, res) => {
     });
 });
 
-function isValidPost(post) {
-  return Boolean(post.title && post.contents);
+router.post("/", (req, res) => {
+  const accountUpdate = req.body;
+
+  if (isValidPost(accountUpdate)) {
+    db("accounts")
+      .insert(accountUpdate, "id")
+      .then((newId) => {
+        res.status(201).json({ data: newId });
+      })
+      .catch((error) => {
+        console.log(error);
+        res.status(500).json({ message: error.message });
+      });
+  } else {
+    res
+      .status(400)
+      .json({ message: "please provide title and contents for the post" });
+  }
+});
+
+function isValidPost(data) {
+  return Boolean(data.name && data.budget);
 }
 
 module.exports = router;
