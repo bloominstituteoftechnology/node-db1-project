@@ -35,16 +35,19 @@ async function remove(id) {
     })
 }
 
-function query(queries) {
-    // limit, sortby, 
-    return db('accounts')
+async function query(limit=undefined, sortBy='ASC') {
+    // limit, sortby,
+    if (limit === undefined) {
+        const count = await db('accounts').count()    
+    }
+    return db('accounts').limit(limit).sortBy(sortBy)
 }
 
 server.get('/query', async (req, res) => {
     const limit = req.query.limit
     const sortBy = req.query.sortBy
     try {
-        const accounts = await query({ limit, sortby })
+        const accounts = await query(limit, sortBy)
         if (accounts) { return res.status(201).json(accounts) }
         res.status(400).json({ message: 'CRAP!' })
     } catch(e) {
