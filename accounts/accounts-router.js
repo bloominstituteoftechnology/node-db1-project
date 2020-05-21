@@ -2,15 +2,16 @@ const express = require('express');
 const db = require('../data/dbConfig');
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-	db('accounts')
-		.then((accounts) => {
-			res.status(200).json(accounts);
-		})
-		.catch((err) => {
-			res.status(500).json({ message: 'Failed to get accounts' });
-		});
-});
+// router.get('/', (req, res, next) => {
+// 	console.log(req.query);
+// 	db('accounts')
+// 		.then((accounts) => {
+// 			res.status(200).json(accounts);
+// 		})
+// 		.catch((err) => {
+// 			res.status(500).json({ message: 'Failed to get accounts' });
+// 		});
+// });
 
 router.post('/', (req, res, next) => {
 	const newAccount = req.body;
@@ -59,6 +60,22 @@ router.put('/:id', (req, res, next) => {
 		})
 		.catch((err) => {
 			res.status(500).json({ message: 'Failed to edit accounts' });
+		});
+});
+
+router.get('/', (req, res, next) => {
+	console.log(req.query);
+	const limit = Number(req.query.limit);
+	const sortBy = req.query.sortby;
+
+	db('accounts')
+		.limit(limit)
+		.orderBy(sortBy, req.query.sortdir)
+		.then((accounts) => {
+			res.status(200).json(accounts);
+		})
+		.catch((err) => {
+			res.status(500).json({ message: 'Failed to get accounts' });
 		});
 });
 
