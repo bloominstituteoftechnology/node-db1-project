@@ -35,6 +35,23 @@ async function remove(id) {
     })
 }
 
+function query(queries) {
+    // limit, sortby, 
+    return db('accounts')
+}
+
+server.get('/query', async (req, res) => {
+    const limit = req.query.limit
+    const sortBy = req.query.sortBy
+    try {
+        const accounts = await query({ limit, sortby })
+        if (accounts) { return res.status(201).json(accounts) }
+        res.status(400).json({ message: 'CRAP!' })
+    } catch(e) {
+        res.status(500).json({ message: 'What the Hell!' })
+    }
+})
+
 server.delete('/:id', async (req, res) => {
     const id = req.params.id
     try {
