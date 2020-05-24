@@ -6,8 +6,8 @@ const router = express.Router()
 
 router.get('/', async (req, res) => {
   try {
-    const budget = await db('budget');
-    res.json(budget);
+    const accounts = await db('accounts');
+    res.json(accounts);
   } catch (err) {
     res.json(500).json({message: "db problems", error:err});
   }
