@@ -4,7 +4,10 @@ const db = require("../data/dbConfig.js");
 
 const server = express();
 
-server.use(express.json());
+server.use('/', () => {
+    res.status(200).send("Hello Antoinette")
+});
+
 
 const port = 3000;
 
