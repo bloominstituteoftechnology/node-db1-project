@@ -6,7 +6,7 @@ const server = express();
 
 server.use(express.json());
 
-server.use('/', () => {
+server.use('/', (req, res) => {
     res.status(200).send('Hello Antoiette')
 })
 
