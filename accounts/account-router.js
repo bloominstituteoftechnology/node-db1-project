@@ -43,8 +43,9 @@ router.post("/", validateAccount, async (req, res) => {
       } else {
         db("accounts")
           .insert(accountData)
+          .then((id) => getById(id[0]))
           .then((account) => {
-            res.status(201).json(account[0]);
+            res.status(201).json(account);
           })
           .catch((err) => {
             res.status(500).json({ message: "failed", err });
@@ -123,8 +124,8 @@ function isEmpty(obj) {
 function getById(id) {
   return db("accounts").where({ id }).first();
 }
-function getByName(name) {
-  return db("accounts").where({ name }).first();
+function getByName(thisName) {
+  return db("accounts").where("name", thisName).first();
 }
 
 module.exports = router;
