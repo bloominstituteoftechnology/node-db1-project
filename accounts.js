@@ -4,8 +4,11 @@ const { insert, where, del } = require('./data/dbConfig');
 const router = express.Router();
 
 // api/accounts
+// included stretch: LIMIT, ORDERBY
 router.get('/', (req, res) => {
     db.select('*')
+    .limit(5)
+    .orderBy('budget', 'desc')
     .from('accounts')
     .then(accounts => 
         res.status(200).json({data:accounts}))
