@@ -2,7 +2,7 @@
 
 ## Topics
 
-- Relational Databases
+- Relational Databases 
 - Writing Basic SQL Queries
 - Writing Basic Queries using Knex.js
 
