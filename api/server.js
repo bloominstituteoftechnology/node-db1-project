@@ -9,13 +9,15 @@ const server = express();
 server.use(express.json());
 
 server.get('/', (req, res) => {
-db.select('*').from('accounts')
+db('accounts')
 .then( acc => 
-res.status(200).json({data: acc})
+res.json({data: acc})
 )
 .catch(
-    err => console.log(err)
-)
+    err => {
+        res.status(500).json({message: "failed to get accounts"})
+    })   
+// res.status(200).json({message: "Hello World"})
 })
 
 
