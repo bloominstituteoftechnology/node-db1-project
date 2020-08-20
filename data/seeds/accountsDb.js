@@ -20,11 +20,11 @@ function findById(id) {
     .first();
 }
 
-function insert(account) {
+function insert(payload) {
   return db('accounts')
-    .insert(account, "id")
-    .then(ids => {
-      return findById(ids[0]);
+    .insert(payload, "id")
+    .then(id => {
+        return findById(id[0]);
     });
 }
 

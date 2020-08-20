@@ -23,55 +23,23 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-// router.get("/:id", async (req, res, next) => {
-// 	try {
-// 		// translates to `SELECT * FROM messages WHERE id = ? LIMIT 1;`
-// 		const [account] = await db
-// 			.select("*")
-// 			.from("accounts")
-// 			.where("id", req.params.id)
-// 			.limit(1)
+router.post("/", async (req, res, next) => {
+    try {
+		const payload = {
+			name: req.body.name,
+			budget: req.body.budget
+		};
+		
+		const newAccount = await db("accounts").insert(payload);
+		res.json(newAccount);
+	} catch (err) {
+        res.status(500).json({ message: "Something went wrong, could not add account" });
+		next(err);
+	}
+})
 
-// 		res.json(account)
-// 	} catch (err) {
-// 		next(err)
-// 	}
-// })
 
-// router.post("/", async (req, res, next) => {
-//     const accountData = req.body;
 
-//     try {
-//         const totalAccounts = await knew('accounts').insert('accountData');
-//         res.status(201).json(totalAccounts);
-
-//     } catch (err) {
-//         console.log("error: ", err);
-//         next(err)
-//     }
-// })
-
-// router.post("/", async (req, res, next) => {
-// 	try {
-// 		// translates to `INSERT INTO messages (title, contents) VALUES (?, ?);`
-// 		const [id] = await db
-// 			.insert({
-// 				// database will automatically generate the ID
-// 				title: req.body.title,
-// 				contents: req.body.contents,
-// 			})
-// 			.into("messages")
-
-// 		// translates to `SELECT * FROM messages WHERE id = ? LIMIT 1;`
-// 		const message = await db("messages")
-// 			.where("id", id)
-// 			.first()
-
-// 		res.status(201).json(message)
-// 	} catch (err) {
-// 		next(err)
-// 	}
-// })
 
 // router.put("/:id", (req, res, next) => {
 
