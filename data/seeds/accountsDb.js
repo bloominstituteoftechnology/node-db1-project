@@ -1,18 +1,18 @@
-const db = require('../data/dbConfig.js');
+const db = require('../dbConfig.js');
 
 module.exports = {
-  get,
-  getById,
+  find,
+  findById,
   insert,
   update,
   remove,
 };
 
-function get() {
+function find() {
   return db('accounts');
 }
 
-function getById(id) {
+function findById(id) {
   return db('accounts')
     .where({ id })
     .first();
@@ -20,7 +20,7 @@ function getById(id) {
 
 function insert(account) {
   return db('accounts')
-    .insert(account)
+    .insert(account, "id")
     .then(ids => {
       return getById(ids[0]);
     });
