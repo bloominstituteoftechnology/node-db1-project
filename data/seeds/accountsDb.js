@@ -14,7 +14,9 @@ function find() {
 
 function findById(id) {
   return db('accounts')
-    .where({ id })
+    .select('*')
+    .from('accounts')
+    .where({id})
     .first();
 }
 
@@ -22,7 +24,7 @@ function insert(account) {
   return db('accounts')
     .insert(account, "id")
     .then(ids => {
-      return getById(ids[0]);
+      return findById(ids[0]);
     });
 }
 

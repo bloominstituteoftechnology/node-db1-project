@@ -1,42 +1,42 @@
-const express = require("express")
+const express = require("express");
 
-const db =  require('../data/seeds/accountsDb.js');
-const router = express.Router()
+const db = require("../data/seeds/accountsDb.js");
+const router = express.Router();
 
+router.get("/", async (req, res, next) => {
+  try {
+    const accounts = await db.find();
+    res.status(200).json(accounts);
+    
+  } catch (err) {
+    next(err);
+  }
+});
 
-
-
-router.get("/", async (req, res, next) => {
-    try {
-        //translates to 'SELECT * FROM accounts;'
-        const accounts = await db.find();
-        
-        res.json(accounts)
-    } catch (err) {
-        next(err)
-    }
-})
-
-// router.get("/:id", (req, res, next) => {
-
-// })
+router.get("/:id", async (req, res, next) => {
+  try {
+    const account = await db.findById(req.params.id);
+    res.status(200).json(account);
+  } catch (err) {
+      res.status(500).json({ message: "Something went wrong, could not find account by ID" })
+    next(err);
+  }
+});
 
 // router.get("/:id", async (req, res, next) => {
 // 	try {
 // 		// translates to `SELECT * FROM messages WHERE id = ? LIMIT 1;`
-// 		const [message] = await db
+// 		const [account] = await db
 // 			.select("*")
-// 			.from("messages")
+// 			.from("accounts")
 // 			.where("id", req.params.id)
 // 			.limit(1)
 
-// 		res.json(message)
+// 		res.json(account)
 // 	} catch (err) {
 // 		next(err)
 // 	}
 // })
-
-
 
 // router.post("/", async (req, res, next) => {
 //     const accountData = req.body;
@@ -73,9 +73,6 @@ router.get("/", async (req, res, next) => {
 // 	}
 // })
 
-
-
-
 // router.put("/:id", (req, res, next) => {
 
 // })
@@ -101,13 +98,9 @@ router.get("/", async (req, res, next) => {
 //         }
 // })
 
-
-
-
 // router.delete("/:id", (req, res, next) => {
 
 // })
-
 
 // router.delete("/:id", async (req, res, next) => {
 // 	try {
@@ -125,4 +118,3 @@ router.get("/", async (req, res, next) => {
 // })
 
 module.exports = router;
-
