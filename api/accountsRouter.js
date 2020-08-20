@@ -1,8 +1,6 @@
 const express = require("express")
-// const db = require("../data/dbConfig") // unsure if this is correct
 
-// database access using knex
-const knex =  require('../data/dbConfig.js');
+const db =  require('../data/seeds/accountsDb.js');
 const router = express.Router()
 
 
@@ -23,18 +21,18 @@ const router = express.Router()
 
 // })
 
-router.post("/", async (req, res, next) => {
-    const accountData = req.body;
+// router.post("/", async (req, res, next) => {
+//     const accountData = req.body;
 
-    try {
-        const totalAccounts = await knew('accounts').insert('accountData');
-        res.status(201).json(totalAccounts);
+//     try {
+//         const totalAccounts = await knew('accounts').insert('accountData');
+//         res.status(201).json(totalAccounts);
 
-    } catch (err) {
-        console.log("error: ", err);
-        next(err)
-    }
-})
+//     } catch (err) {
+//         console.log("error: ", err);
+//         next(err)
+//     }
+// })
 
 // router.put("/:id", (req, res, next) => {
 
@@ -43,4 +41,6 @@ router.post("/", async (req, res, next) => {
 // router.delete("/:id", (req, res, next) => {
 
 // })
+
+module.exports = router;
 
