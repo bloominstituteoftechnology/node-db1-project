@@ -65,5 +65,15 @@ server.put('/accounts/:id', async (req, res, next) => {
     }
 })
 
+// delete account
+server.delete("/accounts/:id", async (req, res, next) => {
+    try { // DELETE FROM "accounts" WHERE "id" = "req.params.id"
+        await db("accounts").where("id", req.params.id).del()
+        // send back 204 for success, but no data to return
+        res.status(204).end()
+    } catch (error) {
+        next(error)
+    }
+})
 
 module.exports = server;
