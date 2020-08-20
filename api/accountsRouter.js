@@ -30,8 +30,8 @@ router.post("/", async (req, res, next) => {
 			budget: req.body.budget
 		};
 		
-		const newAccount = await db("accounts").insert(payload);
-		res.json(newAccount);
+		const newAccount = await db.insert(payload);
+		res.status(201).json(newAccount);
 	} catch (err) {
         res.status(500).json({ message: "Something went wrong, could not add account" });
 		next(err);

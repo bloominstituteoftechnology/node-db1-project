@@ -24,9 +24,13 @@ function insert(payload) {
   return db('accounts')
     .insert(payload, "id")
     .then(id => {
-        return findById(id[0]);
+        return findById(id);
     });
 }
+
+// const [id] = await db("accounts").insert(payload)
+// const newAccount = await db("accounts").where({ id }).first()      
+// return db(newAccount)
 
 function update(id, changes) {
   return db('accounts')
