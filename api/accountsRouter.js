@@ -41,8 +41,13 @@ router.post("/", async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
     try {
         
-      console.log("this is a delete method");
-      
+      const changes = {
+        name: req.body.name,
+        budget: req.body.budget,
+      };
+
+      console.log("this is on the id: ", req.params.id);
+
       const updatedAccount = await db.update(req.params.id, changes);
       
       res.status(204).json(updatedAccount);
