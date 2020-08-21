@@ -44,11 +44,10 @@ router.put("/:id", async (req, res, next) => {
         name: req.body.name,
         budget: req.body.budget,
       };
-      await db('accounts')
-        .where('id', req.params.id)
-        .update(changes);
 
-      const updatedAccount = await db.update(changes);
+      console.log("this is on the id: ", req.params.id);
+
+      const updatedAccount = await db.update(req.params.id, changes);
       
       res.status(204).json(updatedAccount);
       
@@ -58,23 +57,7 @@ router.put("/:id", async (req, res, next) => {
     }
   });
 
-//   router.put("/:id", async (req, res, next) => {
-// 	try {
-// 		const payload = {
-// 			name: req.body.name,
-// 			budget: req.body.budget
-// 		};
-// 		await db("accounts")
-// 			.where("id", req.params.id)
-// 			.update(payload);
-// 		const updateAccount = await db("accounts")
-// 			.where("id", req.params.id)
-// 			.first();
-// 		res.status(204).json(updateAccount);
-// 	} catch (error) {
-// 		next(error);
-// 	}
-// });
+
 
 
 

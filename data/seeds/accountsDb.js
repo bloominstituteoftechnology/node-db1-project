@@ -29,14 +29,10 @@ function insert(payload) {
 }
 
 function update(id, changes) {
-  return db('accounts')
-    .where({id})
-    .update(changes)
-    .then(id => {
-        return findById(id);
-    });
-    
-}
+    return db('accounts')
+      .where({ id })
+      .update(changes, '*');
+} 
 
 function remove(id) {
   return db('accounts')
