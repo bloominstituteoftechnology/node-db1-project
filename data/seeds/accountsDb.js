@@ -28,14 +28,14 @@ function insert(payload) {
     });
 }
 
-// const [id] = await db("accounts").insert(payload)
-// const newAccount = await db("accounts").where({ id }).first()      
-// return db(newAccount)
-
 function update(id, changes) {
   return db('accounts')
-    .where({ id })
-    .update(changes);
+    .where({id})
+    .update(changes)
+    .then(id => {
+        return findById(id);
+    });
+    
 }
 
 function remove(id) {
@@ -43,3 +43,4 @@ function remove(id) {
     .where('id', id)
     .del();
 }
+

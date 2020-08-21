@@ -38,37 +38,45 @@ router.post("/", async (req, res, next) => {
 	}
 })
 
+router.put("/:id", async (req, res, next) => {
+    try {
+      const changes = {
+        name: req.body.name,
+        budget: req.body.budget,
+      };
+      await db('accounts')
+        .where('id', req.params.id)
+        .update(changes);
 
+      const updatedAccount = await db.update(changes);
+      
+      res.status(204).json(updatedAccount);
+      
+    } catch (err) {
+      res.status(500).json({ message: "Something went wrong, could not update account" });
+      next(err);
+    }
+  });
 
-
-// router.put("/:id", (req, res, next) => {
-
-// })
-
-// router.put("/:id", async (req, res, next) => {
+//   router.put("/:id", async (req, res, next) => {
 // 	try {
-// 		// translates to `UPDATE messages SET title = ? AND contents = ? WHERE id = ?;`
-// 		await db("messages")
-// 			.update({
-// 				title: req.body.title,
-// 				contents: req.body.contents,
-// 			})
-//             .where("id", req.params.id)
-//             // translates to `SELECT * FROM messages WHERE id = ? LIMIT 1;`
+// 		const payload = {
+// 			name: req.body.name,
+// 			budget: req.body.budget
+// 		};
+// 		await db("accounts")
+// 			.where("id", req.params.id)
+// 			.update(payload);
+// 		const updateAccount = await db("accounts")
+// 			.where("id", req.params.id)
+// 			.first();
+// 		res.status(204).json(updateAccount);
+// 	} catch (error) {
+// 		next(error);
+// 	}
+// });
 
-// 		const message = await db("messages")
-//             .where("id", req.params.id)
-//             .first()
-//             res.json(message)
 
-//         } catch (err) {
-//             next(err)
-//         }
-// })
-
-// router.delete("/:id", (req, res, next) => {
-
-// })
 
 // router.delete("/:id", async (req, res, next) => {
 // 	try {
@@ -84,5 +92,17 @@ router.post("/", async (req, res, next) => {
 // 		next(err)
 // 	}
 // })
+
+// router.delete("/:id", async (req, res) => {
+//     const account = await db("accounts").where("id", req.params.id);
+//     try {
+//         await db("accounts").where("id", req.params.id).del();
+//         res.status(200).json({message: "deleted", account});
+//     } catch (e) {
+//         console.log(e.stack);
+//         res.status(500).json({message: "Error deleting account"});
+//     }
+// });
+
 
 module.exports = router;
