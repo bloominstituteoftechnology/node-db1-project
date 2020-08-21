@@ -40,13 +40,9 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
     try {
-      const changes = {
-        name: req.body.name,
-        budget: req.body.budget,
-      };
-
-      console.log("this is on the id: ", req.params.id);
-
+        
+      console.log("this is a delete method");
+      
       const updatedAccount = await db.update(req.params.id, changes);
       
       res.status(204).json(updatedAccount);
@@ -58,34 +54,17 @@ router.put("/:id", async (req, res, next) => {
   });
 
 
-
-
-
-// router.delete("/:id", async (req, res, next) => {
-// 	try {
-// 		// translates to `DELETE FROM messages WHERE id = ?;`
-// 		await db("messages")
-// 			.where("id", req.params.id)
-// 			.del()
-
-// 		// since we no longer have a resource to return, just send a 204.
-// 		// which means "success, but no response data is being sent".
-// 		res.status(204).end()
-// 	} catch (err) {
-// 		next(err)
-// 	}
-// })
-
-// router.delete("/:id", async (req, res) => {
-//     const account = await db("accounts").where("id", req.params.id);
-//     try {
-//         await db("accounts").where("id", req.params.id).del();
-//         res.status(200).json({message: "deleted", account});
-//     } catch (e) {
-//         console.log(e.stack);
-//         res.status(500).json({message: "Error deleting account"});
-//     }
-// });
+router.delete("/:id", async (req, res, next) => {
+	try {
+        await db.remove(req.params.id)
+        
+		res.status(204).end()
+	} catch (err) {
+        res.status(500).json({ message: "Something went wrong, could not delete account" });
+      
+		next(err);
+	}
+})
 
 
 module.exports = router;
