@@ -15,8 +15,13 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const account = await db.findById(req.params.id);
+    const account = await db.findById(req.params.id); // if not account, send 404, otherwise send 200
+    if (!account) {
+    res.status(404).json({ message: 'account could not be found with that ID'});
+
+    } else {
     res.status(200).json(account);
+    }
   } catch (err) {
       res.status(500).json({ message: "Something went wrong, could not find account by ID" })
     next(err);
