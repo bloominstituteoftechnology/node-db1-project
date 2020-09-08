@@ -1,12 +1,19 @@
-# Database Queries
+# Node DB1 Project Starter Code
 
-## Topics
+## Introduction
 
 - Relational Databases
 - Writing Basic SQL Queries
 - Writing Basic Queries using Knex.js
 
-## Assignment
+## Instructions
+
+### Task 1: Project Setup
+
+- **Fork** and **Clone** this repository.
+- **CD into the folder** where you cloned the repository.
+
+### Task 2a: MVP
 
 For this lab you will:
 
@@ -39,7 +46,13 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/trysql.asp
 | name   | string           | required, unique                                    |
 | budget | numeric          | required                                            |
 
-## Stretch Problems
+### Task 2b: Exit Ticket
+
+Once you begin, you will have 15 minutes to answer the questions [here](https://app.codesignal.com/public-test/tAw9htcSny5ocwmpf/EHePAqYzoj8Fud).
+
+The completion of these questions is mandatory for MVP. However, passing the quiz doesn't affect your standing as a Lambda School student whatsoever. This is Lambda School testing itself! Please answer honestly and to the best of your ability without using external references.
+
+### Task 3: Stretch Problems
 
 The following exercises **require research**, the concepts needed to complete them have not been covered in class yet.
 
