@@ -81,3 +81,7 @@ The following exercises **require research**, the concepts needed to complete th
   - open `./knexfile.js` and follow the instructions to configure the `production` property to use the correct credentials to connect to your postgres server.
   - run the API and test using an HTTP client like `Postman`.
 - write a React front end and connect it to the API.
+
+## Submission Format
+* [ ] Submit a Pull-Request to merge `<firstName-lastName>` Branch into `main` (student's  Repo). **Please don't merge your own pull request**
+* [ ] Fill out your module retrospective form [here](https://forms.lambdaschool.com/module-retrospective) with a link to your PR
