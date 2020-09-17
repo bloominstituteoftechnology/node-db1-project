@@ -5,7 +5,8 @@ const router = express.Router();
 
 router.get('/', (req, res) =>{
     const {limit, sortby, sortdir} = req.query;
-    if(query.limit){
+    if(limit){
+        console.log("in the limit loop")
         db.select('*')
         .from('accounts')
         .limit(limit)
@@ -15,7 +16,8 @@ router.get('/', (req, res) =>{
         .catch(error=>{
             handleError(error, res);
         });
-    }else if(query.sortby && query.sortdir){
+    }else if(sortby && sortdir){
+        console.log("sort query");
         db.select('*')
         .from('accounts')
         .orderBy(sortby, sortdir)
@@ -26,7 +28,8 @@ router.get('/', (req, res) =>{
             handleError(error, res);
         });
     }else {
-    db.select('*')
+        console.log("default");
+        db.select('*')
         .from('accounts')
         .then(accounts =>{
             res.status(200).json({data: accounts})
