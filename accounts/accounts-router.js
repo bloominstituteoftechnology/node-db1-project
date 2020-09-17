@@ -1,8 +1,31 @@
 const express = require('express');
 const db = require("../data/dbConfig.js");
+const { query } = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) =>{
+    const {limit, sortby, sortdir} = req.query;
+    if(query.limit){
+        db.select('*')
+        .from('accounts')
+        .limit(limit)
+        .then(accounts =>{
+            res.status(200).json({data: accounts})
+        })
+        .catch(error=>{
+            handleError(error, res);
+        });
+    }else if(query.sortby && query.sortdir){
+        db.select('*')
+        .from('accounts')
+        .orderBy(sortby, sortdir)
+        .then(accounts =>{
+            res.status(200).json({data: accounts})
+        })
+        .catch(error=>{
+            handleError(error, res);
+        });
+    }else {
     db.select('*')
         .from('accounts')
         .then(accounts =>{
@@ -11,7 +34,9 @@ router.get('/', (req, res) =>{
         .catch(error=>{
             handleError(error, res);
         });
-});
+}});
+
+
 
 router.get('/:id', (req, res) =>{
     const {id} = req.params;
@@ -32,7 +57,10 @@ router.post('/', (req, res) =>{
     db('accounts')
         .insert(accountData)
         .then((id) => {
-            res.status(201).json({data: id[0]})
+           db.select('*').from("accounts").where({id:id[0]}).then(newAccount=>{
+            res.status(201).json(newAccount[0])
+           })
+            
         })
         .catch(error=>{
             handleError(error, res);
