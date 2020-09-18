@@ -16,13 +16,19 @@ router.get("/", (req, res) => {
 })
 
 //post
-router.post("/:id", (req, res) => {
-    const id = req.params;
+router.post("/:id", validateAccount, (req, res) => {
+    const newAccount = req.body;
 
-    db.insert("accounts").where(id)
-        .first()
-        .then(account => {
-            res.status(200).json({ data: account })
+    db("accounts").insert(newAccount, "id")
+        .then(id => {
+            db("accounts").where(id)
+            .first()
+            .then(account => {
+                res.status(200).json({ data: account })
+            })
+            .catch(error => {
+                console.log(error)
+            })
         })
         .catch(error => {
             console.log(error)
@@ -67,5 +73,14 @@ router.put("/:id", (req, res) => {
             res.status(500).json({ message : "Could not update account" })
         })
 })
+
+//middleware
+function validateAccount (req, res, next) {
+    if(!req.body.name || !req.body.budget) {
+        next();
+    } else {
+        res.status(404).json({ message: "Could not find account." })
+    }
+}
 
 module.exports = router;
