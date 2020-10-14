@@ -86,9 +86,13 @@ router.put('/:id', async (req, res, next) => {
 })
 
 //delete an account
-router.delete('/', async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
+await db('accounts').where('id', req.params.id).del()
 
+res.status(201).json({
+  message: "Account deleted",
+})
   } catch (err) {
     next(err)
   }
