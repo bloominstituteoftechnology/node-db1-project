@@ -30,6 +30,25 @@ res.json(account)
 
 router.post('/', async (req, res, next) => {
   try {
+const payload = {
+  name: req.body.name,
+  budget: req.body.budget
+}
+
+if(!payload.name || !payload.budget) {
+  return res.status(400).json({
+    message: 'Name and budget required',
+  })
+}
+
+const [id] = await db.insert(payload).into('accounts')
+
+const account = await db
+.first('*')
+.from('accounts')
+.where('id', id)
+
+res.status(201).json(account)
 
   } catch (err) {
     next(err)
