@@ -3,6 +3,8 @@ const db = require('../data/dbConfig');
 
 const router = express.Router();
 
+
+//get all accounts
 router.get('/', async (req, res, next) => {
   try {
 const accounts = await db.select('*').from('accounts')
@@ -12,7 +14,7 @@ res.json(accounts)
   }
 })
 
-
+//get an account by id
 router.get('/:id', async (req, res, next) => {
   try {
 const [account] = await db
@@ -27,7 +29,7 @@ res.json(account)
   }
 })
 
-
+//add a new account
 router.post('/', async (req, res, next) => {
   try {
 const payload = {
@@ -55,15 +57,35 @@ res.status(201).json(account)
   }
 })
 
-router.put('/', async (req, res, next) => {
-  try {
 
+//update an account
+router.put('/:id', async (req, res, next) => {
+  try {
+    const payload = {
+      name: req.body.name,
+      budget: req.body.budget
+    }
+    
+    if(!payload.name || !payload.budget) {
+      return res.status(400).json({
+        message: 'Name and budget required',
+      })
+    }
+    
+    await db('accounts').where('id', req.params.id).update(payload)
+    
+    const account = await db
+    .first('*')
+    .from('accounts')
+    .where('id', req.params.id)
+    
+    res.status(201).json(account)
   } catch (err) {
     next(err)
   }
 })
 
-
+//delete an account
 router.delete('/', async (req, res, next) => {
   try {
 
