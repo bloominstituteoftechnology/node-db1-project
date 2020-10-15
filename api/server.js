@@ -56,7 +56,44 @@ server.post("/", async(req,res,next) => {
     }
 })
 
+server.put("/:id", async (req,res,next) => {
 
+    // const { id } = req.params
+    // try {
+    //     const payload = {
+    //         name: req.params.name,
+    //         budget: req.params.budget,
+    //     }
+
+    //     if(!payload.name || !payload.budget) {
+    //         return res.status(400).json({
+    //             message: "Needs Name and Budget"
+    //         })
+    //     } else {
+    //     const post = await db("accounts").update(payload).where({id})
+    //     res.json({updated: post})
+    //     }
+
+    // } catch(err) {
+    //     next(err)
+    // }
+
+    try {
+        const account = await db("accounts").update(req.body).where({id : req.params.id})
+        res.json(account)
+    } catch (err) {
+        next(err)
+    } /// the fuck did this work and the other didnt????
+})
+
+server.delete("/:id", async(req,res,next) => {
+    try {
+        const account = await db("accounts").where({id : req.params.id}).del()
+        res.status(204).end()
+    } catch(err) {
+        next(err)
+    }
+})
 
 
 
