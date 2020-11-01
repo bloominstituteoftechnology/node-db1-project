@@ -7,13 +7,13 @@ const router = express.Router(); //setup Router
 
 //CRUD BELOW >>>
 
-// function bodyCheck(req, res, next) {
-//   if (req.body.name && req.body.budget) {
-//     next();
-//   } else {
-//     res.status(400).json({ message: "Please include the required fields!" });
-//   }
-// }
+function bodyCheck(req, res, next) {
+  if (req.body.name && req.body.budget) {
+    next();
+  } else {
+    res.status(400).json({ message: "Please include the required fields!" });
+  }
+}
 
 
 
@@ -22,8 +22,11 @@ const router = express.Router(); //setup Router
 //GET ALL
 
 router.get('/', (req, res) => {
+  // console.log('accounts')
   db
   //db selection
+  .select('*').from('accounts') //<<<<<< //WHERE IS ACCOUNTS COMING FROM
+  //
   .then((resp) => {
     res.status(200).json({ data: resp })
   })
@@ -38,6 +41,8 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   db
   //db selection
+  .where('id', '=', 'req.params.id') //<<<<<<
+  //
   .then((resp) => {
     res.status(200).json({ data: resp })
   })
@@ -49,9 +54,12 @@ router.get('/:id', (req, res) => {
 
 //POST REQUEST---------------------------------//
 
-router.post('/', (req, res) => {
+router.post('/', bodyCheck, (req, res) => {
+  const postData = req.body; //<<<<<<
   db
   //db selection
+  ('accounts').insert(postData, 'id') //<<<<<<
+  //
   .then((resp) => {
     res.status(200).json({ data: resp })
   })
@@ -63,9 +71,13 @@ router.post('/', (req, res) => {
 
 //PUT REQUESTS---------------------------------//
 
-router.put('/:id', (req, res) => {
+router.put('/:id', bodyCheck, (req, res) => {
+  const changes = req.body;
   db
   //db selection
+  ('accounts').where({ id: req.params.id }) //<<<<<<
+  .update(changes)                          //<<<<<<
+  //
   .then((resp) => {
     res.status(200).json({ data: resp })
   })
@@ -80,6 +92,9 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   db
   //db selection
+  ('accounts').where({ id: req.params.id }) //<<<<<<
+  .del()                                    //<<<<<<
+  //
   .then((resp) => {
     res.status(200).json({ data: resp })
   })
