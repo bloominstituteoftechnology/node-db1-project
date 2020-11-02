@@ -8,6 +8,7 @@ const router = express.Router(); //setup Router
 //CRUD BELOW >>>
 
 function bodyCheck(req, res, next) {
+  console.log(req.body);
   if (req.body.name && req.body.budget) {
     next();
   } else {
@@ -41,7 +42,8 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   db
   //db selection
-  .where('id', '=', 'req.params.id') //<<<<<<
+  ('accounts')
+  .where('id', '=', req.params.id) //<<<<<<
   //
   .then((resp) => {
     res.status(200).json({ data: resp })
@@ -54,19 +56,28 @@ router.get('/:id', (req, res) => {
 
 //POST REQUEST---------------------------------//
 
-router.post('/', bodyCheck, (req, res) => {
+router.post('/', bodyCheck, async (req, res) => {
   const postData = req.body; //<<<<<<
-  db
-  //db selection
-  ('accounts').insert(postData, 'id') //<<<<<<
-  //
-  .then((resp) => {
-    res.status(200).json({ data: resp })
-  })
-  .catch((err) => {
+  // db
+  // //db selection
+  // ('accounts').insert(postData, 'id') //<<<<<<
+  // //
+  // .then((resp) => {
+  //   res.status(201).json({ data: resp })
+  // })
+  // .catch((err) => {
+  //   res.status(500).json({ error: err.message })
+  // })
+  try{ 
+    const results = await db('accounts').insert(postData, 'id') //<<<<
+    res.status(201).json({ data: results })
+  }
+  catch(error) {
     res.status(500).json({ error: err.message })
-  })
+  }
 });
+
+
 
 
 //PUT REQUESTS---------------------------------//
