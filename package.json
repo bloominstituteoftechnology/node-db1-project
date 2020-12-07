@@ -8,11 +8,12 @@
     "repository": "https://github.com/LambdaSchool/node-db1-project",
     "dependencies": {
         "express": "^4.17.1",
-        "knex": "^0.21.2",
-        "pg": "^8.3.0",
+        "knex": "^0.21.12",
+        "pg": "^8.5.1",
         "sqlite3": "^5.0.0"
     },
     "devDependencies": {
-        "nodemon": "^2.0.4"
+        "eslint": "^7.15.0",
+        "nodemon": "^2.0.6"
     }
 }
