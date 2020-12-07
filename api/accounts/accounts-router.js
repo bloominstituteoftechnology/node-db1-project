@@ -25,21 +25,37 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const newAccount = req.body;
-    Account.insert(newAccount)
+    console.log(newAccount)
+    Account.create(newAccount)
         .then(account => {
-            res.status(201).json(accounts)
+            res.status(201).json(account)
         })
         .catch(error => {
             res.status(500).json({ message: error.message });
         })
 })
 
-router.put('/', (req, res) => {
-    
+router.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const changes = req.body;
+    Account.update(id, changes)
+        .then(account => {
+            res.status(200).json(account);
+        })
+        .catch(error => {
+            res.status(500).json({ message: error.message });
+        })
 })
 
-router.delete('/', (req, res) => {
-    
+router.delete('/:id', (req, res) => { 
+    const { id } = req.params;
+    Account.remove(id)
+        .then(() => {
+            res.status(204).json({ message: 'Account successfully deleted' })
+        })
+        .catch(error => {
+            res.status(500).json({ message: error.message });
+        })
 })
 
 module.exports = router;
