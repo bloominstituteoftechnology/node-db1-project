@@ -20,8 +20,14 @@ function getById(id) {
         .first()
 }
 
+function remove(id) {
+    return db('accounts')
+        .where('id', id)
+        .del()
+}
 module.exports = {
     find,
     insert,
-    getById
+    getById,
+    remove
 }

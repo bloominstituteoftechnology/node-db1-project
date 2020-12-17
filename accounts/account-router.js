@@ -24,4 +24,19 @@ router.post('/', (req,res,next) => {
         })
 })
 
+router.delete('/:id', (req,res,next) => {
+    account.remove(req.params.id)
+    .then((count) => {
+        if(count > 0) {
+          res.status(200).json({
+            message: "The account has been removed"
+          }) 
+        } else {
+          res.status(404).json({
+            message: "The account could not be removed"
+          })
+        }
+      })
+})
+
 module.exports = router
