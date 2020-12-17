@@ -6,8 +6,13 @@ const router = express.Router();
 
 // GET accounts
 router.get('/', async (req, res) => {
+    // QUERY STRINGS
+    const sortBy = req.query.sortBy || 'id';
+    const sortDir = req.query.sortDir || 'asce';
+    const limit = req.query.limit || null;
+
     try {
-        const accounts = await db.select('*').from('accounts');
+        const accounts = await db.select('*').from('accounts').orderBy(sortBy, sortDir).limit(limit);
         res.status(200).json(accounts);
     } catch {
         res.status(500).json({ errorMessage: "There has been an error with the database." });
@@ -16,8 +21,6 @@ router.get('/', async (req, res) => {
 
 // GET account with ID
 router.get('/:id', validateAccountID(), async (req, res) => {
-    const { id } = req.params;
-
     try {
         res.status(200).json(req.account);
     } catch {
@@ -26,7 +29,13 @@ router.get('/:id', validateAccountID(), async (req, res) => {
 });
 
 // POST account
-router.post('/', async (req, res) => {
+router.post('/', validateUniqueAccountName(), async (req, res) => {
+
+    // Verify that the request body has the required fields
+    if (!req.body.name || !req.body.budget) {
+        return res.status(400).json({ errorMessage: "Misssing required field. Check for name and budget fields" });
+    }
+
     try {
         const account = req.body;
         const [ id ] = await db('accounts').insert(account);
@@ -75,7 +84,7 @@ function validateAccountID (req, res, next) {
         db('accounts').where({ id: id })
             .then(response => {
                 const [ account ] = response;
-                
+
                 if (!account) {
                     return res.status(404).json({ errorMessage: "No account with specified ID." })
                 };
@@ -88,5 +97,21 @@ function validateAccountID (req, res, next) {
             })
     };
 };
+
+// Check that the account name is unique (not already used by another account)
+function validateUniqueAccountName (req, res, next) {
+    return function (req, res, next) {
+        const { name } = req.body;
+
+        db('accounts').where({ name: name })
+            .then(results => {
+                if (results.length >= 1) {
+                    return res.status(400).json({ errorMessage: "An account already has that name." })
+                }
+
+                next();
+            })
+    };
+}
 
 module.exports = router;
