@@ -7,6 +7,7 @@
     },
     "repository": "https://github.com/LambdaSchool/node-db1-project",
     "dependencies": {
+        "cors": "^2.8.5",
         "express": "^4.17.1",
         "knex": "^0.21.12",
         "pg": "^8.5.1",
