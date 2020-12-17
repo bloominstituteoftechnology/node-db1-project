@@ -39,4 +39,26 @@ router.delete('/:id', (req,res,next) => {
       })
 })
 
+router.put('/:id', (req,res,next) => {
+    if(!req.body.name || !req.body.budget) {
+        res.status(400).json({
+            message: "missing fields"
+        })
+    }
+
+    account.update(req.params.id, req.body)
+        .then((act) => {
+            if(act) {
+                res.status(200).json(act)
+            } else {
+                res.status(404).json({
+                    message: "account could not be found"
+                })
+            }
+        })
+        .catch((err) => {
+            next(err)
+        })
+})
+
 module.exports = router

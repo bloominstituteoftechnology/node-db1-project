@@ -25,9 +25,15 @@ function remove(id) {
         .where('id', id)
         .del()
 }
+function update(id,changes ) {
+    return db('accounts')
+    .where({id})
+    .update(changes)
+}
 module.exports = {
     find,
     insert,
     getById,
-    remove
+    remove,
+    update
 }
