@@ -6,7 +6,22 @@ function find() {
     return db('accounts')
 }
 
+function insert(account) {
+    return db('accounts')
+    .insert(account)
+    .then(ids => {
+        return getById(ids[0])
+    })
+}
+
+function getById(id) {
+    return db('accounts')
+        .where({id})
+        .first()
+}
 
 module.exports = {
-    find
+    find,
+    insert,
+    getById
 }
