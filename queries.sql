@@ -1,9 +1,27 @@
+SELECT * FROM Customers;
+
+=	Equal	
+>	Greater than	
+<	Less than	
+>=	Greater than or equal	
+<=	Less than or equal	
+<>	Not equal. Note: In some versions of SQL this operator may be written as !=	
+BETWEEN	Between a certain range	
+LIKE	Search for a pattern	
+IN	To specify multiple possible values for a column	
+
+
 -- Database Queries
 
 -- Find all customers with postal code 1010
 
+SELECT CustomerID, ContactName, Address, City, PostalCode, Country FROM Customers
+WHERE PostalCode='1010';
+
 -- Find the phone number for the supplier with the id 11
 
+SELECT * FROM [Suppliers]
+WHERE SupplierID=11
 -- List first 10 orders placed, sorted descending by the order date
 
 -- Find all customers that live in London, Madrid, or Brazil
