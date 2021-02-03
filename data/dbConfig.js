@@ -1,3 +1,5 @@
+//const db = require('../../data/db-config.js')
+
 const knex = require("knex");
 
 const knexfile = require("../knexfile.js");
