@@ -23,4 +23,14 @@ router.get('/:id', validateId, async (req, res, next) =>{
     }
 })
 
+router.post('/', validateAccount, async (req, res, next) =>{
+    try{
+        const account = req.body
+        const data = await Account.create(account)
+        res.status(201).json(data)
+    } catch(error){
+        next(error)
+    }
+})
+
 module.exports = router;
