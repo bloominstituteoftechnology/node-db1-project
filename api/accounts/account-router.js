@@ -44,4 +44,18 @@ router.put('/:id', validateAccount, validateId, async (req, res, next) =>{
     }
 })
 
+router.delete('/:id', validateId, async (req, res, next) =>{
+    try{
+        const { id } = req.params
+        const data = await Account.remove(id)
+        res.status(200).json(data)
+    } catch(error){
+        next(error)
+    }
+})
+
+router.use((error, req, res, next) =>{
+    res.status(500).json({message: error.message, stack: error.stack})
+})
+
 module.exports = router;
