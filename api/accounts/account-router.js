@@ -33,4 +33,15 @@ router.post('/', validateAccount, async (req, res, next) =>{
     }
 })
 
+router.put('/:id', validateAccount, validateId, async (req, res, next) =>{
+    try{
+        const { id } = req.params
+        const account = req.body
+        const data = Account.update(id, account)
+        res.status(200).json(data)
+    } catch(error){
+        next(error)
+    }
+})
+
 module.exports = router;

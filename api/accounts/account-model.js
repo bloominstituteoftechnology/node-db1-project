@@ -27,7 +27,7 @@ function update(id, account){
     const accountId = id
     return db('accounts').where('id', id).update(account)
     .then(([id]) =>{
-        return db('accounts').where('id', id).first()
+        return db('accounts').where('id', accountId).first()
     })
 }
 
