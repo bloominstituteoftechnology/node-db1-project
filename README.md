@@ -46,7 +46,7 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/trysql.asp
 | name   | string           | required, unique                                    |
 | budget | numeric          | required                                            |
 
-### Task 3: Stretch Problems
+### Task 3: Stretch
 
 The following exercises **require research**, the concepts needed to complete them have not been covered in class yet.
 
@@ -80,4 +80,4 @@ The following exercises **require research**, the concepts needed to complete th
 
 Follow these steps for completing your project.
 
-- [ ] Submit a pull request to merge `<firstName-lastName>` Branch into main (student's  Repo). **Please don't merge your own pull request**
+- [ ] Submit a pull request to merge `<firstName-lastName>` Branch into main (student's Repo). **Please don't merge your own pull request**
