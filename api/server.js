@@ -1,9 +1,17 @@
-const express = require("express");
+const express = require('express');
 
-const db = require("../data/dbConfig.js");
+const AccountsRouter = require('./accounts/account-router');
 
 const server = express();
 
 server.use(express.json());
+
+server.use('/api/accounts', AccountsRouter);
+
+// const db = require('../data/dbConfig.js');
+
+server.get('/', (req, res) => {
+  res.status(200).json({ message: 'Hello from mars' });
+});
 
 module.exports = server;
