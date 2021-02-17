@@ -82,7 +82,7 @@ npx knex seed:run
 
   - `checkAccountId` returns a status 404 with a `{ message: "account not found" }` if `req.params.id` does not exist in the database
 
-  - `checkAccountNameUnique` returns a status 400 with a `{ message: "that name is taken" }` if `req.body.name` already exists in the database
+  - `checkAccountNameUnique` returns a status 400 with a `{ message: "that name is taken" }` if the _trimmed_ `req.body.name` already exists in the database
 
 ### Write Accounts API
 

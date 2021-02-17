@@ -59,6 +59,10 @@ describe('server.js', () => {
       expect(res.status).toBe(201)
       expect(res.body).toMatchObject({ name: 'foo', budget: 1000 })
     })
+    it('trims the leading and trailing whitespace in the name of the new account', async () => {
+      const res = await request(server).post('/api/accounts').send({ name: '  foo  ', budget: 1000 })
+      expect(res.body).toMatchObject({ name: 'foo', budget: 1000 })
+    })
     it('responds with a 400 and proper error if name or budget are undefined', async () => {
       const invalid1 = {}
       const invalid2 = { name: "foo" }
