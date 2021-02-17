@@ -131,6 +131,10 @@ describe('server.js', () => {
       expect(res.status).toBe(200)
       expect(res.body).toMatchObject({ name: 'foo', budget: 1000 })
     })
+    it('responds with a 404 if the id does not exist', async () => {
+      let res = await request(server).put('/api/accounts/111').send({ name: 'foo', budget: 1000 })
+      expect(res.status).toBe(404)
+    }, 500)
     it('responds with a 400 and proper error if name or budget are undefined', async () => {
       const invalid1 = {}
       const invalid2 = { name: "foo" }
