@@ -29,7 +29,6 @@ router.post('/', middleware.checkAccountPayload, middleware.checkAccountNameUniq
 })
 
 router.put('/:id', middleware.checkAccountId, (req, res, next) => {
-  // DO YOUR MAGIC
   db.updateById(req.params.id, req.body)
   .then((response) => {
     db.getById(req.params.id)
@@ -42,8 +41,14 @@ router.put('/:id', middleware.checkAccountId, (req, res, next) => {
   })
 });
 
-router.delete('/:id', (req, res, next) => {
-  // DO YOUR MAGIC
+router.delete('/:id', middleware.checkAccountId,  (req, res, next) => {
+  db.deleteById(req.params.id)
+  .then(() => {
+    res.send(req.account);
+  })
+  .catch((err) => {
+    next(err);
+  })
 })
 
 router.use((err, req, res, next) => { // eslint-disable-line
