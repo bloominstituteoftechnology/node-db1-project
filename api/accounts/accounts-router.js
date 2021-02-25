@@ -8,6 +8,9 @@ router.get('/', async (req, res, next) => {
   .then((respon) => {
     res.send(respon);
   })
+  .catch((err) => {
+    next(err);
+  })
 })
 
 router.get('/:id', middleware.checkAccountId, (req, res, next) => {
@@ -15,15 +18,28 @@ router.get('/:id', middleware.checkAccountId, (req, res, next) => {
 })
 
 router.post('/', middleware.checkAccountPayload, middleware.checkAccountNameUnique, (req, res, next) => {
-  db.create(req.body)
+  db.create({...req.body, name: req.body.name.trim()})
   .then((response) => {
     res.send(response);
+  })
+  .catch((err) => {
+    next(err);
   })
   
 })
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', middleware.checkAccountId, (req, res, next) => {
   // DO YOUR MAGIC
+  db.updateById(req.params.id, req.body)
+  .then((response) => {
+    db.getById(req.params.id)
+    .then((resp) => {
+      res.send(resp);
+    })
+  })
+  .catch((err) => {
+    next(err);
+  })
 });
 
 router.delete('/:id', (req, res, next) => {

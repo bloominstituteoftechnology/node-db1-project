@@ -1,7 +1,6 @@
 const db = require('./accounts-model');
 
 exports.checkAccountPayload = (req, res, next) => {
-  // DO YOUR MAGIC
   if(!req.body.name || !req.body.budget){
     res.status(400).send({ message: "name and budget are required" });
   }
@@ -21,7 +20,6 @@ exports.checkAccountPayload = (req, res, next) => {
 }
 
 exports.checkAccountNameUnique = async (req, res, next) => {
-  // DO YOUR MAGIC
   db.getByName(req.body.name.trim())
   .then((response) => {
     if(response.length > 0){
@@ -33,7 +31,6 @@ exports.checkAccountNameUnique = async (req, res, next) => {
 }
 
 exports.checkAccountId = async (req, res, next) => {
-  // DO YOUR MAGIC
   db.getById(req.params.id)
   .then((response) => {
     if(response.length > 0){
