@@ -11,7 +11,7 @@ exports.checkAccountPayload = (req, res, next) => {
   else if(req.body.name.trim().length < 3 || req.body.name.trim().length > 100 ){
     res.status(400).send({ message: "name of account must be between 3 and 100" });
   }
-  else if(typeof req.body.budget !== "number"){
+  else if(Number.isFinite(req.body.budget)){
     res.status(400).send({ message: "budget of account must be a number" });
   }
   else if(req.body.budget < 0 || req.body.budget > 1000000)
@@ -22,10 +22,11 @@ exports.checkAccountPayload = (req, res, next) => {
 
 exports.checkAccountNameUnique = async (req, res, next) => {
   // DO YOUR MAGIC
-  db.getByName(req.body.name)
+  db.getByName(req.body.name.trim())
   .then((response) => {
-    if(response)
+    if(response.length > 0){
       res.status(400).send({ message: "that name is taken" });
+    }
     else
       next();
   })
@@ -36,7 +37,6 @@ exports.checkAccountId = async (req, res, next) => {
   db.getById(req.params.id)
   .then((response) => {
     if(response.length > 0){
-      console.log(response);
       req.account = response;
       next();
     }

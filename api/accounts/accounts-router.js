@@ -11,12 +11,15 @@ router.get('/', async (req, res, next) => {
 })
 
 router.get('/:id', middleware.checkAccountId, (req, res, next) => {
-  // DO YOUR MAGIC
   res.send(req.account);
 })
 
-router.post('/', (req, res, next) => {
-  // DO YOUR MAGIC
+router.post('/', middleware.checkAccountPayload, middleware.checkAccountNameUnique, (req, res, next) => {
+  db.create(req.body)
+  .then((response) => {
+    res.send(response);
+  })
+  
 })
 
 router.put('/:id', (req, res, next) => {
