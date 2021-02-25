@@ -1,12 +1,10 @@
 const express = require("express");
+const accountsRouter = require("./accounts/accounts-router")
+
 
 const server = express();
-
+server.use(express.urlencoded({extended:false}))
 server.use(express.json());
-
-
-server.get("/api/accounts", (req, res) => {
-    
-})
+server.use("/", accountsRouter)
 
 module.exports = server;

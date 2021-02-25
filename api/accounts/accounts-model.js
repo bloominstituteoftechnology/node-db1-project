@@ -11,23 +11,23 @@ const config = {
 const db = knex(config)
 
 const getAll = () => {
-  db.select("*").from("Accounts") // "accounts" if returns null
+  db.select("*") // "accounts" if returns null
 }
 
 const getById = id => {
-  db.select("*").from("Accounts").where(id)
+  db.select("*").from("accounts").where(id)
 }
 
 const create = async account => {
-  db("Accounts").insert(account)
+  await db("accounts").insert(account)
 }
 
 const updateById = async (id, account) => {
-  db("Accounts").where(id).insert(account)
+  await db("accounts").where(id).update(account)
 }
 
 const deleteById = async id => {
-  db("Accounts").where(id).del()
+  await db("accounts").where(id).del()
 }
 
 module.exports = {

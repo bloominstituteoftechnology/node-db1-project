@@ -18,14 +18,14 @@ exports.checkAccountPayload = (req, res, next) => {
 }
 
 exports.checkAccountNameUnique = async (req, res, next) => {
-  const findName = req.Accounts.map(account => account.name == req.body.name)
+  const findName = req.accounts.map(account => account.name == req.body.name)
   if(findName) {
     res.status(400).json({error: "That name is already taken"})
   }
 }
 
 exports.checkAccountId = async (req, res, next) => {
-  const account = req.Accounts.map(account => account.id == req.params.id)
+  const account = req.accounts.map(account => account.id == req.params.id)
   if(!account) {
     res.status(400).json({error: "account not found"})
   } else {
