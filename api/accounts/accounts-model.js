@@ -6,9 +6,13 @@ const getAll = () => {
   return db("accounts")
   }
 
-const getById = id => {
+const getById =(id)=> {
   // DO YOUR MAGIC
-  return db("accounts").where("id",id).first()
+  
+return db("accounts")
+  .where("id",id)
+  .first()
+
   
 }
 
