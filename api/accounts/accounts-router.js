@@ -1,7 +1,13 @@
-const router = require('express').Router()
+const router = require('express').Router();
+const db = require('./accounts-model');
+const middleware = require('./accounts-middleware');
+
 
 router.get('/', async (req, res, next) => {
-  // DO YOUR MAGIC
+  db.getAll()
+  .then((respon) => {
+    res.send(respon);
+  })
 })
 
 router.get('/:id', (req, res, next) => {
