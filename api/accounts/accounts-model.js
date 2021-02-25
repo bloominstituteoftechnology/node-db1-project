@@ -9,6 +9,11 @@ const getById = id => {
     .where({id})
 }
 
+const getByName = name => {
+  return db('accounts')
+    .where({name})
+}
+
 const create = async account => {
   return db('accounts')
     .insert(account)
@@ -32,6 +37,7 @@ const deleteById = async id => {
 module.exports = {
   getAll,
   getById,
+  getByName,
   create,
   updateById,
   deleteById,
