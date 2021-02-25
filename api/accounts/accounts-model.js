@@ -10,7 +10,7 @@ const getById =(id)=> {
   // DO YOUR MAGIC
   
 return db("accounts")
-  .where("id",id)
+  .where({id})
   .first()
 
   
