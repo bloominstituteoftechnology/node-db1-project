@@ -35,8 +35,11 @@ exports.checkAccountId = async (req, res, next) => {
   // DO YOUR MAGIC
   db.getById(req.params.id)
   .then((response) => {
-    if(response)
+    if(response.length > 0){
+      console.log(response);
+      req.account = response;
       next();
+    }
     else
       res.status(404).send({ message: "account not found" })
   })

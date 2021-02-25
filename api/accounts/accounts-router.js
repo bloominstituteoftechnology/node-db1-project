@@ -10,8 +10,9 @@ router.get('/', async (req, res, next) => {
   })
 })
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', middleware.checkAccountId, (req, res, next) => {
   // DO YOUR MAGIC
+  res.send(req.account);
 })
 
 router.post('/', (req, res, next) => {
