@@ -3,11 +3,11 @@ exports.checkAccountPayload = (req, res, next) => {
     res.status(400).json({error: "No Account"})
   } else if(!req.name || !req.budget) {
     res.status(400).json({error: "name and budget are required"})
-  } else if(is_string(req.name) == false) {
+  } else if(typeof req.name !== 'string') {
     res.status(400).json({error: "name of account must be a string"})
   } else if(req.name.length < 3) {
     res.status(400).json({error: "name of account must be between 3 and 100"})
-  } else if(is_num(req.budget) !== true) {
+  } else if(typeof req.budget !== "number") {
     res.status(400).json({error: "budget of account must be a number"})
   } else if(req.budget < 0 || req.budget > 1000000) {
     res.status(400).json({error: "budget of account is either too large or too small"})
