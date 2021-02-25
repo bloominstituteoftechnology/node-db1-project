@@ -22,8 +22,16 @@ exports.checkAccountPayload = (req, res, next) => {
 
 exports.checkAccountNameUnique = async (req, res, next) => {
   // DO YOUR MAGIC
+  
 }
 
 exports.checkAccountId = async (req, res, next) => {
   // DO YOUR MAGIC
+  db.getById(req.params.id)
+  .then((response) => {
+    if(response)
+      next();
+    else
+      res.status(404).send({ message: "account not found" })
+  })
 }
