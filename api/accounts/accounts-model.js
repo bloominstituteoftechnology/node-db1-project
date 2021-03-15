@@ -1,21 +1,33 @@
+const knex = require("knex")
+
+const config = {
+  client: "sqlite3",
+  connection: {
+    filename: "./data/budget.db3"
+  },
+  useNullAsDefault: "true"
+}
+
+const db = knex(config)
+
 const getAll = () => {
-  // DO YOUR MAGIC
+  db.select("*")
 }
 
 const getById = id => {
-  // DO YOUR MAGIC
+  db.select("*").from("accounts").where(id)
 }
 
 const create = async account => {
-  // DO YOUR MAGIC
+  await db("accounts").insert(account)
 }
 
 const updateById = async (id, account) => {
-  // DO YOUR MAGIC
+  await db("accounts").where(id).update(account)
 }
 
 const deleteById = async id => {
-  // DO YOUR MAGIC
+  await db("accounts").where(id).del()
 }
 
 module.exports = {
