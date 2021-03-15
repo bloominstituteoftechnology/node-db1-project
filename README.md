@@ -31,7 +31,7 @@ There are two possible ways to submit your project. Your instructor should have 
 
 ### 2.1 Write Basic SQL Queries
 
-Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/trysql.asp?filename=trysql_select_all) using the **Google Chrome (or Chromium if you use Linux) browser** and write _SQL queries_ for the following requirements:
+Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/trysql.asp?filename=trysql_select_all) using Chrome and build the queries below. Once they work copy them to the `queries.sql` file at the root of the project.
 
 - Find all customers with postal code 1010. Returns 3 records.
 - Find the phone number for the supplier with the id 11. Should be (010) 9984510.
