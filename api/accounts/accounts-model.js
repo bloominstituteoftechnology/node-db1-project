@@ -13,6 +13,9 @@ const getById = id => {
 
 const create = async account => {
   // DO YOUR MAGIC
+  // QUESTION: if don't use the await and just return account after the insert, the new info is not saved to the DB?
+  const [id] = await db('accounts').insert(account,['id'])
+  return getById(id)
 }
 
 const updateById = async (id, account) => {

@@ -24,6 +24,12 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   // DO YOUR MAGIC
+  Accounts.create(req.body)
+    .then(() => {
+      res.status(202).json(req.body)
+    }).catch(err => {
+      next(err)
+    })
 })
 
 router.put('/:id', (req, res, next) => {
