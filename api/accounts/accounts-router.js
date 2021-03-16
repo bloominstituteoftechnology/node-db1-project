@@ -1,7 +1,19 @@
-const router = require('express').Router()
+const express = require('express');
+const accounts = require('./accounts-model');
+const { checkAccountPayload, checkAccountNameUnique, checkAccountId } = require('./accounts-middleware');
+const router = express.Router();
 
-router.get('/', async (req, res, next) => {
+const root = process.env.API_ROOT || `/api`;
+//use this to prevent issues with knex config among other things.
+
+router.get(`${root}/accounts`, async (req, res, next) => {
   // DO YOUR MAGIC
+    try {
+      const data = await accounts.getAll();
+      res.status(200).json(data);
+    } catch (err) {
+        next(err);
+    }
 })
 
 router.get('/:id', (req, res, next) => {
