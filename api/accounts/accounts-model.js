@@ -38,10 +38,15 @@ const deleteById = async id => {
 
 }
 
+const getByName = async name => {
+  return db('accounts').where('name',name).first()
+}
+
 module.exports = {
   getAll,
   getById,
   create,
   updateById,
   deleteById,
+  getByName
 }
