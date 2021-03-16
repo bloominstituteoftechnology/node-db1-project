@@ -34,6 +34,14 @@ router.post('/', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
   // DO YOUR MAGIC
+  // const {id} = req.params;
+  // const {accounts} = req.body
+  Accounts.updateById(req.params.id, req.body)
+    .then(account => {
+      res.status(200).json(account)
+    }).catch(err => {
+      next(err)
+    })
 });
 
 router.delete('/:id', (req, res, next) => {
