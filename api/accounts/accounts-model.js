@@ -1,9 +1,14 @@
+// connects model w/ db config
+const db = require('../../data/db-config.js') 
+
 const getAll = () => {
   // DO YOUR MAGIC
+  return db('accounts')
 }
 
 const getById = id => {
   // DO YOUR MAGIC
+  return db('accounts').where({id})
 }
 
 const create = async account => {
