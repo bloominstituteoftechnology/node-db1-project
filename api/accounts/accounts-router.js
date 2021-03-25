@@ -32,7 +32,11 @@ router.post('/', Middleware.checkAccountPayload, async (req, res, next) => {
 
 router.put('/:id', Middleware.checkAccountPayload, Middleware.checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
+  console.log(req.params.id, req.body)
+
   try {
+    console.log(req.params.id, req.body)
+
   const updatedAccount = await Accounts.updateById(req.params.id, req.body);
   res.status(200).json(req.body);
   } catch (err) {

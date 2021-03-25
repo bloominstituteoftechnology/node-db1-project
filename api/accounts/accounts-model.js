@@ -6,7 +6,8 @@ const getAll = () => {
 }
 
 const getById = id => {
-  return db.first('*').from('accounts').where({ id })
+ const account = db.first('*').from('accounts').where({ id })
+  return account
   // DO YOUR MAGIC
 }
 
@@ -15,17 +16,21 @@ const getByName = name => {
 }
 
 const create = async account => {
-  return await db('accounts').insert(account)
+  const newAcc = await db('accounts').insert(account)
+  return newAcc
   // DO YOUR MAGIC
 }
 
 const updateById = async (id, account) => {
-  return await db.update(id, account).from('accounts').where({ id })
+  const updatedAccount = await db.update(account).from('accounts').where({ id })
+  console.log(updatedAccount, "updated acc")
+  return updatedAccount
   // DO YOUR MAGIC
 }
 
 const deleteById = async id => {
-  return await db('accounts').del().where({ id })
+  const deleted = await db('accounts').del().where({ id })
+  return deleted
   // DO YOUR MAGIC
 }
 
