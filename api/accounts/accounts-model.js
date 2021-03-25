@@ -15,6 +15,9 @@ const db = require('../../data/db-config');
 
 
 const getAll = () => {
+  db.select('*').from('accounts');
+
+  //return db('accounts')
   // DO YOUR MAGIC
 }
 
