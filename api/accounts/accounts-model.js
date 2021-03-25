@@ -1,7 +1,8 @@
 const db = require('../../data/db-config');
 
-const getAll = () => {
+const getAll = async () => {
 	// !! DO YOUR MAGIC
+	console.log(await db('accounts').toString());
 	return db('accounts');
 };
 
