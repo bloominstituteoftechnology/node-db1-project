@@ -12,9 +12,9 @@ const getById = (id) => {
 	return account;
 };
 
-const create = async (account) => {
+const create = (account) => {
 	// !! DO YOUR MAGIC
-	const newAccount = await db('accounts').insert(account);
+	const newAccount = db('accounts').insert(account);
 	return newAccount;
 };
 

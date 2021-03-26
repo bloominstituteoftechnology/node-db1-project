@@ -18,17 +18,24 @@ router.get('/:id', Middleware.checkAccountId, (req, res) => {
 	res.status(200).json(req.account);
 });
 
-router.post('/', (req, res, next) => {
-	// !! DO YOUR MAGIC
-});
+router.post(
+	'/',
+	Middleware.checkAccountPayload,
+	// Middleware.checkAccountNameUnique,
+	async (req, res) => {
+		// !! DO YOUR MAGIC
+		const newAccount = await Accounts.create(req.body);
+		res.status(201).json(newAccount);
+	}
+);
 
-router.put('/:id', (req, res, next) => {
-	// !! DO YOUR MAGIC
-});
+// router.put('/:id', (req, res, next) => {
+// 	// !! DO YOUR MAGIC
+// });
 
-router.delete('/:id', (req, res, next) => {
-	// !! DO YOUR MAGIC
-});
+// router.delete('/:id', (req, res, next) => {
+// 	// !! DO YOUR MAGIC
+// });
 
 router.use((err, req, res, next) => {
 	// eslint-disable-line

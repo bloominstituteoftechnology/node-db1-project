@@ -54,9 +54,23 @@ exports.checkAccountPayload = (req, res, next) => {
 	}
 };
 
-exports.checkAccountNameUnique = async (req, res, next) => {
-	// !! DO YOUR MAGIC
-};
+// exports.checkAccountNameUnique = async (req, res, next) => {
+// 	// !! DO YOUR MAGIC
+// 	try {
+// 		const account = await Accounts.getAll(req.params.name);
+// 		if (account) {
+// 			const err = new ExpressError(
+// 				'new account must have a unique name',
+// 				400
+// 			);
+// 			next(err);
+// 		} else {
+// 			next();
+// 		}
+// 	} catch (err) {
+// 		next(new ExpressError(err, 500));
+// 	}
+// };
 
 exports.checkAccountId = async (req, res, next) => {
 	// !! DO YOUR MAGIC
