@@ -1,31 +1,19 @@
-
-
-
-/*
-- `getAll` resolves to an array of accounts (or an empty array)
-- `getById` resolves to an account by the given id
-- `create` resolves to the newly created account
-- `updateById` resolves to the updated account
-- `deleteById` resolves to the deleted account
-*/
-
-
-const db = require('../../data/db-config');
-
-
-
 const getAll = () => {
-  db.select('*').from('accounts');
-
-  //return db('accounts')
+  return db ('accounts')
   // DO YOUR MAGIC
 }
 
 const getById = id => {
-  // DO YOUR MAGIC
+  if 9id
+ {
+   return db ('accounts')
+   .where ('id', id)
+   .first()
+ }  // DO YOUR MAGIC
 }
 
 const create = async account => {
+  
   // DO YOUR MAGIC
 }
 
