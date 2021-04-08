@@ -99,7 +99,6 @@ npm run resetdb
 
 #### Important Notes
 
-- Run tests locally by executing `npm test`.
 - You are welcome to create additional files but **do not move or rename existing files** or folders.
 - Do not alter your `package.json` file except to install additional libraries or add additional scripts.
 - In your solution, it is essential that you follow best practices and produce clean and professional results.
