@@ -2,10 +2,10 @@ exports.checkAccountPayload = (req, res, next) => {
   // DO YOUR MAGIC
 }
 
-exports.checkAccountNameUnique = async (req, res, next) => {
+exports.checkAccountNameUnique = (req, res, next) => {
   // DO YOUR MAGIC
 }
 
-exports.checkAccountId = async (req, res, next) => {
+exports.checkAccountId = (req, res, next) => {
   // DO YOUR MAGIC
 }
