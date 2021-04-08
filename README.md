@@ -44,10 +44,10 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/trysql.asp
 
 ### 2.2 Build a RESTful API for the Accounts Resource
 
-We have provided some records inside the "accounts" table of the `budget.db3` database. You can restore the database by running the following command:
+We have provided some records inside the "accounts" table of the `budget.db3` database. You can restore the database (even after deleting the database) by running the following command:
 
 ```js
-npx knex seed:run
+npm run resetdb
 ```
 
 #### Accounts Schema
@@ -100,7 +100,6 @@ npx knex seed:run
 #### Important Notes
 
 - Run tests locally by executing `npm test`.
-- Reset the database to its original state running `npm run resetdb`.
 - You are welcome to create additional files but **do not move or rename existing files** or folders.
 - Do not alter your `package.json` file except to install additional libraries or add additional scripts.
 - In your solution, it is essential that you follow best practices and produce clean and professional results.
