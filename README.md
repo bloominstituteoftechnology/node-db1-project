@@ -97,8 +97,10 @@ npx knex seed:run
 - Manually test your endpoints with a REST client like `Insomnia` or `Postman` to check they are working as expected.
 - Test your endpoints automatically by running `npm test`.
 
-#### Notes
+#### Important Notes
 
+- Run tests locally by executing `npm test`.
+- Reset the database to its original state running `npm run resetdb`.
 - You are welcome to create additional files but **do not move or rename existing files** or folders.
 - Do not alter your `package.json` file except to install additional libraries or add additional scripts.
 - In your solution, it is essential that you follow best practices and produce clean and professional results.
