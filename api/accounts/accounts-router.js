@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-router.get('/', async (req, res, next) => {
+router.get('/', (req, res, next) => {
   // DO YOUR MAGIC
 })
 
@@ -21,11 +21,7 @@ router.delete('/:id', (req, res, next) => {
 })
 
 router.use((err, req, res, next) => { // eslint-disable-line
-  // CALL next(err) IF THE PROMISE REJECTS INSIDE YOUR ENDPOINTS
-  res.status(500).json({
-    message: 'something went wrong inside the accounts router',
-    errMessage: err.message,
-  })
+  // DO YOUR MAGIC
 })
 
 module.exports = router;
