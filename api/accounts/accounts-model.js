@@ -6,15 +6,15 @@ const getById = id => {
   // DO YOUR MAGIC
 }
 
-const create = async account => {
+const create = account => {
   // DO YOUR MAGIC
 }
 
-const updateById = async (id, account) => {
+const updateById = (id, account) => {
   // DO YOUR MAGIC
 }
 
-const deleteById = async id => {
+const deleteById = id => {
   // DO YOUR MAGIC
 }
 
