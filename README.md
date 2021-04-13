@@ -1,6 +1,6 @@
 # Node DB1 Project Starter Code 3 3 3 ----------
 
-## Introduction
+## Introduction     -------
 
 - Relational Databases
 - Writing Basic SQL Queries
