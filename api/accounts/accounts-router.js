@@ -21,18 +21,21 @@ router.post('/', checkAccountPayload, checkAccountNameUnique, async (req, res, n
   res.status(201).json(newAccount)
 })
 
-router.put('/:id', checkAccountPayload, checkAccountNameUnique, checkAccountId, (req, res, next) => {
+router.put('/:id', checkAccountPayload, checkAccountNameUnique, checkAccountId, async (req, res, next) => {
   const updatedAccount = await accounts.updateById(req.params.id, req.accountPayload)
   res.status(200).json(updatedAccount)
 })
 
 router.delete('/:id', checkAccountId, (req, res, next) => {
   accounts.deleteById(req.params.id)
-  res.status(200).json(req.account)
+    .then( () => {
+      res.status(200).json(req.account)
+    })
+    .catch()
 })
 
 router.use((err, req, res, next) => {
-  
+
 })
 
 module.exports = router;

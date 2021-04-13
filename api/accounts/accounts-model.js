@@ -10,22 +10,22 @@ module.exports = {
   deleteById,
 }
 
-const getAll = () => {
+function getAll(){
   return db('accounts')
 }
 
-const getById = id => {
+function getById(id){
   return db('accounts')
     .where({ id })
     .first()
 } 
 
-const getByName = name => {
+function getByName(name){
   return db('accounts')
     .where({ name })
 }
 
-const create = account => {
+function create(account){
   return db('accounts')
     .insert(account)
     .then( ids => {
@@ -33,7 +33,7 @@ const create = account => {
     })
 }
 
-const updateById = (id, updatedAccount) => {
+function updateById(id, updatedAccount){
   return db('accounts')
     .where({ id })
     .update(updatedAccount)
@@ -42,7 +42,7 @@ const updateById = (id, updatedAccount) => {
     })
 }
 
-const deleteById = id => {
+function deleteById(id){
   return db('accounts')
     .where({ id })
     .del()
