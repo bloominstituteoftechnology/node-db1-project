@@ -1,3 +1,5 @@
+const { getById, getByName } = require('./accounts-model.js')
+
 exports.checkAccountPayload = (req, res, next) => {
   const { name, budget } = req.body
 
@@ -21,11 +23,15 @@ exports.checkAccountPayload = (req, res, next) => {
     res.status(400).json({ message: "budget of account is too large or too small" })
   } else {
     req.accountPayload = { name: name.trim(), budget }
+    next()
   }
 }
 
-exports.checkAccountNameUnique = (req, res, next) => {
-  // DO YOUR MAGIC
+exports.checkAccountNameUnique = async (req, res, next) => {
+  const accountsWithName = await getByName(res.accountPayload.name)
+  accountsWithName.length > 0
+    ? res.status(400).json({ message: "that name is taken" })
+    : next()
 }
 
 exports.checkAccountId = (req, res, next) => {

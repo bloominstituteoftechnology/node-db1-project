@@ -4,6 +4,7 @@ const db = require('../../data/db-config')
 module.exports = {
   getAll,
   getById,
+  getByName,
   create,
   updateById,
   deleteById,
@@ -17,6 +18,11 @@ const getById = id => {
   return db('accounts')
     .where({ id })
     .first()
+} 
+
+const getByName = name => {
+  return db('accounts')
+    .where({ name })
 }
 
 const create = account => {
