@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
-    "test": "cross-env NODE_ENV=testing jest --watch --verbose --runInBand",
+    "test": "npm run resetdb && cross-env NODE_ENV=testing jest --watch --verbose --runInBand",
     "resetdb": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
   "dependencies": {
