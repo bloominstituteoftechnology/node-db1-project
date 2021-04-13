@@ -8,8 +8,8 @@ const {
 } = require('./accounts-middleware.js')
 
 router.get('/', async (req, res, next) => {
-  const accounts = await accounts.getAll()
-  res.status(200).json(accounts)
+  const allAccounts = await accounts.getAll()
+  res.status(200).json(allAccounts)
 })
 
 router.get('/:id', checkAccountId, (req, res, next) => {
