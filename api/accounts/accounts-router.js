@@ -31,9 +31,10 @@ router.delete('/:id', checkAccountId, (req, res, next) => {
     .then( () => {
       res.status(200).json(req.account)
     })
-    .catch()
 })
 
+
+// not exactly sure how to use with async/await, or if nessacary
 router.use((err, req, res, next) => {
 
 })
