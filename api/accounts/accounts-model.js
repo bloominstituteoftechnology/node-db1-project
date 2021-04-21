@@ -1,21 +1,46 @@
-const getAll = () => {
-  // DO YOUR MAGIC
+const db = require("../../data/db-config")
+
+const getAll = async () => {
+  // translates to `SELECT * FROM accounts;` in SQL
+  return await db("accounts")
+    .select()
 }
 
-const getById = id => {
-  // DO YOUR MAGIC
+const getById = async (id) => {
+  // translates to `SELECT * FROM accounts WHERE id = ? LIMIT 1;` in SQL
+  return await db("accounts")
+    .where({ id })
+    .first()
 }
 
-const create = account => {
-  // DO YOUR MAGIC
+const create = async (account) => {
+  // translates to `INSERT INTO accounts (name, budget) VALUES (?, ?);` in SQL
+  const [id] = await db("accounts")
+    .insert(account.name, account.budget)
+
+	const newAccount = await db("accounts")
+    .where({ id })
+    .first()
+
+  return (id, newAccount)
 }
 
-const updateById = (id, account) => {
-  // DO YOUR MAGIC
+const updateById = async (id, account) => {
+  // translates to `UPDATE accounts SET name = ? AND budget = ? WHERE id = ?;` in SQL
+  await db("accounts")
+    .update(account)
+    .where({ id })
+
+	return await db("accounts")
+    .where({ id })
+    .first()
 }
 
-const deleteById = id => {
-  // DO YOUR MAGIC
+const deleteById = async (id) => {
+  // translates to `DELETE FROM accounts WHERE id = ?;` in SQL
+  return await db("accounts")
+    .where({ id })
+    .del()
 }
 
 module.exports = {
