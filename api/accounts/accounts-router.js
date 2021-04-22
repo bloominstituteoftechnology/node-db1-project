@@ -1,7 +1,16 @@
-const router = require('express').Router()
+const express = require("express")
 
-router.get('/', (req, res, next) => {
+const router = express.Router()
+const db = require("./accounts-model")
+
+router.get('/', async (req, res, next) => {
   // DO YOUR MAGIC
+  try {
+    const allAccounts = await db.getAll()
+    res.status(200).json(allAccounts)
+  } catch (err) {
+    next(err)
+  }
 })
 
 router.get('/:id', (req, res, next) => {
