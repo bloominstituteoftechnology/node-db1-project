@@ -2,7 +2,7 @@ const db = require("../../data/db-config")
 
 const getAll = () => {
   // translates to `SELECT * FROM accounts;` in SQL
-  return db("accounts").select()
+  return db("accounts")
 }
 
 const getById = async (id) => {
