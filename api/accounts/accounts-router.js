@@ -11,33 +11,34 @@ router.get('/', async (req, res, next) => {
     }
   })
 
-router.get('/:id', checkAccountId(), (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
-
+    const accounts = await db.getById(req.account.id)
+    res.status(200).json(accounts)
   } catch(err) {
     next(err)
   }
 })
 
-router.post('/', checkAccountPayload(), (req, res, next) => {
+router.post('/', checkAccountPayload(), async (req, res, next) => {
   try {
-
+    const accounts = await db.create(req.body)
+    res.status(201).json(accounts)
   } catch(err) {
     next(err)
   }
 })
 
 router.put('/:id', checkAccountId(), checkAccountPayload(), (req, res, next) => {
-  try {
-
-  } catch(err) {
-    next(err)
-  }
+  db.updateById(req.account.id, req.body)
+    .then(account => res.status(200).json(account))
+    .catch(next)
 });
 
-router.delete('/:id', checkAccountId(), (req, res, next) => {
+router.delete('/:id', checkAccountId(), async (req, res, next) => {
   try {
-
+    await db.deleteById(req.account.id)
+    res.status(204).end()
   } catch(err) {
     next(err)
   }

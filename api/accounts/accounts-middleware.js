@@ -1,7 +1,7 @@
 const accounts = require("../accounts/accounts-model")
 
-exports.checkAccountPayload = (req, res, next) => {
-  return () => {
+exports.checkAccountPayload = () => {
+  return (req, res, next) => {
     if(!req.body.name || !req.body.budget){
       return res.status(400).json({
         message: "name and budget are required"
@@ -59,6 +59,6 @@ exports.checkAccountId = () => {
       }
    })
 
-    next()
+    .catch(next)
   }
 }

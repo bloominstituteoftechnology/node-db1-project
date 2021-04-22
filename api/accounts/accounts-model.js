@@ -5,9 +5,9 @@ const getAll = () => {
   return db("accounts")
 }
 
-const getById = async (id) => {
+const getById = id => {
   // translates to `SELECT * FROM accounts WHERE id = ? LIMIT 1;` in SQL
-  return await db("accounts")
+  return db("accounts")
     .where({ id })
     .first()
 }
@@ -15,7 +15,7 @@ const getById = async (id) => {
 const create = async (account) => {
   // translates to `INSERT INTO accounts (name, budget) VALUES (?, ?);` in SQL
   const [id] = await db("accounts")
-    .insert(account.name, account.budget)
+    .insert(account)
 
 	const newAccount = await db("accounts")
     .where({ id })
