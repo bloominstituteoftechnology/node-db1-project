@@ -1,8 +1,8 @@
 const db = require("./accounts-model")
 
-exports.checkAccountPayload = (req, res, next) => {
+function checkAccountPayload() {
   // DO YOUR MAGIC
-  try {
+  return (req, res, next) => {
     const name = req.body.name
     const budget = req.body.budget
 
@@ -15,15 +15,10 @@ exports.checkAccountPayload = (req, res, next) => {
   } else if (typeof budget !== 'number') {
       res.status(400).json({message: "budget of account must be a number"})
   } else if (budget < 0 || budget > 1000000) {
-      res.status(400).json({message: "budget of account is too large or too small"})
-  } else {
-    next()
-  }
-
-} catch(err) {
-    next(err)
-  } 
-}
+     return res.status(400).json({message: "budget of account is too large or too small"})
+  }}
+    
+}  
 
 /* exports.checkAccountNameUnique = async (req, res, next) => {
   // DO YOUR MAGIC
@@ -33,26 +28,30 @@ exports.checkAccountPayload = (req, res, next) => {
       if (account.name === req.body.name) {
         res.status(400).json({message: "that name is taken"})
       } else {
-        next()
+        return account
       }
 
     } catch(err) {
-      next(err)
+      console.log(err)
     
 }
  */
 
-exports.checkAccountId = async (req, res, next) => {
-  // DO YOUR MAGIC  
-  try {
-    const isValid = await db.getById(req.params.id)
-      if (!isValid) {
+function checkAccountId() { 
+  return (req, res, next) => {
+  db.getById(req.params.id)
+    .then((account) => {
+      if (!account) {
         res.status(400).json({message: "account not found"})
-      } else {
-        next()
-      }
-
-    } catch(err) {
-      next(err)
+    } else {
+        req.account = account
+          next()
     }
-}
+    })
+    .catch((error) => {
+      next(error)
+    })
+  }
+}    
+
+module.exports = {checkAccountPayload, checkAccountId}

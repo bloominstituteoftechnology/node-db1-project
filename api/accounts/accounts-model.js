@@ -29,10 +29,10 @@ const updateById = (id, account) => {
     .update(account)
 }
 
-const deleteById =  id => {
+const deleteById = id => {
   // DO YOUR MAGIC
    return db("accounts")
-    .where('id', id)
+    .where({ id })
     .del()
 }
 
