@@ -35,7 +35,7 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/trysql.asp
 
 - Find all customers with postal code 1010. Returns 3 records.
 - Find the phone number for the supplier with the id 11. Should be (010) 9984510.
-- List first 10 orders placed, sorted descending by the order date. The order with date 1997-02-12 should be at the top.
+- List first 10 orders placed, sorted descending by the order date. onaje-ptThe order with date 1997-02-12 should be at the top.
 - Find all customers that live in London, Madrid, or Brazil. Returns 18 records.
 - Add a customer record for _"The Shire"_, the contact name is _"Bilbo Baggins"_ the address is _"1 Hobbit-Hole"_ in _"Bag End"_, postal code _"111"_ and the country is _"Middle Earth"_.
 - Update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
@@ -78,7 +78,7 @@ npm run resetdb
     - If name is not a string, return `{ message: "name of account must be a string" }`
     - If the _trimmed_ name is shorter than 3 or longer than 100, return `{ message: "name of account must be between 3 and 100" }`
     - If budget is not a number, return `{ message: "budget of account must be a number" }`
-    - If budget is a negative number or over one million, return  `{ message: "budget of account is too large or too small" }`
+    - If budget is a negative number or over one million, return `{ message: "budget of account is too large or too small" }`
 
   - `checkAccountId` returns a status 404 with a `{ message: "account not found" }` if `req.params.id` does not exist in the database
 
