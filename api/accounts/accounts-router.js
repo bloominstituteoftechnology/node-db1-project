@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { checkAccountId } = require("./accounts-middleware.js");
 const Account = require("./accounts-model.js");
 
 router.get("/", async (req, res, next) => {
@@ -10,8 +11,8 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", (req, res, next) => {
-  // DO YOUR MAGIC
+router.get("/:id", checkAccountId, (req, res) => {
+  res.status(200).json(req.account);
 });
 
 router.post("/", (req, res, next) => {
