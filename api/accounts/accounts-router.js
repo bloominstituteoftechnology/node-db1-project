@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Account = require("./accounts-model");
+const Account = require("./accounts-model.js");
 
 router.get("/", async (req, res, next) => {
   try {

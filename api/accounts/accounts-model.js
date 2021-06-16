@@ -5,19 +5,33 @@ const getAll = () => {
 };
 
 const getById = (id) => {
-  // DO YOUR MAGIC
+  // select * from accounts where id = (some#)
+  return db("accounts").where("id", id).first();
 };
 
-const create = (account) => {
-  // DO YOUR MAGIC
+const create = async ({ name, budget }) => {
+  // generate id in db
+  // insert into accounts(name, budget)
+  // return id
+  const [id] = await db("accounts").insert({ name, budget });
+  return getById(id);
 };
 
-const updateById = (id, account) => {
-  // DO YOUR MAGIC
+const updateById = async (id, { name, budget }) => {
+  // grab id from db
+  // update name and budget if "id"=id
+  // return updated id
+  await db("accounts").where("id", id).update({ name, budget });
+  return getById(id);
 };
 
-const deleteById = (id) => {
-  // DO YOUR MAGIC
+const deleteById = async (id) => {
+  // grab account from db by id
+  // delete account if "id"=id
+  // return deleted account
+  const deletedPost = await getById(id);
+  await db("accounts").where("id", id).delete();
+  return deletedPost;
 };
 
 module.exports = {
