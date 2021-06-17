@@ -10,6 +10,7 @@ const getAll = () => {
 const getById = id => {
   // select * from accounts where accountid = userGivenId
   //  "id" refers to column id, id returns to the passed id
+  console.log("in the getById")
   return db("accounts").where("id", id).first()
   // .first() gives you just the object ... not in an array [{}]
 }
@@ -48,7 +49,3 @@ module.exports = {
   updateById,
   deleteById,
 }
-
-// curl -d '{"name":"test", "budget": 1234}' -H "Content-Type: application/json" -X POST http://localhost:5000/api/accounts/
-
-// curl -X PUT -H "Content-Type: application/json" -d '{"name":"test2"}' "http://localhost:5000/api/accounts/"

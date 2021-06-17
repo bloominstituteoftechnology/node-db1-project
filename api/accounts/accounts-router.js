@@ -4,6 +4,10 @@ const router = require('express').Router();
 // const express = require('express')
 // const router = express.Router()
 
+const imports = require('./accounts-middleware');
+const checkAccountId = imports.checkAccountId;
+const checkAccountPayload = imports.checkAccountPayload;
+const checkAccountNameUnique = imports.checkAccountNameUnique;
 
 const Account = require('./accounts-model');
 
@@ -17,18 +21,11 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:id', async (req, res, next) => {
-  const {id} = req.params;
-  try {
-    const accountById = await Account.getById(id)
-    console.log("accountById: ", accountById);
-    res.status(200).json(accountById);
-  } catch (err) {
-    next(err)
-  }
+router.get('/:id', checkAccountId, async (req, res, next) => { 
+  res.status(200).json(req.account) 
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', checkAccountPayload, async (req, res, next) => {
   const newAccount = req.body;
   console.log("newAccount: ", newAccount);
   try {
@@ -41,7 +38,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', checkAccountId, async (req, res, next) => {
   const id = req.params.id;
   const changes = req.body;
   try {
@@ -54,7 +51,7 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', checkAccountId, async (req, res, next) => {
   const id = req.params.id;
   try {
     const deletedAccount = await Account.deleteById(id);
