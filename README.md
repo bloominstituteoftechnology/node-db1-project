@@ -22,10 +22,10 @@ There are two possible ways to submit your project. Your instructor should have 
 
 #### Option B - Pull Request
 
-- [ ] Fork and clone the repository.
-- [ ] Implement your project in a `firstname-lastname` branch.
-- [ ] Create a pull request of `firstname-lastname` against your `main` branch.
-- [ ] Open the assignment in Canvas and submit your pull request.
+- [x] Fork and clone the repository.
+- [x] Implement your project in a `firstname-lastname` branch.
+- [x] Create a pull request of `firstname-lastname` against your `main` branch.
+- [x] Open the assignment in Canvas and submit your pull request.
 
 ### Task 2: Minimum Viable Product
 
@@ -33,12 +33,12 @@ There are two possible ways to submit your project. Your instructor should have 
 
 Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/trysql.asp?filename=trysql_select_all) using Chrome and build the queries below. Once they work copy them to the `queries.sql` file at the root of the project.
 
-- Find all customers with postal code 1010. Returns 3 records.
-- Find the phone number for the supplier with the id 11. Should be (010) 9984510.
-- List first 10 orders placed, sorted descending by the order date. The order with date 1997-02-12 should be at the top.
-- Find all customers that live in London, Madrid, or Brazil. Returns 18 records.
-- Add a customer record for _"The Shire"_, the contact name is _"Bilbo Baggins"_ the address is _"1 Hobbit-Hole"_ in _"Bag End"_, postal code _"111"_ and the country is _"Middle Earth"_.
-- Update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
+-[x] Find all customers with postal code 1010. Returns 3 records.
+-[x] Find the phone number for the supplier with the id 11. Should be (010) 9984510.
+-[x] List first 10 orders placed, sorted descending by the order date. The order with date 1997-02-12 should be at the top.
+-[x] Find all customers that live in London, Madrid, or Brazil. Returns 18 records.
+-[x] Add a customer record for _"The Shire"_, the contact name is _"Bilbo Baggins"_ the address is _"1 Hobbit-Hole"_ in _"Bag End"_, postal code _"111"_ and the country is _"Middle Earth"_.
+-[x] Update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
 
 **Clicking the `Restore Database` button in the page will repopulate the database with the original data and discard all changes you have made**.
 
@@ -62,17 +62,17 @@ npm run resetdb
 
 - Write the following db access functions inside `api/accounts/accounts-model.js` using Knex:
 
-  - `getAll` resolves to an array of accounts (or an empty array)
-  - `getById` resolves to an account by the given id
-  - `create` resolves to the newly created account
-  - `updateById` resolves to the updated account
-  - `deleteById` resolves to the deleted account
+  -[x] `getAll` resolves to an array of accounts (or an empty array)
+  -[x]`getById` resolves to an account by the given id
+  -[x]`create` resolves to the newly created account
+  -[x]`updateById` resolves to the updated account
+  -[x] `deleteById` resolves to the deleted account
 
 #### Write Middleware
 
 - Write the following middlewares inside `api/accounts/accounts-middleware.js`:
 
-  - `checkAccountPayload` returns a status 400 with if `req.body` is invalid:
+  - [x]`checkAccountPayload` returns a status 400 with if `req.body` is invalid:
 
     - If either name or budget are undefined, return `{ message: "name and budget are required" }`
     - If name is not a string, return `{ message: "name of account must be a string" }`
@@ -80,19 +80,19 @@ npm run resetdb
     - If budget is not a number, return `{ message: "budget of account must be a number" }`
     - If budget is a negative number or over one million, return  `{ message: "budget of account is too large or too small" }`
 
-  - `checkAccountId` returns a status 404 with a `{ message: "account not found" }` if `req.params.id` does not exist in the database
+  -[x] `checkAccountId` returns a status 404 with a `{ message: "account not found" }` if `req.params.id` does not exist in the database
 
-  - `checkAccountNameUnique` returns a status 400 with a `{ message: "that name is taken" }` if the _trimmed_ `req.body.name` already exists in the database
+  - [x]`checkAccountNameUnique` returns a status 400 with a `{ message: "that name is taken" }` if the _trimmed_ `req.body.name` already exists in the database
 
 ### Write Accounts API
 
 - Write CRUD for the `accounts` resource, using the middlewares and model functions above wherever appropriate:
 
-  - `[GET] /api/accounts` returns an array of accounts (or an empty array if there aren't any).
-  - `[GET] /api/accounts/:id` returns an account by the given id.
-  - `[POST] /api/accounts` returns the created account. Leading or trailing whitespace on budget `name` should be trimmed before saving to db.
-  - `[PUT] /api/accounts/:id` returns the updated account. Leading or trailing whitespace on budget `name` should be trimmed before saving to db.
-  - `[DELETE] /api/accounts/:id` returns the deleted account.
+  -[x] `[GET] /api/accounts` returns an array of accounts (or an empty array if there aren't any).
+  - [x]`[GET] /api/accounts/:id` returns an account by the given id.
+  - [x]`[POST] /api/accounts` returns the created account. Leading or trailing whitespace on budget `name` should be trimmed before saving to db.
+  - [x]`[PUT] /api/accounts/:id` returns the updated account. Leading or trailing whitespace on budget `name` should be trimmed before saving to db.
+  - [x]`[DELETE] /api/accounts/:id` returns the deleted account.
 
 - Manually test your endpoints with a REST client like `Insomnia` or `Postman` to check they are working as expected.
 - Test your endpoints automatically by running `npm test`.
