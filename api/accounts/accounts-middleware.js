@@ -9,3 +9,6 @@ exports.checkAccountNameUnique = (req, res, next) => {
 exports.checkAccountId = (req, res, next) => {
   // DO YOUR MAGIC
 }
+
+
+//SET UP PROJECT - Have completion tomorrow
