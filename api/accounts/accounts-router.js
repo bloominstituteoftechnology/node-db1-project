@@ -2,6 +2,13 @@ const router = require('express').Router()
 const Accounts = require('./accounts-model')
 // import middleware
 
+const {
+  checkAccountPayload,
+  checkAccountNameUnique,
+  checkAccountId
+
+} = require('./accounts-middleware')
+
 router.get('/', (req, res, next) => {
   try {
     const data = await Accounts.get()
@@ -11,22 +18,37 @@ router.get('/', (req, res, next) => {
     next (err)
   }
 })
-
-router.get('/:id', async (req, res) => {
-
-  // DO YOUR MAGIC
+// R
+router.get('/:id', checkAccountId, async (req, res) => {
+  res.status(200).json(req.account)
 })
-
-router.post('/', (req, res, next) => {
-  // DO YOUR MAGIC
+// C
+router.post('/', checkAccountPayload, (req, res, next) => {
+try{
+  const newAccount = await Accounts.create(req.body)
+  res.status(201).json(newAccount)
+} catch(err){
+  next(err)
+}
 })
+// U
+router.put('/:id', checkAccountPayload, checkAccountId, (req, res, next) => {
+  try {
+    const updatedAccount = await Accounts.update(req.params.id, req.body)
+    res.status(200).json(updatedAccount)
+  } catch(err) {
+    next(err)
+  }
 
-router.put('/:id', (req, res, next) => {
-  // DO YOUR MAGIC
 });
-
+//  D
 router.delete('/:id', (req, res, next) => {
-  // DO YOUR MAGIC
+  try{
+    const deletedAccount = await Accounts.remove(req.params.id)
+    res.json(deletedAccount)
+  } catch(err){
+    next(err)
+  }
 })
 
 router.use((err, req, res, next) => { // eslint-disable-line
