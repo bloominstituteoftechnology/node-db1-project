@@ -1,4 +1,10 @@
+const db = require('../../data/db-config')
+
+
+
 const getAll = () => {
+
+  return db('accounts')
   // DO YOUR MAGIC
 }
 
