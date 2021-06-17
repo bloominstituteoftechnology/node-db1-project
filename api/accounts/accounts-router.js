@@ -1,7 +1,18 @@
 const router = require('express').Router()
+const db = require("../../data/db-config");
 
 router.get('/', (req, res, next) => {
   // DO YOUR MAGIC
+  db.select("*")
+  .from("accounts")
+  .then((accountsArray) => {
+    res.status(200).json({
+      data: accountsArray,
+    });
+  })
+  .catch((err) => {
+    console.log({ err });
+  });
 })
 
 router.get('/:id', (req, res, next) => {
