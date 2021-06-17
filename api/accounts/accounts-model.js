@@ -1,21 +1,30 @@
-const getAll = () => {
-  // DO YOUR MAGIC
+const db = require("../../data/db-config.js")
+
+
+
+
+function getAll() {
+  return db("accounts")
 }
 
-const getById = id => {
-  // DO YOUR MAGIC
+function getById(id){
+  return db("accounts").where("id", id).first() //This is saying return the first account we find with the id matching the id passed in as the argument
 }
 
-const create = account => {
-  // DO YOUR MAGIC
+async function create({name, budget}) {
+  const [id] = await db("accounts").insert({name, budget})
+  return getById(id)
 }
 
-const updateById = (id, account) => {
-  // DO YOUR MAGIC
+async function updateById(id, {name, budget}) {
+  await db("accounts").where("id", id).update({name, budget})
+  return getById(id)
 }
 
-const deleteById = id => {
-  // DO YOUR MAGIC
+async function deleteById(id) {
+  const deletedAcct = await getById(id)
+  await db("accounts").where("id", id).delete()
+  return deletedAcct
 }
 
 module.exports = {
