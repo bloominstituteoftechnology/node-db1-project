@@ -16,8 +16,9 @@ async function create({name, budget}) {
   return getById(id)
 }
 
-async function updateById(id, {name, budget}) {
-  await db("accounts").where("id", id).update({name, budget})
+async function updateById(id, req) {
+  const {name, budget} = req.body
+  await db("accounts").where("id", id).update(req.body)
   return getById(id)
 }
 

@@ -88,11 +88,11 @@ npm run resetdb
 
 - Write CRUD for the `accounts` resource, using the middlewares and model functions above wherever appropriate:
 
-  - `[GET] /api/accounts` returns an array of accounts (or an empty array if there aren't any).
-  - `[GET] /api/accounts/:id` returns an account by the given id.
-  - `[POST] /api/accounts` returns the created account. Leading or trailing whitespace on budget `name` should be trimmed before saving to db.
-  - `[PUT] /api/accounts/:id` returns the updated account. Leading or trailing whitespace on budget `name` should be trimmed before saving to db.
-  - `[DELETE] /api/accounts/:id` returns the deleted account.
+  -[x] `[GET] /api/accounts` returns an array of accounts (or an empty array if there aren't any).
+  - [x]`[GET] /api/accounts/:id` returns an account by the given id.
+  - [x]`[POST] /api/accounts` returns the created account. Leading or trailing whitespace on budget `name` should be trimmed before saving to db.
+  - [x]`[PUT] /api/accounts/:id` returns the updated account. Leading or trailing whitespace on budget `name` should be trimmed before saving to db.
+  - [x]`[DELETE] /api/accounts/:id` returns the deleted account.
 
 - Manually test your endpoints with a REST client like `Insomnia` or `Postman` to check they are working as expected.
 - Test your endpoints automatically by running `npm test`.
