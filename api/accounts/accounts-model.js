@@ -24,10 +24,15 @@ const deleteById = async (id) => {
   return deletedPost;
 };
 
+const findByName = (name) => {
+  return db("accounts").where("name", name);
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   updateById,
   deleteById,
+  findByName,
 };
