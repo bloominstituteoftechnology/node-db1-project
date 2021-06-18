@@ -25,9 +25,10 @@ router.get('/:id', checkAccountId, async (req, res, next) => {
   res.status(200).json(req.account) 
 })
 
-router.post('/', checkAccountPayload, async (req, res, next) => {
-  const newAccount = req.body;
+router.post('/', checkAccountPayload, checkAccountNameUnique, async (req, res, next) => {
+  const newAccount = req.account;
   console.log("newAccount: ", newAccount);
+  console.log("req.account", req.body);
   try {
     const postedAccount = await Account.create(newAccount)
     console.log("postedAccount: ", postedAccount);
@@ -38,7 +39,7 @@ router.post('/', checkAccountPayload, async (req, res, next) => {
   }
 })
 
-router.put('/:id', checkAccountId, async (req, res, next) => {
+router.put('/:id', checkAccountId, checkAccountPayload, async (req, res, next) => {
   const id = req.params.id;
   const changes = req.body;
   try {

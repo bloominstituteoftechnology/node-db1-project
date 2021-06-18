@@ -50,6 +50,9 @@ describe('server.js', () => {
     test('[6] creates a new account in the database', async () => {
       await request(server).post('/api/accounts').send({ name: 'foo', budget: 1000 })
       let accs = await db('accounts')
+      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+      console.log("accs: ",accs)
+      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
       expect(accs).toHaveLength(accounts.length + 1)
       expect(accs[accounts.length]).toMatchObject({ name: 'foo', budget: 1000 })
     })
