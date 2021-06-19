@@ -146,3 +146,11 @@ _/
 ## KNEX
 
 http://knexjs.org/
+
+
+## USING CURL
+
+
+// curl -d '{"name":"test", "budget": 1234}' -H "Content-Type: application/json" -X POST http://localhost:5000/api/accounts/
+
+// curl -X PUT -H "Content-Type: application/json" -d '{"name":"test2"}' "http://localhost:5000/api/accounts/"
