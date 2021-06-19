@@ -35,7 +35,6 @@ exports.checkAccountPayload = (req, res, next) => {
     res.status(400).json({ message: "name of account must be between 3 and 100 characters long" })
 
   } else {
-
     const account = {
       name: trimmedName,
       budget: budget
