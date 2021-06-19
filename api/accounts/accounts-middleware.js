@@ -4,10 +4,22 @@ const accounts = require("./accounts-model");
 
 exports.checkAccountPayload = (req, res, next) => {
   // DO YOUR MAGIC
-  if (!req.body.name || !req.body.budget) {
+  if (
+    typeof req.body.name === "undefined" ||
+    typeof req.body.budget === "undefined"
+  ) {
+    //console.log("incoming value middleware",req.body)
     return res.status(400).json({
       // - If either name or budget are undefined, return `{ message: "name and budget are required" }`
       message: "name and budget are required",
+    });
+  } else if (
+    typeof req.body.budget !== "number" ||
+    Number.isNaN(req.body.budget)
+  ) {
+    // - If budget is not a number, return `{ message: "budget of account must be a number" }` adjusted test to match expectation from readme.
+    return res.status(400).json({
+      message: "budget of account must be a number",
     });
   } else if (typeof req.body.name !== "string") {
     return res.status(400).json({
@@ -21,11 +33,6 @@ exports.checkAccountPayload = (req, res, next) => {
     return res.status(400).json({
       // - If the _trimmed_ name is shorter than 3 or longer than 100, return `{ message: "name of account must be between 3 and 100" }`
       message: "name of account must be between 3 and 100",
-    });
-  } else if (typeof req.body.budget !== "number") {
-// - If budget is not a number, return `{ message: "budget of account must be a number" }` adjusted test to match expectation from readme. 
-    return res.status(400).json({
-      message: "budget of account must be a number",
     });
   } else if (req.body.budget < 0 || req.body.budget > 1000000) {
     // - If budget is a negative number or over one million, return  `{ message: "budget of account is too large or too small" }`
@@ -69,7 +76,7 @@ exports.checkAccountId = (req, res, next) => {
     .then((account) => {
       if (account) {
         req.account = account;
-        console.log(req.account);
+        //console.log(req.account);
         next();
       } else {
         res.status(404).json({

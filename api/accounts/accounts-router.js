@@ -27,6 +27,7 @@ router.post(
   checkAccountPayload,
   checkAccountNameUnique,
   async (req, res, next) => {
+    console.log("budget value from post request", req.body.budget)
     // DO YOUR MAGIC
     try {
       const payload = {
@@ -46,6 +47,7 @@ router.put(
   checkAccountId,
   checkAccountPayload,
   async (req, res, next) => {
+    console.log("budget value from put request", req.body.budget)
     // DO YOUR MAGIC
     try {
       const payload = {
