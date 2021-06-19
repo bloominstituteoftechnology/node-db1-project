@@ -101,10 +101,10 @@ describe('server.js', () => {
       const invalid1 = { name: "foo", budget: NaN }
       const invalid2 = { name: "foo", budget: '1000' }
       let res = await request(server).post('/api/accounts').send(invalid1)
-      expect(res.body.message).toMatch(/must be a number/i)
+      expect(res.body.message).toMatch(/budget of account must be a number/i)
       expect(res.status).toBe(400)
       res = await request(server).post('/api/accounts').send(invalid2)
-      expect(res.body.message).toMatch(/must be a number/i)
+      expect(res.body.message).toMatch(/budget of account must be a number/i)
       expect(res.status).toBe(400)
     })
     test('[13] responds with a 400 and proper error if budget is negative or too big', async () => {
@@ -177,10 +177,10 @@ describe('server.js', () => {
       const invalid1 = { name: "foo", budget: NaN }
       const invalid2 = { name: "foo", budget: '1000' }
       let res = await request(server).put('/api/accounts/1').send(invalid1)
-      expect(res.body.message).toMatch(/must be a number/i)
+      expect(res.body.message).toMatch(/budget of account must be a number/i)
       expect(res.status).toBe(400)
       res = await request(server).put('/api/accounts/1').send(invalid2)
-      expect(res.body.message).toMatch(/must be a number/i)
+      expect(res.body.message).toMatch(/budget of account must be a number/i)
       expect(res.status).toBe(400)
     })
     test('[22] responds with a 400 and proper error if budget is negative or too big', async () => {
