@@ -5,8 +5,10 @@ const getAll = async () => {
   return accounts
 }
 
-const getById = id => {
-   return 'getById wired'
+const getById = async (id) => {
+  const account = await db('accounts')
+  .where('id', id).first()
+   return account
 }
 
 const create = account => {
