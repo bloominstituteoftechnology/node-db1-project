@@ -1,23 +1,49 @@
 const router = require('express').Router()
+const Account = require('./accounts-model')
 
-router.get('/', (req, res, next) => {
-  // DO YOUR MAGIC
+router.get('/', async (req, res, next) => {
+  try {
+    const data = await Account.getAll()
+    res.json(data)
+  } catch (err) {
+    next(err)
+  }
 })
 
-router.get('/:id', (req, res, next) => {
-  // DO YOUR MAGIC
+router.get('/:id', async (req, res, next) => {
+  try {
+    const data = await Account.getById()
+    res.json(data)
+  } catch (err) {
+    next(err)
+  }
 })
 
-router.post('/', (req, res, next) => {
-  // DO YOUR MAGIC
+router.post('/', async (req, res, next) => {
+  try {
+    const data = await Account.create()
+    res.json(data)
+  } catch (err) {
+    next(err)
+  }
 })
 
-router.put('/:id', (req, res, next) => {
-  // DO YOUR MAGIC
-});
+router.put('/:id', async (req, res, next) => {
+  try {
+    const data = await Account.updateById()
+    res.json(data)
+  } catch (err) {
+    next(err)
+  }
+})
 
-router.delete('/:id', (req, res, next) => {
-  // DO YOUR MAGIC
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const data = await Account.deleteById()
+    res.json(data)
+  } catch (err) {
+    next(err)
+  }
 })
 
 router.use((err, req, res, next) => { // eslint-disable-line
