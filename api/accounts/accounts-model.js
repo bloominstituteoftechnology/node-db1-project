@@ -17,7 +17,8 @@ const create = async (account) => {
       name: account.name.trim(),
       budget: account.budget
     })
-   return getById(id)
+   const newAccount = await getById(id)
+   return newAccount
 }
 
 const updateById = async (id, account) => {
