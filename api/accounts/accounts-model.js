@@ -1,3 +1,6 @@
+const db = require('../../data/db-config') // nodemon 
+
+
 const getAll = () => {
   // DO YOUR MAGIC
 }
@@ -25,3 +28,4 @@ module.exports = {
   updateById,
   deleteById,
 }
+
