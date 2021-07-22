@@ -52,7 +52,6 @@ checkAccountNameUnique,
 }})
 
 router.delete('/:id', (req, res, next) => {
-  router.delete('/:id', 
   checkAccountId, 
   async (req, res, next) => {
     try {
@@ -61,7 +60,7 @@ router.delete('/:id', (req, res, next) => {
     } catch (err) {
       next(err)
     }
-})})
+}})
 
 router.use((err, req, res, next) => {
 res.status(err.status || 500).json({
