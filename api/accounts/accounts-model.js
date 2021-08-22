@@ -1,20 +1,23 @@
-const getAll = () => {
+const db = require('../../data/db-config');
+
+const getAll = async () => {
+  return db('accounts')
+}
+
+const getById = async id => {
+  return db('accounts').where('id', id).first()
+}
+
+const create = async ({name, budget}) => {
+  const [id] = await db('accounts').insert({name, budget})
+  return getById(id)
+}
+
+const updateById = async (id, account) => {
   // DO YOUR MAGIC
 }
 
-const getById = id => {
-  // DO YOUR MAGIC
-}
-
-const create = account => {
-  // DO YOUR MAGIC
-}
-
-const updateById = (id, account) => {
-  // DO YOUR MAGIC
-}
-
-const deleteById = id => {
+const deleteById = async id => {
   // DO YOUR MAGIC
 }
 
