@@ -1,28 +1,37 @@
-const getAll = () => {
+const db = require("../../../node-api3-project/data/db-config")
+
+
+
+const getAll = async () => {
   // DO YOUR MAGIC
   return db('account')
 }
 
-const getById = id => {
+const getById = async id => {
   // DO YOUR MAGIC
-  return db('accounts').where('id', id).first()
+  return db('accounts')
+  .where('id', id)
+  .first()
 }
 
-const create = async (accounts) => {
+const create = async ({name, budget}) => {
   // DO YOUR MAGIC
- const {id}= await db('account').insert({name, budget})
-  const {name, budget}=accounts
-  return getById
-}
-
-const updateById = (id, account) => {
-  // DO YOUR MAGIC
-  id = Number(id)
-  await db('account').where('id', id).update({name, budget})
+  const [id]= await db('account')
+    .insert({name, budget})
+  
   return getById(id)
 }
 
-const deleteById = id => {
+const updateById = async (id, {name, budget}) => {
+  // DO YOUR MAGIC
+  
+  await db('account')
+  .where('id', id)
+  .update({name, budget})
+  return getById(id)
+}
+
+const deleteById = async id =>  {
   // DO YOUR MAGIC
   const deletedAccount = await getById(id)
   await db('account').where('id', id).delete()
