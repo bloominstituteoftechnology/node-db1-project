@@ -32,14 +32,16 @@ router.get('/:id', accRoutMW.checkAccountId, async (req, res, next) => {
 
 
 router.post('/', accRoutMW.checkAccountPayload, 
-accRoutMW.checkAccountNameUnique, (req, res, next) => {
+accRoutMW.checkAccountNameUnique, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
-    res.json('post account')
+    const newAccount = await Account.create(req.body)
+    res.status(201).json(newAccount)
   } catch (err) {
     next(err)
   }
 })
+
 
 router.put('/:id', accRoutMW.checkAccountId, 
 accRoutMW.checkAccountNameUnique, 
