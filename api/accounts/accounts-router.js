@@ -19,12 +19,15 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', accRoutMW.checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
-  try {
-    const account = await Account.getById(req.params.id)
-    res.json(account)
-  } catch (err) {
-    next(err)
-  }
+  // try {
+  //   const account = await Account.getById(req.params.id)
+  //   res.json(account)
+  // } catch (err) {
+  //   next(err)
+  // }
+  // ^ middleware takes care of it
+
+  res.json(req.account)
 })
 
 
