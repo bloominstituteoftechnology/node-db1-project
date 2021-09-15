@@ -36,7 +36,6 @@ accRoutMW.checkAccountNameUnique, (req, res, next) => {
   // DO YOUR MAGIC
   try {
     res.json('post account')
-
   } catch (err) {
     next(err)
   }
