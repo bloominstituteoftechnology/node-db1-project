@@ -1,10 +1,14 @@
 const router = require('express').Router()
+const accRoutMW = require('./accounts-middleware')
+const Account = require('./accounts-model')
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   // DO YOUR MAGIC
   try {
-    res.json('get accounts')
-    res.json( [ {}, {lol:'lol'}, {}])
+    const accounts = await Account.getAll()
+    res.json(accounts)
+    //res.json('get accounts')
+    //res.json( [ {}, {lol:'lol'}, {}])
     //throw new Error('kabloinZZZGGZ')
   } catch (err) {
     next(err)
@@ -13,17 +17,19 @@ router.get('/', (req, res, next) => {
   }
 })
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', accRoutMW.checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
-    res.json('get account by id')
-
+    const account = await Account.getById(req.params.id)
+    res.json(account)
   } catch (err) {
     next(err)
   }
 })
 
-router.post('/', (req, res, next) => {
+
+router.post('/', accRoutMW.checkAccountPayload, 
+accRoutMW.checkAccountNameUnique, (req, res, next) => {
   // DO YOUR MAGIC
   try {
     res.json('post account')
@@ -33,7 +39,9 @@ router.post('/', (req, res, next) => {
   }
 })
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', accRoutMW.checkAccountId, 
+accRoutMW.checkAccountNameUnique, 
+accRoutMW.checkAccountPayload, (req, res, next) => {
   // DO YOUR MAGIC
   try {
     res.json('update account by id')
@@ -43,7 +51,7 @@ router.put('/:id', (req, res, next) => {
   }
 });
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', accRoutMW.checkAccountId, (req, res, next) => {
   // DO YOUR MAGIC
   try {
     res.json('delete account')
