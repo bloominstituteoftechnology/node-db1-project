@@ -1,12 +1,12 @@
-const db = require('../../data/seeds/02-accounts');
+const db = require('../../data/db-config');
 
 
 const getAll = () => {
-  db('accounts')
+  return db('accounts')
 }
 
 const getById = id => {
-  db('accounts').where('id', id)
+return  db('accounts').where('id', id)
 }
 
 const create = account => {
