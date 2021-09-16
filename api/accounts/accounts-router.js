@@ -1,9 +1,8 @@
-/* eslint-disable */
 const router = require("express").Router();
 const md = require("./accounts-middleware");
 const Account = require("./accounts-model");
 
-// GET all accounts * * *
+// GET All accounts * * *
 router.get("/", async (req, res, next) => {
   try {
     const accounts = await Account.getAll();
@@ -13,7 +12,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// GET account by :id
+// GET Account by :id
 router.get("/:id", md.checkAccountId, async (req, res, next) => {
   try {
     const accounts = await Account.getById(req.params.id);
@@ -24,7 +23,7 @@ router.get("/:id", md.checkAccountId, async (req, res, next) => {
   }
 });
 
-// CREATE new account
+// CREATE New Account
 router.post(
   "/",
   md.checkAccountPayload,
@@ -67,6 +66,7 @@ router.delete("/:id", md.checkAccountId, async (req, res, next) => {
   }
 });
 
+/* eslint-disable-next-line*/
 router.use((err, req, res, next) => {
   res.status(err.status || 500).json({
     message: err.message,
