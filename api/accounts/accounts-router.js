@@ -19,15 +19,15 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', accRoutMW.checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
-  // try {
-  //   const account = await Account.getById(req.params.id)
-  //   res.json(account)
-  // } catch (err) {
-  //   next(err)
-  // }
+  try {
+    const account = await Account.getById(req.params.id)
+    res.json(account)
+  } catch (err) {
+    next(err)
+  }
   // ^ middleware takes care of it
 
-  res.json(req.account)
+  // res.json(req.account)
 })
 
 
@@ -35,7 +35,8 @@ router.post('/', accRoutMW.checkAccountPayload,
 accRoutMW.checkAccountNameUnique, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
-    const newAccount = await Account.create(req.body)
+    const newAccount = await Account.create({name: req.body.name.trim(),
+    budget: req.body.budget})
     res.status(201).json(newAccount)
   } catch (err) {
     next(err)
@@ -44,12 +45,11 @@ accRoutMW.checkAccountNameUnique, async (req, res, next) => {
 
 
 router.put('/:id', accRoutMW.checkAccountId, 
-accRoutMW.checkAccountNameUnique, 
-accRoutMW.checkAccountPayload, (req, res, next) => {
+accRoutMW.checkAccountPayload, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
-    res.json('update account by id')
-
+    const updated = await Account.updateById(req.params.id, req.body)
+    res.json(updated)
   } catch (err) {
     next(err)
   }

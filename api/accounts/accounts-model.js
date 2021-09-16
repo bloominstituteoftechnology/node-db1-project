@@ -15,12 +15,14 @@ const getById = id => {
 
 const create = async account => {
   // insert into accounts (name, budget) values ('foo', 1000)
-  const [id] = await db('accounts').insert(account, ('id')) //insert returns collection with ids of inserted records
+  const [id] = await db('accounts').insert(account) //insert returns collection with ids of inserted records
   return getById(id)
 }
 
-const updateById = (id, account) => {
+const updateById = async (id, account) => {
   // DO YOUR MAGIC
+  await db('accounts').where('id', id).update(account)
+  return getById(id)
 }
 
 const deleteById = id => {
