@@ -10,15 +10,15 @@ return  db('accounts').where('id', id)
 }
 
 const create = account => {
-   db('accounts').insert(account)
+  return db('accounts').insert(account)
 }
 
 const updateById = (id, account) => {
-  db('accounts').where('id', id).update(account)
+ return db('accounts').where('id', id).update(account)
 }
 
 const deleteById = id => {
-  db('accounts').where('id', id).delete()
+ return db('accounts').where('id', id).del()
 }
 
 module.exports = {
