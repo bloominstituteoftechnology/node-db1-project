@@ -1,6 +1,6 @@
 /* eslint-disable */
 const router = require("express").Router();
-
+const md = require("./accounts-middleware");
 const Account = require("./accounts-model");
 
 // GET all accounts * * *
@@ -13,8 +13,15 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", (req, res, next) => {
-  // DO YOUR MAGIC
+// GET account by :id
+router.get("/:id", md.checkAccountId, async (req, res, next) => {
+  try {
+    const accounts = await Account.getById(req.params.id);
+    // console.log(accounts);
+    res.json(accounts);
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.post("/", (req, res, next) => {
@@ -30,7 +37,10 @@ router.delete("/:id", (req, res, next) => {
 });
 
 router.use((err, req, res, next) => {
-  // DO YOUR MAGIC
+  res.status(err.status || 500).json({
+    message: err.message,
+    stack: err.stack,
+  });
 });
 
 module.exports = router;
