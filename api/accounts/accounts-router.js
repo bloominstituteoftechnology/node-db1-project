@@ -1,20 +1,23 @@
 const router = require('express').Router()
+const Account = require("./accounts-model")
 const {
   checkAccountPayload,
   checkAccountNameUnique,
   checkAccountId
 } = require("./accounts-middleware")
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try{
-    res.json("placeholder")
+    const accounts = Account.getAll()
+    res.json(accounts)
   }catch(err){
     next(err)
   }
 })
 
-router.get('/:id', checkAccountId, (req, res, next) => {
+router.get('/:id', checkAccountId, async (req, res, next) => {
   try{
+
     res.json("placeholder")
   }catch(err){
     next(err)
@@ -23,7 +26,7 @@ router.get('/:id', checkAccountId, (req, res, next) => {
 
 router.post('/',
   checkAccountPayload, checkAccountNameUnique, 
-  (req, res, next) => {
+  async (req, res, next) => {
     try{
       res.json("placeholder")
     }catch(err){
@@ -33,7 +36,7 @@ router.post('/',
 
 router.put('/:id',
   checkAccountId, checkAccountNameUnique,
-  checkAccountPayload, (req, res, next) => {
+  checkAccountPayload, async (req, res, next) => {
     try{
       res.json("placeholder")
     }catch(err){
@@ -41,7 +44,7 @@ router.put('/:id',
     }
 });
 
-router.delete('/:id', checkAccountId, (req, res, next) => {
+router.delete('/:id', checkAccountId, async (req, res, next) => {
   try{
     res.json("placeholder")
   }catch(err){
