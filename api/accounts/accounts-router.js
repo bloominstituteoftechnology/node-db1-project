@@ -1,7 +1,11 @@
 const router = require('express').Router()
 
 const Accounts = require('./accounts-model');
-const {checkAccountId} = require('./accounts-middleware');
+const {
+  checkAccountId, 
+  checkAccountPayload,
+  checkAccountNameUnique
+} = require('./accounts-middleware');
 
 router.get('/', (req, res, next) => {
   Accounts.getAll()
@@ -19,8 +23,16 @@ router.get('/:id', checkAccountId, (req, res, next) => {
   }
 });
 
-router.post('/', (req, res, next) => {
-  // DO YOUR MAGIC
+router.post(
+  '/', 
+  checkAccountPayload, 
+  checkAccountNameUnique, 
+  (req, res, next) => {
+    Accounts.create(req.body)
+      .then(account => {
+        res.status(201).json(account);
+      })
+      .catch(next);
 });
 
 router.put('/:id', (req, res, next) => {
