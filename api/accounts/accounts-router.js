@@ -35,8 +35,8 @@ router.post('/',
 })
 
 router.put('/:id',
-  checkAccountId, checkAccountNameUnique,
-  checkAccountPayload, async (req, res, next) => {
+  checkAccountPayload, checkAccountNameUnique,
+  checkAccountId, async (req, res, next) => {
     try{
       res.json("placeholder")
     }catch(err){
