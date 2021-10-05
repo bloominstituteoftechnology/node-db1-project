@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
   }
 })
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', checkAccountId, (req, res, next) => {
   try{
     res.json("placeholder")
   }catch(err){
@@ -21,23 +21,27 @@ router.get('/:id', (req, res, next) => {
   }
 })
 
-router.post('/', (req, res, next) => {
-  try{
-    res.json("placeholder")
-  }catch(err){
-    next(err)
-  }
+router.post('/',
+  checkAccountPayload, checkAccountNameUnique, 
+  (req, res, next) => {
+    try{
+      res.json("placeholder")
+    }catch(err){
+      next(err)
+    }
 })
 
-router.put('/:id', (req, res, next) => {
-  try{
-    res.json("placeholder")
-  }catch(err){
-    next(err)
-  }
+router.put('/:id',
+  checkAccountId, checkAccountNameUnique,
+  checkAccountPayload, (req, res, next) => {
+    try{
+      res.json("placeholder")
+    }catch(err){
+      next(err)
+    }
 });
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', checkAccountId, (req, res, next) => {
   try{
     res.json("placeholder")
   }catch(err){
