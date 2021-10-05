@@ -8,7 +8,7 @@ const {
 
 router.get('/', async (req, res, next) => {
   try{
-    const accounts = Account.getAll()
+    const accounts = await Account.getAll()
     res.json(accounts)
   }catch(err){
     next(err)
