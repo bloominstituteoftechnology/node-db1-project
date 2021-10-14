@@ -1,24 +1,24 @@
-const dbConfig = require('../../data/db-config')
+const db = require('../../data/db-config')
 const Account = require('./accounts-model')
 
 exports.checkAccountPayload = (req, res, next) => {
-  const err = {statua: 400}
+  const err = {status: 400}
   const {name, budget} = req.body
   if(name === undefined || budget === undefined){
     err.message = 'name and budget are required'
     next(err)
   }else if(typeof name !== 'string'){
-    err.message = 'name of account must be a string'
-    next(err)
+    res.status(400).json({message: 'name of account must be a string'})
   }else if(name.trim().length < 3 || name.trim().length > 100){
-  err.message = 'name of the account must be between 3 and 100'
-  next(err)
+    res.status(400).json({message: 'name of account must be between 3 and 100'})
   }else if(typeof budget !== 'number' || isNan(budget)){
-    err.message = 'budget of account must be a number'
-    next(err)
+    res.status(400).json({message: 'budget of account must be a number'})
   }else if(budget < 0 || budger >1000000){
-    err.message = 'budget of account is too large or too small'
+    res.status(400).json({message: 'budget of account is too large or too small'})
+  }if(err.message){
     next(err)
+  }else{
+    next()
   }
 }
 
