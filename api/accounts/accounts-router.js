@@ -27,7 +27,7 @@ router.get('/:id', checkAccountId, (req, res, next) => {
   // DO YOUR MAGIC
 })
 
-router.post('/', checkAccountPayload, (req, res, next) => {
+router.post('/', checkAccountPayload, checkAccountNameUnique, (req, res, next) => {
   // DO YOUR MAGIC
   Account.create(req.body)
     .then(newAccount => {

@@ -1,4 +1,5 @@
 const Account = require('./accounts-model')
+const db = require('../../data/db-config')
 
 exports.checkAccountPayload = (req, res, next) => {
   // DO YOUR MAGIC
@@ -26,7 +27,8 @@ exports.checkAccountPayload = (req, res, next) => {
 
 exports.checkAccountNameUnique = (req, res, next) => {
   // DO YOUR MAGIC
-  db('accounts').where({ name: req.body.name })
+  console.log('checking if name unique')
+  db('accounts').where({ name: req.body.name }).first()
     .then(account => {
       if (!account) {
         next()
