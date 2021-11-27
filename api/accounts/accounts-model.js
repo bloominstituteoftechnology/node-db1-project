@@ -22,8 +22,8 @@ const updateById = async (id, account) => {
 }
 
 const deleteById = async (id) => {
-  // DO YOUR MAGIC
-   
+  //delete from accounts where id = 1
+  return db('accounts').where('id', id).del()   
 }
 
 module.exports = {
