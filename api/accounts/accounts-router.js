@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
   }
 })
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', md.checkAccountId, (req, res, next) => {
   try{
 res.json('get account by id')
   }catch(err){
@@ -17,7 +17,10 @@ res.json('get account by id')
   }
 })
 
-router.post('/', (req, res, next) => {
+router.post('/',
+ md.checkAccountPayload, 
+ md.checkAccountNameUnique,
+ (req, res, next) => {
   try{
 res.json('post account')
   }catch(err){
@@ -25,7 +28,11 @@ res.json('post account')
   }
 })
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', 
+md.checkAccountId, 
+md.checkAccountNameUnique, 
+md.checkAccountPayload,
+(req, res, next) => {
   try{
 res.json('update account')
   }catch(err){
@@ -33,7 +40,7 @@ res.json('update account')
   }
 });
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', md.checkAccountId, (req, res, next) => {
   try{
 res.json('delets accounts')
   }catch(err){
