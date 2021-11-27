@@ -30,9 +30,10 @@ router.put('/:id',
 md.checkAccountId, 
 md.checkAccountNameUnique, 
 md.checkAccountPayload,
-(req, res, next) => {
+async (req, res, next) => {
   try{
-res.json('update account')
+  const newAccount = await Account.create(req.body)
+  res.status(201).json(newAccount)
   }catch(err){
     next(err)
   }
