@@ -47,7 +47,7 @@ exports.checkAccountId = async (req, res, next) => {
     if(!account) {
       next({ 
         status: 404,
-        message: 'Account with specified id does not exist'
+        message: 'account not found'
       })
     }else {
       res.account = account
