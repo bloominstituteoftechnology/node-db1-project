@@ -11,7 +11,21 @@ exports.checkAccountNameUnique = (req, res, next) => {
   next()
 }
 
-exports.checkAccountId = (req, res, next) => {
-  console.log('checkAccountId md');
-  next()
+exports.checkAccountId = async (req, res, next) => {
+  // console.log('checkAccountId md');
+  try{
+    const account = await Account.getById(req.params.id)
+    if(!account) {
+      next({ 
+        status: 404,
+        message: 'Account with specified id does not exist'
+      })
+    }else {
+      res.account = account
+      next()
+    }
+  }catch (err){
+    next(err)
+  }
+  
 } 
