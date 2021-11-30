@@ -1,27 +1,77 @@
-const router = require('express').Router()
+const router = require("express").Router();
+const md = require("./accounts-middleware");
+const Account = require("./accounts-model");
 
-router.get('/', (req, res, next) => {
-  // DO YOUR MAGIC
-})
-
-router.get('/:id', (req, res, next) => {
-  // DO YOUR MAGIC
-})
-
-router.post('/', (req, res, next) => {
-  // DO YOUR MAGIC
-})
-
-router.put('/:id', (req, res, next) => {
-  // DO YOUR MAGIC
+// GET All accounts * * *
+router.get("/", async (req, res, next) => {
+  try {
+    const accounts = await Account.getAll();
+    res.json(accounts);
+  } catch (err) {
+    next(err);
+  }
 });
 
-router.delete('/:id', (req, res, next) => {
-  // DO YOUR MAGIC
-})
+// GET Account by :id
+router.get("/:id", md.checkAccountId, async (req, res, next) => {
+  try {
+    const accounts = await Account.getById(req.params.id);
+    // console.log(accounts);
+    res.json(accounts);
+  } catch (err) {
+    next(err);
+  }
+});
 
-router.use((err, req, res, next) => { // eslint-disable-line
-  // DO YOUR MAGIC
-})
+// CREATE New Account
+router.post(
+  "/",
+  md.checkAccountPayload,
+  md.checkAccountNameUnique,
+  async (req, res, next) => {
+    try {
+      const newAccount = await Account.create({
+        name: req.body.name.trim(),
+        budget: req.body.budget,
+      });
+      res.status(201).json(newAccount);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+// UPDATE Account
+router.put(
+  "/:id",
+  md.checkAccountId,
+  md.checkAccountPayload,
+  async (req, res, next) => {
+    try {
+      const updated = await Account.updateById(req.params.id, req.body);
+      res.json(updated);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+// DELETE Account
+router.delete("/:id", md.checkAccountId, async (req, res, next) => {
+  try {
+    await Account.deleteById(req.params.id);
+    res.json(req.account);
+  } catch (err) {
+    next(err);
+  }
+});
+
+/* eslint-disable-next-line*/
+router.use((err, req, res, next) => {
+  res.status(err.status || 500).json({
+    message: err.message,
+    stack: err.stack,
+  });
+});
 
 module.exports = router;
