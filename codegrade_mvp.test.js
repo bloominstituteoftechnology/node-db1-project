@@ -77,13 +77,7 @@ describe('server.js', () => {
       expect(res.body.message).toMatch(/name and budget are required/i)
       expect(res.status).toBe(400)
     }, 750)
-    test('[10] responds with a 400 and proper error if name is not a string', async () => {
-      const invalid = { name: 123, budget: 123 }
-      let res = await request(server).post('/api/accounts').send(invalid)
-      expect(res.body.message).toMatch(/must be a string/i)
-      expect(res.status).toBe(400)
-    }, 750)
-    test('[11] responds with a 400 and proper error if name is too short or too big (after trimming)', async () => {
+    test('[10] responds with a 400 and proper error if name is too short or too long after trimming it', async () => {
       const invalid1 = { name: "fo", budget: 123 }
       const invalid2 = { name: "  fo   ", budget: 123 }
       const invalid3 = { name: "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901", budget: 123 }
@@ -97,9 +91,9 @@ describe('server.js', () => {
       expect(res.body.message).toMatch(/between 3 and 100/i)
       expect(res.status).toBe(400)
     }, 750)
-    test('[12] responds with a 400 and proper error if budget is not a number', async () => {
+    test('[11] responds with a 400 and proper error if budget cannot be coerced into a number', async () => {
       const invalid1 = { name: "foo", budget: NaN }
-      const invalid2 = { name: "foo", budget: '1000' }
+      const invalid2 = { name: "foo", budget: 'aaa' }
       let res = await request(server).post('/api/accounts').send(invalid1)
       expect(res.body.message).toMatch(/must be a number/i)
       expect(res.status).toBe(400)
@@ -107,7 +101,7 @@ describe('server.js', () => {
       expect(res.body.message).toMatch(/must be a number/i)
       expect(res.status).toBe(400)
     }, 750)
-    test('[13] responds with a 400 and proper error if budget is negative or too big', async () => {
+    test('[12] responds with a 400 and proper error if budget is negative or too big', async () => {
       const invalid1 = { name: "foo", budget: -1 }
       const invalid2 = { name: "foo", budget: 1000001 }
       let res = await request(server).post('/api/accounts').send(invalid1)
@@ -117,28 +111,28 @@ describe('server.js', () => {
       expect(res.body.message).toMatch(/too large or too small/i)
       expect(res.status).toBe(400)
     }, 750)
-    test('[14] responds with a 400 and proper error if name already exists in the db', async () => {
+    test('[13] responds with a 400 and proper error if name already exists in the db', async () => {
       let res = await request(server).post('/api/accounts').send(accounts[0])
       expect(res.body.message).toMatch(/name is taken/i)
       expect(res.status).toBe(400)
     }, 750)
   })
   describe('[PUT] /api/accounts/:id', () => {
-    test('[15] updates the account in the database', async () => {
+    test('[14] updates the account in the database', async () => {
       await request(server).put('/api/accounts/1').send({ name: 'foo', budget: 500.50 })
       let account = await db('accounts').where('id', 1).first()
       expect(account).toMatchObject({ name: 'foo', budget: 500.50 })
     }, 750)
-    test('[16] responds with a 200 and the newly updated account', async () => {
+    test('[15] responds with a 200 and the newly updated account', async () => {
       const res = await request(server).put('/api/accounts/1').send({ name: 'foo', budget: 1000 })
       expect(res.status).toBe(200)
       expect(res.body).toMatchObject({ name: 'foo', budget: 1000 })
     }, 750)
-    test('[17] responds with a 404 if the id does not exist', async () => {
+    test('[16] responds with a 404 if the id does not exist', async () => {
       let res = await request(server).put('/api/accounts/111').send({ name: 'foo', budget: 1000 })
       expect(res.status).toBe(404)
     }, 750)
-    test('[18] responds with a 400 and proper error if name or budget are undefined', async () => {
+    test('[17] responds with a 400 and proper error if name or budget are undefined', async () => {
       const invalid1 = {}
       const invalid2 = { name: "foo" }
       const invalid3 = { budget: 123 }
@@ -153,13 +147,7 @@ describe('server.js', () => {
       expect(res.body.message).toMatch(/name and budget are required/i)
       expect(res.status).toBe(400)
     }, 750)
-    test('[19] responds with a 400 and proper error if name is not a string', async () => {
-      const invalid = { name: 123, budget: 123 }
-      let res = await request(server).put('/api/accounts/1').send(invalid)
-      expect(res.body.message).toMatch(/must be a string/i)
-      expect(res.status).toBe(400)
-    }, 750)
-    test('[20] responds with a 400 and proper error if name is too short or too big (after trimming)', async () => {
+    test('[18] responds with a 400 and proper error if name is too short or too long after trimming', async () => {
       const invalid1 = { name: "fo", budget: 123 }
       const invalid2 = { name: "  fo   ", budget: 123 }
       const invalid3 = { name: "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901", budget: 123 }
@@ -173,9 +161,9 @@ describe('server.js', () => {
       expect(res.body.message).toMatch(/between 3 and 100/i)
       expect(res.status).toBe(400)
     }, 750)
-    test('[21] responds with a 400 and proper error if budget is not a number', async () => {
+    test('[19] responds with a 400 and proper error if budget cannot be coerced into a number', async () => {
       const invalid1 = { name: "foo", budget: NaN }
-      const invalid2 = { name: "foo", budget: '1000' }
+      const invalid2 = { name: "foo", budget: 'aaa' }
       let res = await request(server).put('/api/accounts/1').send(invalid1)
       expect(res.body.message).toMatch(/must be a number/i)
       expect(res.status).toBe(400)
@@ -183,7 +171,7 @@ describe('server.js', () => {
       expect(res.body.message).toMatch(/must be a number/i)
       expect(res.status).toBe(400)
     }, 750)
-    test('[22] responds with a 400 and proper error if budget is negative or too big', async () => {
+    test('[20] responds with a 400 and proper error if budget is negative or too big', async () => {
       const invalid1 = { name: "foo", budget: -1 }
       const invalid2 = { name: "foo", budget: 1000001 }
       let res = await request(server).put('/api/accounts/1').send(invalid1)
@@ -195,16 +183,16 @@ describe('server.js', () => {
     }, 750)
   })
   describe('[DELETE] /api/accounts/:id', () => {
-    test('[23] can delete the correct account', async () => {
+    test('[21] can delete the correct account', async () => {
       await request(server).delete('/api/accounts/1')
       const account = await db('accounts').where('id', 1).first()
       expect(account).not.toBeDefined()
     }, 750)
-    test('[24] responds with a 404 if the id does not exist', async () => {
+    test('[22] responds with a 404 if the id does not exist', async () => {
       let res = await request(server).delete('/api/accounts/111')
       expect(res.status).toBe(404)
     }, 750)
-    test('[25] responds with "account not found" if the id does not exist', async () => {
+    test('[23] responds with "account not found" if the id does not exist', async () => {
       let res = await request(server).delete('/api/accounts/111')
       expect(res.body.message).toMatch(/account not found/i)
     }, 750)
