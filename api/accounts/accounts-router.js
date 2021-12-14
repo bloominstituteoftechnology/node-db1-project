@@ -1,10 +1,15 @@
 const router = require('express').Router()
 const md = require('./accounts-middleware.js')
+const Account = require('../accounts/accounts-model.js')
 
-router.get('/', (req, res, next) => {
+//testing if I can go back and forth when accessing instead 
+// of directly going ('./accounts-model.js)
+
+router.get('/', async (req, res, next) => {
   // DO YOUR MAGIC
   try {
-    res.json(['get accounts',{},{},{}])
+    const accounts = await Account.getAll()
+    res.json(accounts)
   } catch (err) {
     next(err)
     //next({status:422, message: 'test error next'})
@@ -12,10 +17,11 @@ router.get('/', (req, res, next) => {
   }
 })
 
-router.get('/:id', md.checkAccountId, (req, res, next) => {
+router.get('/:id', md.checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
-    res.json('get account by id')
+    const account = await Account.getById(req.params.id)
+    res.json(account)
   } catch (err) {
     next(err)
   }
