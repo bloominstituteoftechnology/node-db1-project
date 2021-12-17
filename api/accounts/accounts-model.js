@@ -9,10 +9,9 @@ async function getById (id){
   return result
 }
 
-async function create (account){
-  const {id} = await db('accounts').insert({name: account.name.trim(), budget: account.budget})
-  const newAccount = await getById(id)
-  return newAccount
+async function create(account){
+  const [id] = await db('accounts').insert(account)
+  return getById(id)
 }
 
 async function updateById (id, account){

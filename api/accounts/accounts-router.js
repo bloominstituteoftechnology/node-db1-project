@@ -16,16 +16,16 @@ router.get('/:id', mw.checkAccountId, async (req, res) => {
   res.json(account)
 })
 
-router.post('/', mw.checkAccountPayload, mw.checkAccountNameUnique, async (req, res, next) => {
+router.post('/', mw.checkAccountPayload, mw.checkAccountNameUnique , async (req, res, next) => {
   try{
     const newAccount = await Accounts.create(req.body)
     res.status(201).json(newAccount)
   }catch(err){
-    next(err)  
+    next(err)
   }
 })
 
-router.put('/:id', mw.checkAccountId, mw.checkAccountPayload, mw.checkAccountId, async (req, res, next) => {
+router.put('/:id', mw.checkAccountId, mw.checkAccountPayload, async (req, res, next) => {
   try{
     const updated = await Accounts.updateById(req.params.id, req.body)
     res.json(updated)
