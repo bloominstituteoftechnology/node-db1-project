@@ -1,18 +1,11 @@
+const dbConfig = require('../../data/db-config')
 const Account = require('./accounts-model')
+const db = require('../../data/db-config')
 
 exports.checkAccountPayload = (req, res, next) => {
   // DO YOUR MAGIC
   // Note: you can either write "manual" validation logic
   // or use the Yup library (not currently installed)
-  // const user = User.getById(req.params.id)
-  //   if (!user.name || !user.budget) {
-  //     res.status(404).json({
-  //       message: "name and budget are required",
-  //     })
-  //   } 
-  //   if (){}
-  //   else {}
-  //   next()
 
   const error = { status: 400}
   const { name, budget} = req.body
@@ -35,8 +28,18 @@ exports.checkAccountPayload = (req, res, next) => {
   }
 }
 
-exports.checkAccountNameUnique = (req, res, next) => {
+exports.checkAccountNameUnique = async (req, res, next) => {
   // DO YOUR MAGIC
+  try {
+    const existing = await db('accounts').where('name', req.body.name.trim()).first()
+    if (existing) {
+      next({ status: 400, message: 'that name is taken' })
+    } else {
+      next()
+    }
+  } catch (err) {
+    next(err)
+  }
 }
 
 exports.checkAccountId = async (req, res, next) => {
@@ -44,7 +47,7 @@ exports.checkAccountId = async (req, res, next) => {
   try {
     const account = await Account.getById(req.params.id)
     if (!account) {
-      next({ status: 404, message: 'not found'})
+      next({ status: 404, message: 'account not found'})
     } else {
       req.account = account
       next()
