@@ -18,9 +18,15 @@ exports.checkAccountPayload = (req, res, next) => {
 }
 
 exports.checkAccountNameUnique = (req, res, next) => {
-  // DO YOUR MAGIC
+  
 }
 
 exports.checkAccountId = (req, res, next) => {
-  // DO YOUR MAGIC
+  const account = Accounts.getById(req.params.id)
+  if(!account){
+    res.status(404).json({message: 'that name is taken'})
+  }else{
+    req.account = account
+    next()
+  }
 }
