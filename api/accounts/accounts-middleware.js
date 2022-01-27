@@ -18,7 +18,14 @@ exports.checkAccountPayload = (req, res, next) => {
 }
 
 exports.checkAccountNameUnique = (req, res, next) => {
-  
+  const takenName = db('accounts')
+  .where('name', req.body.name.trim())
+  .first()
+  if(takenName){
+    next({status: 400, message: 'that name is taken'})
+  }else{
+    next()
+  }
 }
 
 exports.checkAccountId = (req, res, next) => {
