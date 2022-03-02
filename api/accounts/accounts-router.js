@@ -19,35 +19,48 @@ router.get('/:id', md.checkAccountId, async (req, res, next) => {
   res.json(req.account)
 })
 
+// create
 router.post('/', 
-md.checkAccountPayload, 
-md.checkAccountNameUnique, 
-(req, res, next) => {
+md.checkAccountPayload,
+async (req, res, next) => {
   // DO YOUR MAGIC
   try {
-    res.json('post accounts')
+    //const name = await Account.
+    const newAccount = await Account.create({
+      name: req.body.name.trim(),
+      budget: req.body.budget,
+    })
+    res.status(201).json(newAccount)
   } catch(err) {
     next(err)
   }
 })
 
+// update
 router.put('/:id', 
-md.checkAccountId,
-md.checkAccountPayload, 
-md.checkAccountNameUnique, 
- (req, res, next) => {
+md.checkAccountPayload,
+ async (req, res, next) => {
   // DO YOUR MAGIC
   try {
-    res.json('update accounts')
+    const exists =  await Account.getById(req.params.id)
+    // console.log(exists)
+    if (!exists) {
+    
+     return res.status(404).json({message: 'id does not exist'})
+    } 
+    const updated = await Account.updateById(req.params.id, req.body)
+    
+    res.json(updated)
   } catch(err) {
     next(err)
   }
 });
 
-router.delete('/:id', md.checkAccountId, (req, res, next) => {
+router.delete('/:id', md.checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
-    res.json('delete accounts')
+    await Account.deleteById(req.params.id)
+    res.json(req.accout)
   } catch(err) {
     next(err)
   }
