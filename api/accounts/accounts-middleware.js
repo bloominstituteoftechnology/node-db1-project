@@ -16,7 +16,7 @@ exports.checkAccountPayload = (req, res, next) => {
     error.message = 'name of account must be between 3 and 100'
   } else if (budget < 0 || budget > 1000000) {
     error.message = 'budget of account is too large or too small'
-  } else if (typeof budget !== 'number' || !isNaN(budget)) {
+  } else if (typeof budget !== 'number' || isNaN(budget)) {
     error.message = 'budget of account must be a number'
   }
 
