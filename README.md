@@ -56,13 +56,13 @@ npm run resetdb
 - Here is a cheatsheet for working with SQLite with Knex:
 
 ```js
-db('foo-table') // returns a promise that resolves to an **array** with all records in the table
-db('foo-table').where({ role: 'Student', active: true }) // resolves to an **array** of all records that satisfy the where
-db('foo-table').where('name', 'Mary') // is an alternative for when there is just one where condition
-db('foo-table').where('id', 7).first() // will resolve to the **record** we want (if the id is unique for a table) or undefined
-db('foo-table').insert({ bar: 'baz' }) // resolves to an **array** containing the **ids of the records** inserted into the table
-db('foo-table').where('id', id).update({ bar: 'new bar' }) // resolves to the **number of records** affected by the update
-db('foo-table').where('id', id).delete() // resolves to the **number of records** affected by the delete
+db("foo-table"); // returns a promise that resolves to an **array** with all records in the table
+db("foo-table").where({ role: "Student", active: true }); // resolves to an **array** of all records that satisfy the where
+db("foo-table").where("name", "Mary"); // is an alternative for when there is just one where condition
+db("foo-table").where("id", 7).first(); // will resolve to the **record** we want (if the id is unique for a table) or undefined
+db("foo-table").insert({ bar: "baz" }); // resolves to an **array** containing the **ids of the records** inserted into the table
+db("foo-table").where("id", id).update({ bar: "new bar" }); // resolves to the **number of records** affected by the update
+db("foo-table").where("id", id).delete(); // resolves to the **number of records** affected by the delete
 ```
 
 #### Write Middleware
@@ -74,7 +74,7 @@ db('foo-table').where('id', id).delete() // resolves to the **number of records*
     - If either name or budget are undefined, return `{ message: "name and budget are required" }`
     - If the _trimmed_ name is shorter than 3 or longer than 100, return `{ message: "name of account must be between 3 and 100" }`
     - If budget is not able to be converted into a number, return `{ message: "budget of account must be a number" }`
-    - If budget is a negative number or over one million, return  `{ message: "budget of account is too large or too small" }`
+    - If budget is a negative number or over one million, return `{ message: "budget of account is too large or too small" }`
 
   - `checkAccountId` returns a status 404 with a `{ message: "account not found" }` if `req.params.id` does not exist in the database
 
