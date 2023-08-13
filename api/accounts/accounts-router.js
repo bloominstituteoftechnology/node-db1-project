@@ -18,28 +18,27 @@ router.get("/", (req, res, next) => {
 
 router.get("/:id", checkAccountId, (req, res, next) => {
   // DO YOUR MAGIC
-  Accounts.getById(req.params.id)
-    .then((account) => {
-      res.json(account);
-    })
-    .catch((err) => {
-      next(err);
-    });
+  Accounts.getById(req.params.id).then((account) => {
+    res.json(account);
+  });
 });
 
-router.post("/", (req, res, next) => {
+router.post("/", checkAccountPayload, (req, res, next) => {
   // DO YOUR MAGIC
   const { name, budget } = req.body;
-  Accounts.create({ name: name, budget: budget })
+  Accounts.create({
+    name: name.trim(),
+    budget: budget,
+  })
     .then((newAccount) => {
       res.status(201).json(newAccount);
     })
     .catch((err) => {
-      next(err);
+      next();
     });
 });
 
-router.put("/:id", (req, res, next) => {
+router.put("/:id", checkAccountId, (req, res, next) => {
   // DO YOUR MAGIC
   Accounts.updateById(req.params.id)
     .then((updatedAccount) => {
