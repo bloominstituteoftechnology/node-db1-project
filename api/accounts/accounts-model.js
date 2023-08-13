@@ -24,7 +24,7 @@ const updateById = async (id, account) => {
 const deleteById = async (id) => {
   // DO YOUR MAGIC
   const removedAcocunt = getById(id);
-  await db("account").where("id", id).del();
+  await db("accounts").where("id", id).del();
   return removedAcocunt;
 };
 

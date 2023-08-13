@@ -1,4 +1,5 @@
 const Account = require("./accounts-model");
+const db = require("../../data/db-config");
 exports.checkAccountPayload = (req, res, next) => {
   // DO YOUR MAGIC
   // Note: you can either write "manual" validation logic
@@ -26,8 +27,22 @@ exports.checkAccountPayload = (req, res, next) => {
   }
 };
 
-exports.checkAccountNameUnique = (req, res, next) => {
+exports.checkAccountNameUnique = async (req, res, next) => {
   // DO YOUR MAGIC
+  try {
+    const name = await db("accounts")
+      .where("name", req.body.name.trim())
+      .first();
+    if (name) {
+      res.status(400).json({
+        message: "this name is taken",
+      });
+    } else {
+      next();
+    }
+  } catch {
+    next();
+  }
 };
 
 exports.checkAccountId = async (req, res, next) => {
@@ -39,7 +54,6 @@ exports.checkAccountId = async (req, res, next) => {
         message: "account not found",
       });
     } else {
-      req.account = account;
       next();
     }
   } catch (err) {

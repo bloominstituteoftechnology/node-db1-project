@@ -3,6 +3,7 @@ const Accounts = require("./accounts-model");
 const {
   checkAccountId,
   checkAccountPayload,
+  checkAccountNameUnique,
 } = require("./accounts-middleware");
 
 router.get("/", (req, res, next) => {
@@ -23,20 +24,25 @@ router.get("/:id", checkAccountId, (req, res, next) => {
   });
 });
 
-router.post("/", checkAccountPayload, (req, res, next) => {
-  // DO YOUR MAGIC
-  const { name, budget } = req.body;
-  Accounts.create({
-    name: name.trim(),
-    budget: budget,
-  })
-    .then((newAccount) => {
-      res.status(201).json(newAccount);
+router.post(
+  "/",
+  checkAccountPayload,
+  checkAccountNameUnique,
+  (req, res, next) => {
+    // DO YOUR MAGIC
+    const { name, budget } = req.body;
+    Accounts.create({
+      name: name.trim(),
+      budget: budget,
     })
-    .catch((err) => {
-      next();
-    });
-});
+      .then((newAccount) => {
+        res.status(201).json(newAccount);
+      })
+      .catch((err) => {
+        next();
+      });
+  }
+);
 
 router.put("/:id", checkAccountId, checkAccountPayload, (req, res, next) => {
   // DO YOUR MAGIC
@@ -52,12 +58,12 @@ router.put("/:id", checkAccountId, checkAccountPayload, (req, res, next) => {
 router.delete("/:id", checkAccountId, (req, res, next) => {
   // DO YOUR MAGIC
   Accounts.deleteById(req.params.id)
-    .then((removedAccount) => res.status(200).json(removedAccount))
-    .catch((err) =>
-      res.status(500).json({
-        message: err.message,
-      })
-    );
+    .then((removedAccount) => {
+      res.json(removedAccount);
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 router.use((err, req, res, next) => {
