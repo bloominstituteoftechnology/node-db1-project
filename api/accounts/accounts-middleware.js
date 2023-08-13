@@ -5,7 +5,7 @@ exports.checkAccountPayload = (req, res, next) => {
   // or use the Yup library (not currently installed)
   const err = { satus: 400 };
   const { name, budget } = req.body;
-  if (!name || !budget) {
+  if (name === undefined || budget === undefined) {
     res.status(400).json({
       message: "name and budget are required",
     });
@@ -13,7 +13,7 @@ exports.checkAccountPayload = (req, res, next) => {
     res.status(400).json({
       message: "name of account must be between 3 and 100",
     });
-  } else if (typeof budget !== "number") {
+  } else if (typeof budget !== "number" || isNaN(budget)) {
     res.status(400).json({
       message: "budget of account must be a number",
     });
@@ -39,6 +39,7 @@ exports.checkAccountId = async (req, res, next) => {
         message: "account not found",
       });
     } else {
+      req.account = account;
       next();
     }
   } catch (err) {

@@ -38,26 +38,26 @@ router.post("/", checkAccountPayload, (req, res, next) => {
     });
 });
 
-router.put("/:id", checkAccountId, (req, res, next) => {
+router.put("/:id", checkAccountId, checkAccountPayload, (req, res, next) => {
   // DO YOUR MAGIC
-  Accounts.updateById(req.params.id)
+  Accounts.updateById(req.params.id, req.body)
     .then((updatedAccount) => {
-      res.status(201).json(updatedAccount);
+      res.status(200).json(updatedAccount);
     })
     .catch((err) => {
       next(err);
     });
 });
 
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", checkAccountId, (req, res, next) => {
   // DO YOUR MAGIC
   Accounts.deleteById(req.params.id)
-    .then((account) => {
-      res.status(200).json(account);
-    })
-    .catch((err) => {
-      next(err);
-    });
+    .then((removedAccount) => res.status(200).json(removedAccount))
+    .catch((err) =>
+      res.status(500).json({
+        message: err.message,
+      })
+    );
 });
 
 router.use((err, req, res, next) => {
